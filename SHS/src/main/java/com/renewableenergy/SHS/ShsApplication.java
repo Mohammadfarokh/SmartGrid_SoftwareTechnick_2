@@ -8,6 +8,7 @@ public class ShsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShsApplication.class, args);
+		System.out.println("kdsajfnkasdnf");
 	}
 
 }
