@@ -1,0 +1,9 @@
+package com.renewableenergy.SGS;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.renewableenergy.SGS.entity.Turbine;
+
+public interface TurbineRepository extends JpaRepository<Turbine,Long> {
+
+}
