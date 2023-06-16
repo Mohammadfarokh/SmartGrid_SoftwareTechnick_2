@@ -21,26 +21,33 @@ public class HomeBattary {
 	generator = "homebattary_sequence") 
 	private long id;
 	private String name;
-	private double capacity;
+	private double maxCapacity;
 	private double consumedElectrictiy;
-	private double savedAmount;
+	private double realtimeCapacity;
+	private int reachedMax;
+	private boolean charging;
 	@ManyToMany(mappedBy = "battarys")
 	Set<SmartHome> smarthomes;
+	enum status{
+		GOOD,
+		MIDDEL, 
+		BAD
+	}
 	public HomeBattary() {
 		super();
 	}
-	
-	public HomeBattary(long id, String name, double capacity, double consumedElectrictiy, double savedAmount,
-			Set<SmartHome> smarthomes) {
+	public HomeBattary(long id, String name, double maxCapacity, double consumedElectrictiy, double realtimeCapacity,
+			int reachedMax, boolean charging, Set<SmartHome> smarthomes) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.capacity = capacity;
+		this.maxCapacity = maxCapacity;
 		this.consumedElectrictiy = consumedElectrictiy;
-		this.savedAmount = savedAmount;
+		this.realtimeCapacity = realtimeCapacity;
+		this.reachedMax = reachedMax;
+		this.charging = charging;
 		this.smarthomes = smarthomes;
 	}
-
 	public long getId() {
 		return id;
 	}
@@ -53,11 +60,29 @@ public class HomeBattary {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getCapacity() {
-		return capacity;
+	public double getMaxCapacity() {
+		return maxCapacity;
 	}
-	public void setCapacity(double capacity) {
-		this.capacity = capacity;
+	public void setMaxCapacity(double maxCapacity) {
+		this.maxCapacity = maxCapacity;
+	}
+	public double getRealtimeCapacity() {
+		return realtimeCapacity;
+	}
+	public void setRealtimeCapacity(double realtimeCapacity) {
+		this.realtimeCapacity = realtimeCapacity;
+	}
+	public int getReachedMax() {
+		return reachedMax;
+	}
+	public void setReachedMax(int reachedMax) {
+		this.reachedMax = reachedMax;
+	}
+	public boolean isCharging() {
+		return charging;
+	}
+	public void setCharging(boolean charging) {
+		this.charging = charging;
 	}
 	public double getConsumedElectrictiy() {
 		return consumedElectrictiy;
@@ -65,24 +90,20 @@ public class HomeBattary {
 	public void setConsumedElectrictiy(double consumedElectrictiy) {
 		this.consumedElectrictiy = consumedElectrictiy;
 	}
-	public double getSavedAmount() {
-		return savedAmount;
-	}
-	public void setSavedAmount(double savedAmount) {
-		this.savedAmount = savedAmount;
-	}
 	public Set<SmartHome> getSmarthomes() {
 		return smarthomes;
 	}
 	public void setSmarthomes(Set<SmartHome> smarthomes) {
 		this.smarthomes = smarthomes;
 	}
-
 	@Override
 	public String toString() {
-		return "HomeBattary [id=" + id + ", name=" + name + ", capacity=" + capacity + ", consumedElectrictiy="
-				+ consumedElectrictiy + ", savedAmount=" + savedAmount + ", smarthomes=" + smarthomes + "]";
+		return "HomeBattary [id=" + id + ", name=" + name + ", maxCapacity=" + maxCapacity + ", consumedElectrictiy="
+				+ consumedElectrictiy + ", realtimeCapacity=" + realtimeCapacity + ", reachedMax=" + reachedMax
+				+ ", charging=" + charging + ", smarthomes=" + smarthomes + "]";
 	}
+
+
 	
 	
 }

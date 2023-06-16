@@ -24,6 +24,7 @@ public class EnergyProducerinHome {
 	private double consumedElectrecity;
 	private double producedElectrecity;
 	private double realtimeCapacity;
+	private double maxOutput;
 	private LocalDateTime sunrise;
 	private LocalDateTime sunset;
 	private double wind_speed;
@@ -33,7 +34,7 @@ public class EnergyProducerinHome {
 		super();
 	}
 	public EnergyProducerinHome(long id, String name, double consumedElectrecity, double producedElectrecity,
-			double realtimeCapacity, LocalDateTime sunrise, LocalDateTime sunset, long wind_speed,
+			double realtimeCapacity,double maxOutput, LocalDateTime sunrise, LocalDateTime sunset, long wind_speed,
 			Set<SmartHome> smarthomes) {
 		super();
 		this.id = id;
@@ -41,6 +42,7 @@ public class EnergyProducerinHome {
 		this.consumedElectrecity = consumedElectrecity;
 		this.producedElectrecity = producedElectrecity;
 		this.realtimeCapacity = realtimeCapacity;
+		this.maxOutput = maxOutput;
 		this.sunrise = sunrise;
 		this.sunset = sunset;
 		this.wind_speed = wind_speed;
@@ -104,8 +106,14 @@ public class EnergyProducerinHome {
 	public String toString() {
 		return "EnergyProducerinHome [id=" + id + ", name=" + name + ", consumedElectrecity=" + consumedElectrecity
 				+ ", producedElectrecity=" + producedElectrecity + ", realtimeCapacity=" + realtimeCapacity
-				+ ", sunrise=" + sunrise + ", sunset=" + sunset + ", wind_speed="
+				+ ", maxOutput=" + maxOutput+ ", sunrise=" + sunrise + ", sunset=" + sunset + ", wind_speed="
 				+ wind_speed + ", smarthomes=" + smarthomes + "]";
+	}
+	public double getMaxOutput() {
+		return maxOutput;
+	}
+	public void setMaxOutput(double maxOutput) {
+		this.maxOutput = maxOutput;
 	}
 	
 	
