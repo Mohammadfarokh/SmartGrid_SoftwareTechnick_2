@@ -1,10 +1,15 @@
 package com.renewableenergy.SHS.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
+@Entity
+@Table
 public class SmartMeter {
 	@Id
 	@SequenceGenerator(
@@ -18,6 +23,7 @@ public class SmartMeter {
 	private double producedEnergy;
 	private double consumedEnergyWithTariff;
 	private double consumedEnergyWithoutTariff;
+	@ManyToOne
 	private SmartHome smartHome;
 	
 	public SmartMeter() {

@@ -3,14 +3,21 @@ package com.renewableenergy.SHS.entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 import com.renewableenergy.SHS.entity.SmartHome;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
+@Entity
+@Table
 public class HomeBattary {
 	@Id
 	@SequenceGenerator(
@@ -26,8 +33,10 @@ public class HomeBattary {
 	private double realtimeCapacity;
 	private int reachedMax;
 	private boolean charging;
-	@ManyToMany(mappedBy = "battarys")
-	Set<SmartHome> smarthomes;
+//	@ManyToMany(mappedBy = "battarys")
+//	Set<SmartHome> smarthomes;
+	@ManyToOne
+	SmartHome smarthome;
 	enum status{
 		GOOD,
 		MIDDEL, 
@@ -37,7 +46,7 @@ public class HomeBattary {
 		super();
 	}
 	public HomeBattary(long id, String name, double maxCapacity, double consumedElectrictiy, double realtimeCapacity,
-			int reachedMax, boolean charging, Set<SmartHome> smarthomes) {
+			int reachedMax, boolean charging, SmartHome smarthome) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,7 +55,7 @@ public class HomeBattary {
 		this.realtimeCapacity = realtimeCapacity;
 		this.reachedMax = reachedMax;
 		this.charging = charging;
-		this.smarthomes = smarthomes;
+		this.smarthome = smarthome;
 	}
 	public long getId() {
 		return id;
@@ -90,17 +99,17 @@ public class HomeBattary {
 	public void setConsumedElectrictiy(double consumedElectrictiy) {
 		this.consumedElectrictiy = consumedElectrictiy;
 	}
-	public Set<SmartHome> getSmarthomes() {
-		return smarthomes;
+	public SmartHome getSmarthome() {
+		return smarthome;
 	}
-	public void setSmarthomes(Set<SmartHome> smarthomes) {
-		this.smarthomes = smarthomes;
+	public void setSmarthomes(SmartHome smarthome) {
+		this.smarthome = smarthome;
 	}
 	@Override
 	public String toString() {
 		return "HomeBattary [id=" + id + ", name=" + name + ", maxCapacity=" + maxCapacity + ", consumedElectrictiy="
 				+ consumedElectrictiy + ", realtimeCapacity=" + realtimeCapacity + ", reachedMax=" + reachedMax
-				+ ", charging=" + charging + ", smarthomes=" + smarthomes + "]";
+				+ ", charging=" + charging + ", smarthomes=" + smarthome + "]";
 	}
 
 

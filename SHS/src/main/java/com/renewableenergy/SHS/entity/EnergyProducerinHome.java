@@ -5,12 +5,16 @@ import java.util.Set;
 
 import com.renewableenergy.SHS.entity.SmartHome;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
-
+import jakarta.persistence.Table;
+@Entity
+@Table
 public class EnergyProducerinHome {
 	@Id
 	@SequenceGenerator(
@@ -28,16 +32,16 @@ public class EnergyProducerinHome {
 	private LocalDateTime sunrise;
 	private LocalDateTime sunset;
 	private double wind_speed;
-	@ManyToMany(mappedBy = "energyproducer")
-	Set<SmartHome> smarthomes;
+//	@ManyToMany(mappedBy = "energyproducer")
+//	Set<SmartHome> smarthomes;
+	@ManyToOne
+	SmartHome smarthome;
 	public EnergyProducerinHome() {
 		super();
 	}
-	public EnergyProducerinHome(long id, String name, double consumedElectrecity, double producedElectrecity,
-			double realtimeCapacity,double maxOutput, LocalDateTime sunrise, LocalDateTime sunset, long wind_speed,
-			Set<SmartHome> smarthomes) {
-		super();
-		this.id = id;
+	public EnergyProducerinHome(String name, double consumedElectrecity, double producedElectrecity,
+			double realtimeCapacity,double maxOutput, LocalDateTime sunrise, LocalDateTime sunset, double wind_speed,
+			SmartHome smarthome) {
 		this.name = name;
 		this.consumedElectrecity = consumedElectrecity;
 		this.producedElectrecity = producedElectrecity;
@@ -46,7 +50,7 @@ public class EnergyProducerinHome {
 		this.sunrise = sunrise;
 		this.sunset = sunset;
 		this.wind_speed = wind_speed;
-		this.smarthomes = smarthomes;
+		this.smarthome = smarthome;
 	}
 	public long getId() {
 		return id;
@@ -96,18 +100,18 @@ public class EnergyProducerinHome {
 	public void setWind_speed(double wind_speed) {
 		this.wind_speed = wind_speed;
 	}
-	public Set<SmartHome> getSmarthomes() {
-		return smarthomes;
+	public SmartHome getSmarthomes() {
+		return smarthome;
 	}
-	public void setSmarthomes(Set<SmartHome> smarthomes) {
-		this.smarthomes = smarthomes;
+	public void setSmarthomes(SmartHome smarthome) {
+		this.smarthome = smarthome;
 	}
 	@Override
 	public String toString() {
 		return "EnergyProducerinHome [id=" + id + ", name=" + name + ", consumedElectrecity=" + consumedElectrecity
 				+ ", producedElectrecity=" + producedElectrecity + ", realtimeCapacity=" + realtimeCapacity
 				+ ", maxOutput=" + maxOutput+ ", sunrise=" + sunrise + ", sunset=" + sunset + ", wind_speed="
-				+ wind_speed + ", smarthomes=" + smarthomes + "]";
+				+ wind_speed + ", smarthomes=" + smarthome + "]";
 	}
 	public double getMaxOutput() {
 		return maxOutput;
