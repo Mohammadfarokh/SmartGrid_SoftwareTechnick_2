@@ -11,9 +11,9 @@ import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
 
 @Service
 public class EnergyProducerinHomeService {
-	@Autowired
-	private final EnergyProducerinHomeRepository epihr;
 	
+	private final EnergyProducerinHomeRepository epihr;
+	@Autowired
 	public EnergyProducerinHomeService(EnergyProducerinHomeRepository epihr) {
 		this.epihr = epihr;
 	}

@@ -32,9 +32,7 @@ public class EnergyConsumer {
 	public EnergyConsumer() {
 		super();
 	}
-	public EnergyConsumer(long id, String name, int tariff, double consumedElectrecity, SmartHome smarthome) {
-		super();
-		this.id = id;
+	public EnergyConsumer(String name, int tariff, double consumedElectrecity, SmartHome smarthome) {
 		this.name = name;
 		this.tariff = tariff;
 		this.consumedElectrecity = consumedElectrecity;
