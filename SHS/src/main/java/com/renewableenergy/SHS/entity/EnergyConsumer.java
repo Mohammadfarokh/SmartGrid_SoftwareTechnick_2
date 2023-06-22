@@ -3,12 +3,16 @@ package com.renewableenergy.SHS.entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
-
+import jakarta.persistence.Table;
+@Entity
+@Table
 public class EnergyConsumer {
 	@Id
 	@SequenceGenerator(
@@ -21,18 +25,18 @@ public class EnergyConsumer {
 	private String name;
 	private int tariff;
 	private double consumedElectrecity;
-	@ManyToMany(mappedBy = "energyconsumer")
-	Set<SmartHome> smarthomes;
+//	@ManyToMany(mappedBy = "energyconsumer")
+//	Set<SmartHome> smarthomes;
+	@ManyToOne
+	SmartHome smarthome;
 	public EnergyConsumer() {
 		super();
 	}
-	public EnergyConsumer(long id, String name, int tariff, double consumedElectrecity, Set<SmartHome> smarthomes) {
-		super();
-		this.id = id;
+	public EnergyConsumer(String name, int tariff, double consumedElectrecity, SmartHome smarthome) {
 		this.name = name;
 		this.tariff = tariff;
 		this.consumedElectrecity = consumedElectrecity;
-		this.smarthomes = smarthomes;
+		this.smarthome = smarthome;
 	}
 	public long getId() {
 		return id;
@@ -58,16 +62,16 @@ public class EnergyConsumer {
 	public void setConsumedElectrecity(double consumedElectrecity) {
 		this.consumedElectrecity = consumedElectrecity;
 	}
-	public Set<SmartHome> getSmarthomes() {
-		return smarthomes;
+	public SmartHome getSmarthomes() {
+		return smarthome;
 	}
-	public void setSmarthomes(Set<SmartHome> smarthomes) {
-		this.smarthomes = smarthomes;
+	public void setSmarthomes(SmartHome smarthome) {
+		this.smarthome = smarthome;
 	}
 	@Override
 	public String toString() {
 		return "EnergyConsumer [id=" + id + ", name=" + name + ", tariff=" + tariff + ", consumedElectrecity="
-				+ consumedElectrecity + ", smarthomes=" + smarthomes + "]";
+				+ consumedElectrecity + ", smarthomes=" + smarthome + "]";
 	}
 	
 	
