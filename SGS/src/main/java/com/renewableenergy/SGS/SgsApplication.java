@@ -36,7 +36,7 @@ public class SgsApplication {
     	/* SmartGridManagement smartGridManagement = new SmartGridManagement(context);
     	double test = smartGridManagement.electrecityIncomingCalculator(0, battarylist);
         System.out.println("smartGridManagement = " + test); */
-    	
+    	//
 	}
 
 }

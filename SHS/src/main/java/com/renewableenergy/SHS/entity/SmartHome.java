@@ -1,6 +1,9 @@
+
 package com.renewableenergy.SHS.entity;
 
 import java.util.Set;
+
+
 //tariff and SmartGrid from SGS muss be imported
 import com.renewableenergy.SHS.entity.HomeBattary;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
@@ -13,6 +16,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import com.renewableenergy.SGS.entity.SmartGrid;
 import com.renewableenergy.SGS.entity.Tariff;
+
 
 public class SmartHome {
 	@Id
