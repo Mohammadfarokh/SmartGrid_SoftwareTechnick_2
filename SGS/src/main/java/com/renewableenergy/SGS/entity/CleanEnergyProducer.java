@@ -9,10 +9,27 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class CleanEnergyProducer extends EnergyProducer {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	
+
 	private String weather;
+
+	public CleanEnergyProducer(Long id ,
+							   double productionAmount,
+							   boolean status,
+							   String weather) {
+		super(id,productionAmount,status);
+		this.weather = weather;
+	}
+
+	public CleanEnergyProducer() {
+
+	}
+
+	public String getWeather() {
+		return weather;
+	}
+
+	public void setWeather(String weather) {
+		this.weather = weather;
+	}
 
 }

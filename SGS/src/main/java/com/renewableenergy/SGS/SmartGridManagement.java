@@ -1,6 +1,7 @@
 package com.renewableenergy.SGS;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
@@ -16,7 +17,7 @@ public class SmartGridManagement {
 	private double electrecityIncoming;
 	private double electricityConsumed;
 	
-	ConfigurableApplicationContext context ; 
+	ConfigurableApplicationContext context; 
 	
     public SmartGridManagement(ConfigurableApplicationContext context) {
 		super();
@@ -44,13 +45,11 @@ public class SmartGridManagement {
 	
 	
 	
-	 public double electrecityIncomingCalculator(double electricityConsumed,List<Battary> battary) { 
+	/* public double electrecityIncomingCalculator(double electricityConsumed,List<Battary> battary) { 
 		 for (int i = 0; i < anzBattry ; i++){
 			 electrecityIncoming += battary.get(i).getSaveAmount(); 
-			 }
-		 
+			 }		 
 		 return electrecityIncoming+electricityConsumed;
-		
-	 } 
+	 } */
 
 }

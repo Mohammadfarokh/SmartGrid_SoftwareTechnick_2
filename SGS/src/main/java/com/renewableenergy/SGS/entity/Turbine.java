@@ -10,29 +10,20 @@ import jakarta.persistence.Table;
 @Table	
 public class Turbine extends CleanEnergyProducer {
 	
-	public Turbine(double wind_speed) {
-		super();
-		this.wind_speed = wind_speed;
+	public Turbine(Long id ,
+				   double productionAmount,
+				   boolean status,
+				   String weather,
+				   double wind_speed) {
+			super(id,productionAmount,status,weather);
+			this.wind_speed = wind_speed;
 	}
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
 	
+	public Turbine() {
+
+}
+
 	private double wind_speed;
-
-	@Override
-	public String toString() {
-		return "Turbine [id=" + id + ", wind_speed=" + wind_speed + "]";
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public double getWind_speed() {
 		return wind_speed;
@@ -41,5 +32,4 @@ public class Turbine extends CleanEnergyProducer {
 	public void setWind_speed(double wind_speed) {
 		this.wind_speed = wind_speed;
 	}
-
 }
