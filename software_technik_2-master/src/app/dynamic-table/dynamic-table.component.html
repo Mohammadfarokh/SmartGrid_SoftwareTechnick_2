@@ -1,0 +1,95 @@
+<div class="tables-container">
+  <div class="table-container">
+    <table class="table">
+      <caption>Clean Energy</caption>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>sunrise/<br>sunset</th>
+          <th>production<br>kw\h</th>
+          <th  >status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tableDataList1">
+          <td>{{ row.column1 }}</td>
+          <td>{{ row.column2 }}</td>
+          <td>{{ row.column3 }}</td>
+          <td > <button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-container">
+    <table class="table">
+      <caption>Turbine</caption>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>windspeed</th>
+          <th>production<br>kw\h</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tableDataList2">
+          <td>{{ row.column1 }}</td>
+          <td>{{ row.column2 }}</td>
+          <td>{{ row.column3 }}</td>
+          <td><button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="table-container">
+    <table class="table">
+      <caption>
+        conventional energy power plant</caption>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>production<br>kw\h</th>
+          <th>status</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tableDataList3">
+          <td>{{ row.column1 }}</td>
+          <td>{{ row.column2 }}</td>
+          <td><button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-container">
+    <table class="table">
+      <caption>
+        Battery</caption>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>capacity</th>
+          <th>status</th>
+          <th>location</th>
+          <th>amount</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tableDataList4">
+          <td>{{ row.column1 }}</td>
+          <td>{{ row.column2 }}</td>
+          <td><button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
+          <td>{{ row.column3 }}</td>
+          <td>{{ row.column4 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>

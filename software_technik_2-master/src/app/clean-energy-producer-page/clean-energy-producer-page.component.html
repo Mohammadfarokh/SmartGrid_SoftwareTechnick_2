@@ -1,0 +1,39 @@
+<div class="container">
+  <form #form1="ngForm" (submit)="submitForm1(form1)">
+    <div class="box">
+      <h3>Add Factory</h3>
+      <label for="name1">Name:</label>
+      <input type="text" id="name1" name="name1" ngModel>
+      <label for="location1">Location:</label>
+      <input type="text" id="location1" name="location1" ngModel>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <form #form2="ngForm" (submit)="submitForm2(form2)">
+    <div class="box">
+      <h3>Add Clean Energy Device</h3>
+      <label for="name2">Name:</label>
+      <input type="text" id="name2" name="name2" ngModel>
+      <label for="location2">Location:</label>
+      <input type="text" id="location2" name="location2" ngModel>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <form #form3="ngForm" (submit)="submitForm3(form3)">
+    <div class="box">
+      <h3>Add Battery</h3>
+      <label for="name3">Name:</label>
+      <input type="text" id="name3" name="name3" ngModel>
+
+      <label for="location3">Location:</label>
+      <input type="text" id="location3" name="location3" ngModel>
+
+      <label for="capacity3">Capacity:</label>
+      <input type="text" id="capacity3" name="capacity3" ngModel>
+
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</div>

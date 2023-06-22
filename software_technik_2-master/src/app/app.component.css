@@ -1,0 +1,33 @@
+.bereich {
+    display:flex ;
+
+
+     justify-content: flex-end;
+
+   }
+   .bereich a{
+     margin: 1.5%;
+   }
+     .logo{
+       display: flex;
+
+     }
+     .logo h1 {
+      font-size: 72px;
+      color: #1b3149;
+      margin: 0;
+      font-family: 'Pacifico', cursive;
+    }
+
+   a{
+     color: rgb(17, 26, 60);
+   }
+   img{
+     margin-right: 5%;
+     width: 50%;
+     height: 30%;
+   }
+   body{
+    background: linear-gradient(to bottom, #ffffff, #196d95);
+  }
+ 

@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoBox {
+
+  flex-basis: 30%;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(149, 186, 217);
+}
+
+.infoBox h3 {
+  font-size: 18px;
+  color: #333333;
+  margin-top: 0;
+}
+.outerBox {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.innerBox {
+  display: inline-block;
+  width: 18%;
+  background-color: rgb(149, 186, 217);
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.innerBox h4 {
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}

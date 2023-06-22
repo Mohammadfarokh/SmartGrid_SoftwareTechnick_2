@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="smart-home-table">
+        <h2>Registered Smart Homes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tarif</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let smartHome of smartHomes">
+            <td>{{ smartHome.name }}</td>
+            <td>{{ smartHome.tarif }}</td>
+            <td>{{ smartHome.location }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="smart-home-form">
+      <h2>Register Smart Home</h2>
+      <form (ngSubmit)="submitForm(smartHomeForm)" #smartHomeForm="ngForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" ngModel required>
+        </div>
+        <div>
+          <label for="tarif">Tarif:</label>
+          <select id="tarif" name="tarif" ngModel required>
+            <option value="goldentarif">Goldentarif</option>
+            <option value="normaltarif">Normaltarif</option>
+          </select>
+        </div>
+        <div>
+          <label for="location">Location:</label>
+          <input type="text" id="location" name="location" ngModel required>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
