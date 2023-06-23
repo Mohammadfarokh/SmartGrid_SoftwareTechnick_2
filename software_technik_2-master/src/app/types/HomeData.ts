@@ -1,13 +1,15 @@
-//homepage an misha schicken 
+
 export interface HomeData{
-    cleanEnergy: CleanEnergy[]
+  solarPanelArray: solarPanel[]
     
 
 }
 
-interface CleanEnergy{
+export interface solarPanel{
     name: string;
-    sunriseSunsate:Date;
+    sunrise:number;
   production:number;
   status:boolean;
 }
+
+

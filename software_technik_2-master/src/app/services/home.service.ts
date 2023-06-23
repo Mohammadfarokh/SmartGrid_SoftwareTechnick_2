@@ -11,13 +11,13 @@ export class HomeService {
       'Content-Type': 'application/json',
     }),
   };
-baseUrl:string ="http://localhost:8080"
+baseUrl:string ="http://localhost:9090/"
 
 
 
   constructor(private http:HttpClient) { }
-  getInfo():Observable<HomeData[]>{
+  getInfo():Observable<HomeData>{
 const endpoint :String=this.baseUrl+"api/v1/home";
-return this.http.get<HomeData[]>(endpoint.toString());
+return this.http.get<HomeData>(endpoint.toString());
   }
 }

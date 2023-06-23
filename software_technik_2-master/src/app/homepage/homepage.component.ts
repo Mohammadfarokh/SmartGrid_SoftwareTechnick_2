@@ -1,6 +1,6 @@
 import { Component ,OnInit} from '@angular/core';
 import { HomeService } from '../services/home.service';
-import { HomeData } from '../types/HomeData';
+import { HomeData, solarPanel } from '../types/HomeData';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -9,8 +9,12 @@ import { HomeData } from '../types/HomeData';
 export class HomepageComponent implements OnInit {
 constructor(private homeservive:HomeService){
  } 
+ cleanenergyTable : solarPanel[] | undefined ;
   ngOnInit(): void {
-   // this.homeservive.getInfo();
+    this.homeservive.getInfo().subscribe(re=>{
+      console.log(re);
+      this.cleanenergyTable=re.solarPanelArray;
+    });
     
   }
   tableDataList: any[] = [

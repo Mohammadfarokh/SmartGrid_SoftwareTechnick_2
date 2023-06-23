@@ -12,10 +12,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of tableDataList1">
-          <td>{{ row.column1 }}</td>
-          <td>{{ row.column2 }}</td>
-          <td>{{ row.column3 }}</td>
-          <td > <button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.sunrise}}</td>
+          <td>{{ row.production}}</td>
+          
+          <td > <button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.status }}</button></td>
         </tr>
       </tbody>
     </table>
