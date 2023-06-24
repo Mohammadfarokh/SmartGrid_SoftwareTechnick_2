@@ -1,5 +1,7 @@
 package com.renewableenergy.SHS.entity;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 //tariff and SmartGrid from SGS muss be imported
 import com.renewableenergy.SHS.entity.HomeBattary;
@@ -12,6 +14,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -30,53 +35,33 @@ public class SmartHome {
 	generator = "smarthome_sequence") 
 	private long id;
 	private String name;
+	private String location;
 	private double neededElectricity;
 	private double electricityConsumed;
 	private double electricityProduced;
 	private double realtimeCapasity;
-	//add arrays of SmartMeter usw.
+	@OneToMany
+	Set<HomeBattary> homebattarylist = new HashSet<>();
+	@OneToMany
+	Set<EnergyProducerinHome> energyproducerlist = new HashSet<>();
+	@OneToMany
+	Set<EnergyConsumer> energyconsumerlist = new HashSet<>();
+	@OneToOne
+	private SmartMeter smartmeter;
+//  @OneToOne
 //	private Tariff tariff;
+//	@ManyToOne
 //	private SmartGrid smartGrid;
-
-//	@ManyToMany
-//	@JoinTable(
-//	  name = "SmartHome_Battary", 
-//	  joinColumns = @JoinColumn(name = "smarthome_id"), 
-//	  inverseJoinColumns = @JoinColumn(name = "homebattary_id"))
-//	Set<HomeBattary> battarys;
-//	
-//	@ManyToMany
-//	@JoinTable(
-//	  name = "SmartHome_EnergyProducer", 
-//	  joinColumns = @JoinColumn(name = "smarthome_id"), 
-//	  inverseJoinColumns = @JoinColumn(name = "energyproducer_id"))
-//	Set<EnergyProducerinHome> energyproducer;
-//	
-//	@ManyToMany
-//	@JoinTable(
-//	  name = "SmartHome_EnergyConsumer", 
-//	  joinColumns = @JoinColumn(name = "smarthome_id"), 
-//	  inverseJoinColumns = @JoinColumn(name = "energyconsumer_id"))
-//	Set<EnergyConsumer> energyconsumer;
-
 	public SmartHome() {
-		super();
 	}
-	public SmartHome(long id, String name, double neededElectricity, double electricityConsumed,
-			double electricityProduced, double realtimeCapasity,/* Tariff tariff, SmartGrid smartGrid,*/
-			Set<HomeBattary> battarys, Set<EnergyProducerinHome> energyproducer, Set<EnergyConsumer> energyconsumer) {
-		super();
-		this.id = id;
+	public SmartHome(String name,String location,  double neededElectricity, double electricityConsumed,
+			double electricityProduced, double realtimeCapasity) {
 		this.name = name;
-		this.neededElectricity = neededElectricity;
-		this.electricityConsumed = electricityConsumed;
-		this.electricityProduced = electricityProduced;
-		this.realtimeCapasity = realtimeCapasity;
-//		this.tariff = tariff;
-//		this.smartGrid = smartGrid;
-//		this.battarys = battarys;
-//		this.energyproducer = energyproducer;
-//		this.energyconsumer = energyconsumer;
+		this.location = location;
+		this.neededElectricity = 0;
+		this.electricityConsumed = 0;
+		this.electricityProduced = 0;
+		this.realtimeCapasity = 0;
 	}
 	public long getId() {
 		return id;
@@ -89,6 +74,12 @@ public class SmartHome {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	public double getNeededElectricity() {
 		return neededElectricity;
@@ -114,44 +105,36 @@ public class SmartHome {
 	public void setRealtimeCapasity(double realtimeCapasity) {
 		this.realtimeCapasity = realtimeCapasity;
 	}
-//	public Tariff getTariff() {
-//		return tariff;
-//	}
-//	public void setTariff(Tariff tariff) {
-//		this.tariff = tariff;
-//	}
-//	public SmartGrid getSmartGrid() {
-//		return smartGrid;
-//	}
-//	public void setSmartGrid(SmartGrid smartGrid) {
-//		this.smartGrid = smartGrid;
-//	}
-//	public Set<HomeBattary> getBattarys() {
-//		return battarys;
-//	}
-//	public void setBattarys(Set<HomeBattary> battarys) {
-//		this.battarys = battarys;
-//	}
-//	public Set<EnergyProducerinHome> getEnergyproducer() {
-//		return energyproducer;
-//	}
-//	public void setEnergyproducer(Set<EnergyProducerinHome> energyproducer) {
-//		this.energyproducer = energyproducer;
-//	}
-//	public Set<EnergyConsumer> getEnergyconsumer() {
-//		return energyconsumer;
-//	}
-//	public void setEnergyconsumer(Set<EnergyConsumer> energyconsumer) {
-//		this.energyconsumer = energyconsumer;
-//	}
+	public Set<HomeBattary> getHomebattarylist() {
+		return homebattarylist;
+	}
+	public void setHomebattarylist(Set<HomeBattary> homebattarylist) {
+		this.homebattarylist = homebattarylist;
+	}
+	public Set<EnergyProducerinHome> getEnergyproducerlist() {
+		return energyproducerlist;
+	}
+	public void setEnergyproducerlist(Set<EnergyProducerinHome> energyproducerlist) {
+		this.energyproducerlist = energyproducerlist;
+	}
+	public Set<EnergyConsumer> getEnergyconsumerlist() {
+		return energyconsumerlist;
+	}
+	public void setEnergyconsumerlist(Set<EnergyConsumer> energyconsumerlist) {
+		this.energyconsumerlist = energyconsumerlist;
+	}
+	public SmartMeter getSmartmeter() {
+		return smartmeter;
+	}
+	public void setSmartmeter(SmartMeter smartmeter) {
+		this.smartmeter = smartmeter;
+	}
 	@Override
 	public String toString() {
-		return "SmartHome [id=" + id + ", name=" + name + ", neededElectricity=" + neededElectricity
-				+ ", electricityConsumed=" + electricityConsumed + ", electricityProduced=" + electricityProduced
-				+ ", realtimeCapasity=" + realtimeCapasity +/* ", battarys=" + battarys + ", energyproducer="
-				+ energyproducer + ", energyconsumer=" + energyconsumer +*/ "]";
+		return "SmartHome [id=" + id + ", name=" + name + ", location=" + location + ", neededElectricity="
+				+ neededElectricity + ", electricityConsumed=" + electricityConsumed + ", electricityProduced="
+				+ electricityProduced + ", realtimeCapasity=" + realtimeCapasity + ", homebattarylist="
+				+ homebattarylist + ", energyproducerlist=" + energyproducerlist + ", energyconsumerlist="
+				+ energyconsumerlist + ", smartmeter=" + smartmeter + "]";
 	}
-	
-
-	
 }

@@ -37,82 +37,102 @@ public class HomeBattary {
 //	Set<SmartHome> smarthomes;
 	@ManyToOne
 	SmartHome smarthome;
-	enum status{
+	public enum Status{
 		GOOD,
 		MIDDEL, 
 		BAD
 	}
+	Status mystatus;
 	public HomeBattary() {
-		super();
 	}
-	public HomeBattary(long id, String name, double maxCapacity, double consumedElectrictiy, double realtimeCapacity,
-			int reachedMax, boolean charging, SmartHome smarthome) {
-		super();
-		this.id = id;
+	
+	public HomeBattary(String name, double maxCapacity) {
 		this.name = name;
 		this.maxCapacity = maxCapacity;
-		this.consumedElectrictiy = consumedElectrictiy;
-		this.realtimeCapacity = realtimeCapacity;
-		this.reachedMax = reachedMax;
-		this.charging = charging;
-		this.smarthome = smarthome;
+		this.consumedElectrictiy = 0;
+		this.realtimeCapacity = 0;
+		this.reachedMax = 0;
+		this.charging = false;
+		this.mystatus = Status.BAD;
 	}
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public double getMaxCapacity() {
 		return maxCapacity;
 	}
+
 	public void setMaxCapacity(double maxCapacity) {
 		this.maxCapacity = maxCapacity;
 	}
-	public double getRealtimeCapacity() {
-		return realtimeCapacity;
-	}
-	public void setRealtimeCapacity(double realtimeCapacity) {
-		this.realtimeCapacity = realtimeCapacity;
-	}
-	public int getReachedMax() {
-		return reachedMax;
-	}
-	public void setReachedMax(int reachedMax) {
-		this.reachedMax = reachedMax;
-	}
-	public boolean isCharging() {
-		return charging;
-	}
-	public void setCharging(boolean charging) {
-		this.charging = charging;
-	}
+
 	public double getConsumedElectrictiy() {
 		return consumedElectrictiy;
 	}
+
 	public void setConsumedElectrictiy(double consumedElectrictiy) {
 		this.consumedElectrictiy = consumedElectrictiy;
 	}
+
+	public double getRealtimeCapacity() {
+		return realtimeCapacity;
+	}
+
+	public void setRealtimeCapacity(double realtimeCapacity) {
+		this.realtimeCapacity = realtimeCapacity;
+	}
+
+	public int getReachedMax() {
+		return reachedMax;
+	}
+
+	public void setReachedMax(int reachedMax) {
+		this.reachedMax = reachedMax;
+	}
+
+	public boolean isCharging() {
+		return charging;
+	}
+
+	public void setCharging(boolean charging) {
+		this.charging = charging;
+	}
+
 	public SmartHome getSmarthome() {
 		return smarthome;
 	}
-	public void setSmarthomes(SmartHome smarthome) {
+
+	public void setSmarthome(SmartHome smarthome) {
 		this.smarthome = smarthome;
 	}
+
+	public Status getMystatus() {
+		return mystatus;
+	}
+
+	public void setMystatus(Status mystatus) {
+		this.mystatus = mystatus;
+	}
+
 	@Override
 	public String toString() {
 		return "HomeBattary [id=" + id + ", name=" + name + ", maxCapacity=" + maxCapacity + ", consumedElectrictiy="
 				+ consumedElectrictiy + ", realtimeCapacity=" + realtimeCapacity + ", reachedMax=" + reachedMax
-				+ ", charging=" + charging + ", smarthomes=" + smarthome + "]";
+				+ ", charging=" + charging + ", smarthome=" + smarthome + ", mystatus=" + mystatus + "]";
 	}
-
-
-	
 	
 }

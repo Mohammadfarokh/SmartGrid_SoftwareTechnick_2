@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SHS.entity.EnergyConsumer;
 import com.renewableenergy.SHS.entity.SmartHome;
+import com.renewableenergy.SHS.entity.EnergyConsumer.Status;
 import com.renewableenergy.SHS.repository.EnergyConsumerRepository;
 @Service
 public class VariabelConsumerService extends Creator {
@@ -14,9 +15,23 @@ public class VariabelConsumerService extends Creator {
 	}
 
 	@Override
-	public void factory(String name, int tariff, double consumedElectricity, SmartHome smarthome) {
-		EnergyConsumer ecih = new EnergyConsumer(name, tariff, consumedElectricity, smarthome);
-		super.getEcr().save(ecih);
+	public void factory(String name, double consumedElectricity, boolean isStandart) {
+		// TODO Auto-generated method stub
+		if (isStandart == false) {
+			EnergyConsumer ecih = new EnergyConsumer(name, consumedElectricity);
+			if(getTariffInfo()) {
+				ecih.setMystatus(Status.ON);
+			}else {
+				ecih.setMystatus(Status.OFF);
+			}
+			super.getEcr().save(ecih);	
+		}
+	}
+	
+	public boolean getTariffInfo() {
+		//hier wird deklariert mit einem boolean ob 
+		// status = ON or OFF ist
+		return true;
 	}
 
 }
