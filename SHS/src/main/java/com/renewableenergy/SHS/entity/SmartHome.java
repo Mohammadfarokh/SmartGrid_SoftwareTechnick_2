@@ -26,12 +26,9 @@ import jakarta.persistence.Table;
 import com.renewableenergy.SGS.entity.SmartGrid;
 import com.renewableenergy.SGS.entity.Tariff;
 
-<<<<<<< HEAD
 
-=======
 @Entity
 @Table
->>>>>>> branch 'main' of https://git.inf.fh-dortmund.de/01/mofar003/software_technik_2.git
 public class SmartHome {
 	@Id
 	@SequenceGenerator(
