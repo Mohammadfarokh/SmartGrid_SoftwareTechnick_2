@@ -34,7 +34,6 @@ public class CleanEnergyinHomeController {
 			hsp.addHomeSolarPanel(request.getName(), request.getSunrise(), request.getSunset() );
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("dsdf");
 			return false;
 			
 		}
