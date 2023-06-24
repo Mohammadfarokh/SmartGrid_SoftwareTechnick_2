@@ -17,25 +17,25 @@ import jakarta.persistence.Table;
 public abstract class EnergyProducer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Long id;
 	
 	private double productionAmount;
 	
 	public EnergyProducer() {
-		super();
+		
 	}
 
-	public EnergyProducer(double productionAmount, boolean status) {
-		super();
+	public EnergyProducer(Long id , double productionAmount, boolean status) {
+		this.id = id ;
 		this.productionAmount = productionAmount;
 		this.status = status;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

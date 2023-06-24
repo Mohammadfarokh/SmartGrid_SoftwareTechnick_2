@@ -1,8 +1,11 @@
+
 package com.renewableenergy.SHS.entity;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
+
 //tariff and SmartGrid from SGS muss be imported
 import com.renewableenergy.SHS.entity.HomeBattary;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
@@ -23,8 +26,12 @@ import jakarta.persistence.Table;
 import com.renewableenergy.SGS.entity.SmartGrid;
 import com.renewableenergy.SGS.entity.Tariff;
 
+<<<<<<< HEAD
+
+=======
 @Entity
 @Table
+>>>>>>> branch 'main' of https://git.inf.fh-dortmund.de/01/mofar003/software_technik_2.git
 public class SmartHome {
 	@Id
 	@SequenceGenerator(

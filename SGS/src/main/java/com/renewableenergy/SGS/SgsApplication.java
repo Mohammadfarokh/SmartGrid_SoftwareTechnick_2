@@ -33,10 +33,10 @@ public class SgsApplication {
         battaryService.list().forEach(System.out::println);
         
     	// SmartGridManagement
-    	SmartGridManagement smartGridManagement = new SmartGridManagement(context);
+    	/* SmartGridManagement smartGridManagement = new SmartGridManagement(context);
     	double test = smartGridManagement.electrecityIncomingCalculator(0, battarylist);
-        System.out.println("smartGridManagement = " + test);
-    	
+        System.out.println("smartGridManagement = " + test); */
+    	//
 	}
 
 }

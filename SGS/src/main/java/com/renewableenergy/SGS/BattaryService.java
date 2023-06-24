@@ -1,6 +1,7 @@
 package com.renewableenergy.SGS;
 import java.util.List;
 
+
 import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SGS.entity.Battary;

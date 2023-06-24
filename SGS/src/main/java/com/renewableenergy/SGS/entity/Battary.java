@@ -1,6 +1,7 @@
 package com.renewableenergy.SGS.entity;
 
 import java.time.LocalDateTime;
+
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -13,13 +14,13 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class Battary {
+   public class Battary {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	private String location ;
+	private String location ; 
 	
 	private double capacity;
 	
