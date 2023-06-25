@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.renewableenergy.SHS.DTO.EnergyConsumerDTO;
-import com.renewableenergy.SHS.DTO.addHomeSolarPanelDTO;
 import com.renewableenergy.SHS.entity.EnergyConsumer;
 import com.renewableenergy.SHS.service.StandartConsumerService;
 import com.renewableenergy.SHS.service.VariabelConsumerService;
@@ -18,8 +17,8 @@ import com.renewableenergy.SHS.service.VariabelConsumerService;
 @RestController
 @RequestMapping(value = "api/v1/energy-consumer")
 public class EnergyConsumerController {
-	private final StandartConsumerService scs ;
-	private final VariabelConsumerService vcs;
+	public final StandartConsumerService scs ;
+	public final VariabelConsumerService vcs;
 	
 	@Autowired
 	public EnergyConsumerController(StandartConsumerService scs, VariabelConsumerService vcs) {
@@ -31,7 +30,7 @@ public class EnergyConsumerController {
 	public boolean addStandartConsumer(@RequestBody EnergyConsumerDTO request) {
 		//you have to check for adding Exception
 		try {
-			scs.factory(request.getName(),-1, request.getConsumedElectrecity(), request.getSmarthome());
+			scs.factory(request.getName(), request.getConsumedElectrecity(), request.isStandart());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -48,7 +47,7 @@ public class EnergyConsumerController {
 	public boolean addVariabelConsumer(@RequestBody EnergyConsumerDTO request) {
 		//you have to check for adding Exception
 		try {
-			vcs.factory(request.getName(), request.getTariff(),request.getConsumedElectrecity(), request.getSmarthome());
+			vcs.factory(request.getName(),request.getConsumedElectrecity(), request.isStandart());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;

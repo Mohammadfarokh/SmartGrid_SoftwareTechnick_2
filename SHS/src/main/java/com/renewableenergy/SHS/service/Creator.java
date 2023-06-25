@@ -14,7 +14,8 @@ public abstract class Creator{
 		this.ecr = ecr;
 	}
 	
-	public abstract void factory(String name, int tariff, double consumedElectricity, SmartHome smarthome);
+	public abstract void factory(String name, double consumedElectricity
+			, boolean isStandart);
 
 	public EnergyConsumerRepository getEcr() {
 		return ecr;

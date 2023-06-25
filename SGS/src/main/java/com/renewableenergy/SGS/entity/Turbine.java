@@ -11,11 +11,12 @@ import jakarta.persistence.Table;
 public class Turbine extends CleanEnergyProducer {
 	
 	public Turbine(Long id ,
+				   String name,
 				   double productionAmount,
 				   boolean status,
-				   String weather,
+				   String location,
 				   double wind_speed) {
-			super(id,productionAmount,status,weather);
+			super(id,name,productionAmount,status,location);
 			this.wind_speed = wind_speed;
 	}
 	

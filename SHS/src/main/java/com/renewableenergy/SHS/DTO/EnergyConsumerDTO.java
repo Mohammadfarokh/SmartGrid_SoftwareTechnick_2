@@ -1,22 +1,34 @@
 package com.renewableenergy.SHS.DTO;
 
 import com.renewableenergy.SHS.entity.SmartHome;
-
-import jakarta.persistence.ManyToOne;
+import com.renewableenergy.SHS.entity.EnergyConsumer.Status;
 
 public class EnergyConsumerDTO {
-	private long id;
-	private String name;
-	private int tariff;
-	private double consumedElectrecity;
+	long id;
+	String name;
+	double consumedElectrecity;
+	Status mystatus;
 	SmartHome smarthome;
-	public EnergyConsumerDTO(long id, String name, int tariff, double consumedElectrecity, SmartHome smarthome) {
-		super();
+	boolean isStandart; 
+	
+	public EnergyConsumerDTO(long id, String name, double consumedElectrecity, Status mystatus, SmartHome smarthome,
+			boolean	isStandart) {
 		this.id = id;
 		this.name = name;
-		this.tariff = tariff;
 		this.consumedElectrecity = consumedElectrecity;
+		this.mystatus = mystatus;
 		this.smarthome = smarthome;
+		this.isStandart = isStandart;
+	}
+	public EnergyConsumerDTO() {
+		
+	}
+	
+	public boolean isStandart() {
+		return isStandart;
+	}
+	public void setStandart(boolean isStandart) {
+		this.isStandart = isStandart;
 	}
 	public long getId() {
 		return id;
@@ -30,17 +42,17 @@ public class EnergyConsumerDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getTariff() {
-		return tariff;
-	}
-	public void setTariff(int tariff) {
-		this.tariff = tariff;
-	}
 	public double getConsumedElectrecity() {
 		return consumedElectrecity;
 	}
 	public void setConsumedElectrecity(double consumedElectrecity) {
 		this.consumedElectrecity = consumedElectrecity;
+	}
+	public Status getMystatus() {
+		return mystatus;
+	}
+	public void setMystatus(Status mystatus) {
+		this.mystatus = mystatus;
 	}
 	public SmartHome getSmarthome() {
 		return smarthome;

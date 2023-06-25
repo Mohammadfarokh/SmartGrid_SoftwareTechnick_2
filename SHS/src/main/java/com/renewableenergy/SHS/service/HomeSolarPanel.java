@@ -6,17 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.renewableenergy.SHS.entity.EnergyConsumer;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
 
-
 @Service
-public class EnergyProducerinHomeService {
-	
+public class HomeSolarPanel {
 	private final EnergyProducerinHomeRepository epihr;
 	@Autowired
-	public EnergyProducerinHomeService(EnergyProducerinHomeRepository epihr) {
+	public HomeSolarPanel(EnergyProducerinHomeRepository epihr) {
 		this.epihr = epihr;
 	}
 	
@@ -25,12 +22,7 @@ public class EnergyProducerinHomeService {
 		this.epihr.save(v1);
 	}
 	
-	public void addHomeTurbine(String name,double windspeed) {
-		EnergyProducerinHome v1 = new EnergyProducerinHome(name, windspeed);
-		this.epihr.save(v1);
-	}
-	
-	public List<EnergyProducerinHome> getEnergyConsumer(){
-		return this.epihr.findAll();
+	public List<EnergyProducerinHome> getSolarPanel(String type){
+		return this.epihr.findByType(type);
 	}
 }

@@ -23,20 +23,20 @@ public class EnergyConsumer {
 	generator = "energyconsumer_sequence") 
 	private long id;
 	private String name;
-	private int tariff;
 	private double consumedElectrecity;
-//	@ManyToMany(mappedBy = "energyconsumer")
-//	Set<SmartHome> smarthomes;
+	public enum Status{
+		ON,
+		OFF,
+		ALLWAYS
+	}
+	private Status mystatus;
 	@ManyToOne
 	SmartHome smarthome;
 	public EnergyConsumer() {
-		super();
 	}
-	public EnergyConsumer(String name, int tariff, double consumedElectrecity, SmartHome smarthome) {
-		this.name = name;
-		this.tariff = tariff;
-		this.consumedElectrecity = consumedElectrecity;
-		this.smarthome = smarthome;
+	public EnergyConsumer(String name, double consumedElectrecity) {
+			this.name = name;
+			this.consumedElectrecity = consumedElectrecity;
 	}
 	public long getId() {
 		return id;
@@ -50,29 +50,28 @@ public class EnergyConsumer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getTariff() {
-		return tariff;
-	}
-	public void setTariff(int tariff) {
-		this.tariff = tariff;
-	}
 	public double getConsumedElectrecity() {
 		return consumedElectrecity;
 	}
 	public void setConsumedElectrecity(double consumedElectrecity) {
 		this.consumedElectrecity = consumedElectrecity;
 	}
-	public SmartHome getSmarthomes() {
+
+	public Status getMystatus() {
+		return mystatus;
+	}
+	public void setMystatus(Status mystatus) {
+		this.mystatus = mystatus;
+	}
+	public SmartHome getSmarthome() {
 		return smarthome;
 	}
-	public void setSmarthomes(SmartHome smarthome) {
+	public void setSmarthome(SmartHome smarthome) {
 		this.smarthome = smarthome;
 	}
 	@Override
 	public String toString() {
-		return "EnergyConsumer [id=" + id + ", name=" + name + ", tariff=" + tariff + ", consumedElectrecity="
-				+ consumedElectrecity + ", smarthomes=" + smarthome + "]";
+		return "EnergyConsumer [id=" + id + ", name=" + name + ", consumedElectrecity=" + consumedElectrecity
+				+ ", status=" + mystatus + ", smarthome=" + smarthome + "]";
 	}
-	
-	
 }
