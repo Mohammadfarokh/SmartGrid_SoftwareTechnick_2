@@ -27,8 +27,6 @@ import com.renewableenergy.SGS.entity.SmartGrid;
 import com.renewableenergy.SGS.entity.Tariff;
 
 
-@Entity
-@Table
 public class SmartHome {
 	@Id
 	@SequenceGenerator(

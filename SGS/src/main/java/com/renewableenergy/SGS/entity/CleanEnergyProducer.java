@@ -11,26 +11,28 @@ import jakarta.persistence.Table;
 @MappedSuperclass
 public class CleanEnergyProducer extends EnergyProducer {
 
-	private String weather;
+	private String location;
 
-	public CleanEnergyProducer(Long id ,
+	public CleanEnergyProducer(Long id , String name,
 							   double productionAmount,
 							   boolean status,
-							   String weather) {
-		super(id,productionAmount,status);
-		this.weather = weather;
+							   String location) {
+		super(id,name,productionAmount,status);
+		this.location = location;
 	}
 
 	public CleanEnergyProducer() {
 
 	}
 
-	public String getWeather() {
-		return weather;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setWeather(String weather) {
-		this.weather = weather;
+	public void setLocation(String location) {
+		this.location = location;
 	}
+
+
 
 }

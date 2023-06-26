@@ -19,14 +19,16 @@ public abstract class EnergyProducer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	private String name;
 	private double productionAmount;
 	
 	public EnergyProducer() {
 		
 	}
 
-	public EnergyProducer(Long id , double productionAmount, boolean status) {
+	public EnergyProducer(Long id ,String name, double productionAmount, boolean status) {
 		this.id = id ;
+		this.name = name;
 		this.productionAmount = productionAmount;
 		this.status = status;
 	}
@@ -56,6 +58,14 @@ public abstract class EnergyProducer {
 	}
 
 	private boolean status;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 		
 }
