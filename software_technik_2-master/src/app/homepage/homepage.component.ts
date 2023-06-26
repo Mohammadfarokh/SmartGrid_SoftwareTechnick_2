@@ -1,6 +1,7 @@
 import { Component ,OnInit} from '@angular/core';
 import { HomeService } from '../services/home.service';
-import { HomeData, solarPanel } from '../types/HomeData';
+import { HomeData, solarPanel,Turbine,cepo,Battery } from '../types/HomeData';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -9,11 +10,18 @@ import { HomeData, solarPanel } from '../types/HomeData';
 export class HomepageComponent implements OnInit {
 constructor(private homeservive:HomeService){
  } 
- cleanenergyTable : solarPanel[] | undefined ;
+ solarPanelTable : solarPanel[] | undefined ;
+ TurbineTable : Turbine[] | undefined ;
+ cepoTable : cepo[] | undefined ;
+ BatteryTable : Battery[] | undefined ;
+
   ngOnInit(): void {
-    this.homeservive.getInfo().subscribe(re=>{
-      console.log(re);
-      this.cleanenergyTable=re.solarPanelArray;
+    this.homeservive.getInfo().subscribe(res=>{
+      console.log(res);
+      this.solarPanelTable=res.homeData.solarPanelArray;
+      this.TurbineTable=res.homeData.TurbineArray;
+      this.cepoTable=res.homeData.cepoArray;
+      this.BatteryTable=res.homeData.BatteryArray;
     });
     
   }

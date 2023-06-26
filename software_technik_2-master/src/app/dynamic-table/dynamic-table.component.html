@@ -35,9 +35,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of tableDataList2">
-          <td>{{ row.column1 }}</td>
-          <td>{{ row.column2 }}</td>
-          <td>{{ row.column3 }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.windspeed }}</td>
+          <td>{{ row.production }}</td>
           <td><button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
         </tr>
       </tbody>
@@ -59,8 +59,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of tableDataList3">
-          <td>{{ row.column1 }}</td>
-          <td>{{ row.column2 }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.production }}</td>
           <td><button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
 
         </tr>
@@ -83,11 +83,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of tableDataList4">
-          <td>{{ row.column1 }}</td>
-          <td>{{ row.column2 }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.capacity }}</td>
           <td><button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.name }}</button></td>
-          <td>{{ row.column3 }}</td>
-          <td>{{ row.column4 }}</td>
+          <td>{{ row.production }}</td>
+          <td>{{ row.location }}</td>
         </tr>
       </tbody>
     </table>

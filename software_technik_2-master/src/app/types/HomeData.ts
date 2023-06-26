@@ -1,9 +1,9 @@
 
 export interface HomeData{
   solarPanelArray: solarPanel[];
-  Turbine: Turbine[]
-  cepo: cepo[]
-  Battery: Battery[]
+  TurbineArray: Turbine[]
+  cepoArray: cepo[]
+  BatteryArray: Battery[]
 }
 
 export interface solarPanel{
@@ -28,7 +28,7 @@ status:boolean;
 export interface Battery{
   name: string;
   capacity:number;  //sollen wir amout oder capaciry nicht mehr machen (vergessen)yyy
+  status:boolean;
 production:number;
-status:boolean;
 location: string;
 }
