@@ -11,7 +11,7 @@ import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
 import com.renewableenergy.SHS.repository.SmartMeterRepository;
 
 @Service
-public class SmartMeterService {
+public class SmartMeterService implements Observer{
 	private final SmartMeterRepository smr;
 	@Autowired
 	public SmartMeterService(SmartMeterRepository smr) {
@@ -35,4 +35,11 @@ public class SmartMeterService {
 			return false;
 		}
 	}
+	@Override
+	public void update(long id, long producedEnergy, long consumedEnergyWithTariff, long consumedEnergyWithoutTarif) {
+		this.smr.findById(id).ifPresent(t -> t.setProducedEnergy(producedEnergy));
+		this.smr.findById(id).ifPresent(t -> t.setConsumedEnergyWithTariff(consumedEnergyWithTariff));
+		this.smr.findById(id).ifPresent(t -> t.setConsumedEnergyWithoutTariff(consumedEnergyWithoutTarif));
+	}
+
 }

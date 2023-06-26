@@ -1,5 +1,6 @@
 package com.renewableenergy.SHS.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,13 @@ import com.renewableenergy.SHS.repository.SmartHomeRepository;
 import com.renewableenergy.SHS.repository.SmartMeterRepository;
 
 @Service
-public class SmartHomeService {
+public class SmartHomeService extends Observabel{
+	private List<Observer> observerlist;
 	private final SmartHomeRepository shr;
 	@Autowired
 	public SmartHomeService(SmartHomeRepository shr) {
 		this.shr = shr;
+		this.observerlist = new LinkedList<Observer>();
 	}
 	public void addSmartHome(String name,String location,  double neededElectricity, double electricityConsumedWithoutTariff,
 			double electricityConsumedWithTariff,double electricityProduced, double realtimeCapasity) {
@@ -35,5 +38,22 @@ public class SmartHomeService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	@Override
+	public void attach(Observer o) {
+		this.observerlist.add(o);
+		
+	}
+	@Override
+	public void detach(Observer o) {
+		this.observerlist.remove(o);
+		
+	}
+	@Override
+	public void notifyObserver() {
+		for(Observer v : observerlist) {
+			v.update(0, 0, 0, 0);
+		}
+		
 	}
 }
