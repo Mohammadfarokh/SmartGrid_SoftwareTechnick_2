@@ -28,18 +28,14 @@ public class SmartMeter {
 	private SmartHome smartHome;
 	
 	public SmartMeter() {
-		super();
 	}
 	
-	public SmartMeter(long id, String name, double producedEnergy, double consumedEnergyWithTariff,
-			double consumedEnergyWithoutTariff, SmartHome smartHome) {
-		super();
-		this.id = id;
+	public SmartMeter(String name, double producedEnergy, double consumedEnergyWithTariff,
+			double consumedEnergyWithoutTariff) {
 		this.name = name;
 		this.producedEnergy = producedEnergy;
 		this.consumedEnergyWithTariff = consumedEnergyWithTariff;
 		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTariff;
-		this.smartHome = smartHome;
 	}
 
 	public long getId() {

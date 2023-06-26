@@ -55,7 +55,7 @@ public class CleanEnergyinHomeController {
 		}
 	    return true;
 	}
-	@GetMapping(value = "/solar-panel-show")
+	@GetMapping(value = "/turbine-show")
 	public List<EnergyProducerinHome> getHomeTurbine(@RequestBody EnergyProducerinHomeDTO request){
 		return ht.getHomeTurbine(request.getType());
 	}

@@ -41,15 +41,16 @@ public class SmartHome {
 	private String name;
 	private String location;
 	private double neededElectricity;
-	private double electricityConsumed;
+	private double electricityConsumedWithoutTariff;
+	private double electricityConsumedWithTariff;
 	private double electricityProduced;
 	private double realtimeCapasity;
 	@OneToMany
-	Set<HomeBattary> homebattarylist = new HashSet<>();
+	Set<HomeBattary> homebattarylist;
 	@OneToMany
-	Set<EnergyProducerinHome> energyproducerlist = new HashSet<>();
+	Set<EnergyProducerinHome> energyproducerlist;
 	@OneToMany
-	Set<EnergyConsumer> energyconsumerlist = new HashSet<>();
+	Set<EnergyConsumer> energyconsumerlist;
 	@OneToOne
 	private SmartMeter smartmeter;
 //  @OneToOne
@@ -58,14 +59,20 @@ public class SmartHome {
 //	private SmartGrid smartGrid;
 	public SmartHome() {
 	}
-	public SmartHome(String name,String location,  double neededElectricity, double electricityConsumed,
-			double electricityProduced, double realtimeCapasity) {
+	public SmartHome(String name,String location,  double neededElectricity, double electricityConsumedWithoutTariff,
+			double electricityConsumedWithTariff,double electricityProduced, double realtimeCapasity) {
 		this.name = name;
 		this.location = location;
 		this.neededElectricity = 0;
-		this.electricityConsumed = 0;
+		this.electricityConsumedWithoutTariff = 0;
+		this.electricityConsumedWithTariff=0;
 		this.electricityProduced = 0;
 		this.realtimeCapasity = 0;
+		this.homebattarylist = new HashSet<>();
+		this.energyproducerlist = new HashSet<>();
+		this.energyconsumerlist = new HashSet<>();
+		this.smartmeter = new SmartMeter("smartmeter for" + this.name, this.getElectricityProduced(),
+				this.electricityConsumedWithTariff,this.electricityConsumedWithoutTariff);
 	}
 	public long getId() {
 		return id;
@@ -91,11 +98,18 @@ public class SmartHome {
 	public void setNeededElectricity(double neededElectricity) {
 		this.neededElectricity = neededElectricity;
 	}
-	public double getElectricityConsumed() {
-		return electricityConsumed;
+	
+	public double getElectricityConsumedWithoutTariff() {
+		return electricityConsumedWithoutTariff;
 	}
-	public void setElectricityConsumed(double electricityConsumed) {
-		this.electricityConsumed = electricityConsumed;
+	public void setElectricityConsumedWithoutTariff(double electricityConsumedWithoutTariff) {
+		this.electricityConsumedWithoutTariff = electricityConsumedWithoutTariff;
+	}
+	public double getElectricityConsumedWithTariff() {
+		return electricityConsumedWithTariff;
+	}
+	public void setElectricityConsumedWithTariff(double electricityConsumedWithTariff) {
+		this.electricityConsumedWithTariff = electricityConsumedWithTariff;
 	}
 	public double getElectricityProduced() {
 		return electricityProduced;
@@ -136,9 +150,11 @@ public class SmartHome {
 	@Override
 	public String toString() {
 		return "SmartHome [id=" + id + ", name=" + name + ", location=" + location + ", neededElectricity="
-				+ neededElectricity + ", electricityConsumed=" + electricityConsumed + ", electricityProduced="
+				+ neededElectricity + ", electricityConsumedWithoutTariff=" + electricityConsumedWithoutTariff
+				+ ", electricityConsumedWithTariff=" + electricityConsumedWithTariff + ", electricityProduced="
 				+ electricityProduced + ", realtimeCapasity=" + realtimeCapasity + ", homebattarylist="
 				+ homebattarylist + ", energyproducerlist=" + energyproducerlist + ", energyconsumerlist="
 				+ energyconsumerlist + ", smartmeter=" + smartmeter + "]";
 	}
+	
 }
