@@ -27,7 +27,7 @@ status:boolean;
 
 export interface Battery{
   name: string;
-  capacity:number;  //sollen wir amout oder capaciry nicht mehr machen (vergessen)
+  capacity:number;  //sollen wir amout oder capaciry nicht mehr machen (vergessen)yyy
 production:number;
 status:boolean;
 location: string;
