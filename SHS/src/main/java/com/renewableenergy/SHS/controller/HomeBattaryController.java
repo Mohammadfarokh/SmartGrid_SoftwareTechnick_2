@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.renewableenergy.SHS.DTO.EnergyConsumerDTO;
 import com.renewableenergy.SHS.DTO.EnergyProducerinHomeDTO;
 import com.renewableenergy.SHS.DTO.HomeBattaryDTO;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
@@ -39,6 +40,18 @@ public class HomeBattaryController {
 		@GetMapping(value = "/home-battary-show")
 		public List<HomeBattary> getSolarPanel(){
 			return hb.getBattary();
+		}
+		@PostMapping(value = "/home-battary-remove")
+		public boolean removeHomeBattary(@RequestBody HomeBattaryDTO request) {
+			//you have to check for adding Exception
+			try {
+				hb.deleteHomeBattary(request.getId());
+			}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+				
+			}
+		    return true;
 		}
 }
 

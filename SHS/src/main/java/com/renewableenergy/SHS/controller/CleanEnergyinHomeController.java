@@ -13,7 +13,6 @@ import com.renewableenergy.SHS.DTO.EnergyConsumerDTO;
 import com.renewableenergy.SHS.DTO.EnergyProducerinHomeDTO;
 import com.renewableenergy.SHS.entity.EnergyConsumer;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
-import com.renewableenergy.SHS.service.EnergyProducerinHomeService;
 import com.renewableenergy.SHS.service.HomeSolarPanel;
 import com.renewableenergy.SHS.service.HomeTurbine;
 @RestController
@@ -43,6 +42,18 @@ public class CleanEnergyinHomeController {
 	public List<EnergyProducerinHome> getSolarPanel(@RequestBody EnergyProducerinHomeDTO request){
 		return hsp.getSolarPanel(request.getType());
 	}
+	@PostMapping(value = "/solar-panel-remove")
+	public boolean removeHomeSolarPanel(@RequestBody EnergyProducerinHomeDTO request) {
+		//you have to check for adding Exception
+		try {
+			hsp.deleteSolarPanel(request.getId());
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	    return true;
+	}
 	
 	@PostMapping(value = "/turbine-add")
 	public boolean addHomeTurbine(@RequestBody EnergyProducerinHomeDTO request) {
@@ -58,6 +69,18 @@ public class CleanEnergyinHomeController {
 	@GetMapping(value = "/turbine-show")
 	public List<EnergyProducerinHome> getHomeTurbine(@RequestBody EnergyProducerinHomeDTO request){
 		return ht.getHomeTurbine(request.getType());
+	}
+	@PostMapping(value = "/turbine-remove")
+	public boolean removeHomeTurbine(@RequestBody EnergyProducerinHomeDTO request) {
+		//you have to check for adding Exception
+		try {
+			ht.deleteHomeTurbine(request.getId());
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	    return true;
 	}
 
 }

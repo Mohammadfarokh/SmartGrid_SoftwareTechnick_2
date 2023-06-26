@@ -26,4 +26,13 @@ public class HomeBattaryService {
 	public List<HomeBattary> getBattary(){
 		return this.hbr.findAll();
 	}
+	public boolean deleteHomeBattary(long id) {
+		try {
+			this.hbr.deleteById(id);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

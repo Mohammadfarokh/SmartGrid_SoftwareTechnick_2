@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.renewableenergy.SHS.DTO.HomeBattaryDTO;
 import com.renewableenergy.SHS.DTO.SmartHomeDTO;
 import com.renewableenergy.SHS.DTO.SmartMeterDTO;
 import com.renewableenergy.SHS.entity.SmartHome;
@@ -40,5 +41,17 @@ public class SmartHomeController {
 	@GetMapping(value = "/smart-meter-show")
 	public List<SmartHome> getSmartHome(){
 		return shs.getSmartHome();
+	}
+	@PostMapping(value = "/smart-home-remove")
+	public boolean removeSmartHome(@RequestBody SmartHomeDTO request) {
+		//you have to check for adding Exception
+		try {
+			shs.deleteSmartHome(request.getId());
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	    return true;
 	}
 }

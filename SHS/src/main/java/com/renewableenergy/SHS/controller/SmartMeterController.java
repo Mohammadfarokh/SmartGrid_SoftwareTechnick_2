@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.renewableenergy.SHS.DTO.HomeBattaryDTO;
+import com.renewableenergy.SHS.DTO.SmartHomeDTO;
 import com.renewableenergy.SHS.DTO.SmartMeterDTO;
 import com.renewableenergy.SHS.entity.HomeBattary;
 import com.renewableenergy.SHS.entity.SmartMeter;
@@ -39,5 +40,17 @@ public class SmartMeterController {
 	@GetMapping(value = "/smart-meter-show")
 	public List<SmartMeter> getSmartMeter(){
 		return sms.getSmartMeter();
+	}
+	@PostMapping(value = "/smart-meter-remove")
+	public boolean removeSmartMeter(@RequestBody SmartMeterDTO request) {
+		//you have to check for adding Exception
+		try {
+			sms.deleteSmartMeter(request.getId());
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	    return true;
 	}
 }

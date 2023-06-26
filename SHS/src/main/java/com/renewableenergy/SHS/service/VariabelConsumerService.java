@@ -27,6 +27,15 @@ public class VariabelConsumerService extends Creator {
 			super.getEcr().save(ecih);	
 		}
 	}
+	public boolean deleteVariabelConsumer(long id) {
+		try {
+			super.getEcr().deleteById(id);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	public boolean getTariffInfo() {
 		//hier wird deklariert mit einem boolean ob 

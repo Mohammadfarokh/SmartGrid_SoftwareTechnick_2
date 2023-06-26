@@ -26,4 +26,13 @@ public class SmartMeterService {
 	public List<SmartMeter> getSmartMeter(){
 		return this.smr.findAll();
 	}
+	public boolean deleteSmartMeter(long id) {
+		try {
+			this.smr.deleteById(id);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

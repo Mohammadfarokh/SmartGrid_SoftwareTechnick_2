@@ -10,7 +10,7 @@ import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
 
 @Service
-public class HomeSolarPanel {
+public class HomeSolarPanel{
 	private final EnergyProducerinHomeRepository epihr;
 	@Autowired
 	public HomeSolarPanel(EnergyProducerinHomeRepository epihr) {
@@ -25,4 +25,15 @@ public class HomeSolarPanel {
 	public List<EnergyProducerinHome> getSolarPanel(String type){
 		return this.epihr.findByType(type);
 	}
+	public boolean deleteSolarPanel(long id) {
+		try {
+			this.epihr.deleteById(id);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 }

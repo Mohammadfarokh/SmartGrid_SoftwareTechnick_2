@@ -27,5 +27,13 @@ public class SmartHomeService {
 	public List<SmartHome> getSmartHome(){
 		return this.shr.findAll();
 	}
-	
+	public boolean deleteSmartHome(long id) {
+		try {
+			this.shr.deleteById(id);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

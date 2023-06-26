@@ -24,4 +24,13 @@ public class HomeTurbine {
 	public List<EnergyProducerinHome> getHomeTurbine(String type){
 		return this.epihr.findByType(type);
 	}
+	public boolean deleteHomeTurbine(long id) {
+		try {
+			this.epihr.deleteById(id);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

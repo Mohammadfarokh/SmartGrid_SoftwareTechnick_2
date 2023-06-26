@@ -30,4 +30,13 @@ public class StandartConsumerService extends Creator {
 	public List<EnergyConsumer> getEnergyConsumer(){
 		return super.getEcr().findAll();
 	}
+	public boolean deleteStandartConsumer(long id) {
+		try {
+			super.getEcr().deleteById(id);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
