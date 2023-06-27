@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, forkJoin  } from 'rxjs';
 import {HomeData} from '../types/HomeData';
+import {SmartHome} from '../types/SmartHome';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +19,12 @@ baseUrl:string ="http://localhost:959/"
 
 
   constructor(private http:HttpClient) { }
-  getInfo():Observable<HomeData>{
-const endpoint :String=this.baseUrl+"api/v1/home";
-return this.http.get<HomeData>(endpoint.toString());
+  getInfo():Observable<{homeData: HomeData, smartHome: SmartHome}>{
+    const homeDataEndpoint: string = this.baseUrl + "api/v1/home";
+    const smartHomeEndpoint: string = this.baseUrl + "api/v1/smart-home";
+    const homeDataRequest = this.http.get<HomeData>(homeDataEndpoint);
+  const smartHomeRequest = this.http.get<SmartHome>(smartHomeEndpoint);
+return forkJoin({ homeData: homeDataRequest, smartHome: smartHomeRequest });
   }
+  
 }

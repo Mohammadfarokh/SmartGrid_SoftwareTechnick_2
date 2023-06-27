@@ -1,7 +1,7 @@
 import { Component ,OnInit} from '@angular/core';
-import { HomeService } from '../services/home.service';
-import { HomeData, solarPanel } from '../types/HomeData';
 import { HttpClient } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -9,11 +9,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomepageComponent implements OnInit {
 
+
   smartgridData!: any[];
   solarPanels: any[] | undefined;
   turbine: any[] | undefined;
   difference : number | undefined;
-  
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +25,7 @@ export class HomepageComponent implements OnInit {
   
     
    
-      
+    
     /*  setInterval(() => {
         this.getAllSolarPanels();
       }, 2000);
