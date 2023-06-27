@@ -6,9 +6,9 @@ export interface HomeData{
 }
 
 export interface solarPanel{
-    name: string;
-    sunrise:number;
-  production:number;
+  name: string;
+  sunrise:number;
+  production_amount:number;
   status:boolean;
 }
 

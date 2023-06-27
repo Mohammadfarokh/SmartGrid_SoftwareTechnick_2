@@ -1,7 +1,9 @@
 <div class="tables-container">
   <div class="table-container">
     <table class="table">
-      <caption>Clean Energy</caption>
+
+      <!-- Solar Panel -->>
+      <caption>Solar Panel</caption>
       <thead>
         <tr>
           <th>name</th>
@@ -10,17 +12,22 @@
           <th  >status</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let row of tableDataList1">
           <td>{{ row.name }}</td>
           <td>{{ row.sunrise}}</td>
-          <td>{{ row.production}}</td>
+          <td>{{ row.production_amount}}</td>
           
-          <td > <button #buttonCell class="button-cell" (click)="getElement(buttonCell)">{{ row.status }}</button></td>
+          <td > <button #buttonCell class="button-cell" (click)="getElement(buttonCell)">
+            {{ row.status ? 'On' : 'Off' }}</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <!--y -->>
+
 
   <div class="table-container">
     <table class="table">

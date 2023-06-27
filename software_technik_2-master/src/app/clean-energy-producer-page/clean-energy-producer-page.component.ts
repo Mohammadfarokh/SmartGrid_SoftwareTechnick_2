@@ -6,7 +6,7 @@ interface Battery {
   capacity: number;
 }
 interface CleanEnergyDevice {
-  name: string;
+  weater: string;
   location: string;
 }
 interface Factory {
@@ -43,7 +43,7 @@ export class CleanEnergyProducerPageComponent implements OnInit {
       name: form.value.name,
       location: form.value.location,
     };
-    this.http.post('deine-url-hier', data).subscribe({
+    this.http.post('', data).subscribe({
       next: (response) => {
         console.log('Erfolgreich gesendet:', response);
         const newFactory: Factory = {
@@ -58,26 +58,57 @@ export class CleanEnergyProducerPageComponent implements OnInit {
       },
     });
   }
-  submitForm2(form: any) {
-    const data = {
-      name: form.value.name,
-      location: form.value.location,
+
+  // Add Clean Energy Device 
+  submitForm2(form2: any) {
+
+    const turbineData = {
+      name:form2.value.name,
+      location : form2.value.location2
     };
-    this.http.post('deine-url-hier', data).subscribe({
+
+    const solarpanelData = {
+      name:form2.value.name,
+      location : form2.value.location2
+    };
+
+    // Add Turbine
+    if(form2.value.type == "turbine"){
+    this.http.post('http://localhost:9595/turbine/add', turbineData).subscribe({
       next: (response) => {
-        console.log('Erfolgreich gesendet:', response);
-        const newCleanEnergyDevice: CleanEnergyDevice = {
-          name: data.name,
-          location: data.location,
-        };
-        this.CleanEnergyDevices.push(newCleanEnergyDevice);
-        form.reset();
+        form2.reset();
+        alert('Successfully added:');
       },
       error: (error) => {
         console.log('Error submitting form:', error);
+        
       },
     });
+
+    }
+
+    // Add Turbine
+    else if(form2.value.type == "solarpanel"){
+      this.http.post('http://localhost:9595/solarpanel/add', solarpanelData).subscribe({
+        next: (response) => {
+          form2.reset();
+          alert('Successfully added:');
+        },
+        error: (error) => {
+          console.log('Error submitting form:', error);
+          
+        },
+      });
+  
+      }
+      else{
+        alert('Select a Type!');
+      }
+
+
   }
+
+  
   getAddedBatterys() {
     this.http.get<Battery[]>('your-backend-url/smart-homes').subscribe({
       next: (response: Battery[]) => {
@@ -110,13 +141,15 @@ export class CleanEnergyProducerPageComponent implements OnInit {
         },
       });
   }
+
+
   submitForm3(form: any) {
     const data = {
       name: form.value.name,
       location: form.value.location,
       capacity: form.value.capacity,
     };
-    this.http.post('deine-url-hier', data).subscribe({
+    this.http.post('http://localhost:9595/turbine/add', data).subscribe({
       next: (response) => {
         console.log('Erfolgreich gesendet:', response);
         const newBattery: Battery = {

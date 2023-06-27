@@ -1,18 +1,81 @@
 <div class="container">
   <div class="infoBox infoBox-consumed">
-    <h3>Consumed: </h3>
+    <h3>Consumed: {{ smartgridData[0]?.lectricityConsumed }} w/h</h3>
+
+    
     <!-- Content for the consumed box -->
   </div>
 
   <div class="infoBox infoBox-produced">
-    <h3>Produced: </h3>
+    <h3>Produced:   {{ smartgridData[0]?.electricityProducedv }} w/h</h3>
+    
+    <button (click)="updateSmartgridData(smartgridData[0])">Send to Database</button>
     <!-- Content for the produced box -->
   </div>
 
   <div class="infoBox infoBox-difference">
-    <h3>Difference: </h3>
+    <h3>Difference: {{ calculateAdjustedConsumed()}} w/h</h3>
     <!-- Content for the difference box -->
   </div>
 </div>
 
-<app-dynamic-table [tableDataList1]="cleanenergyTable" [tableDataList2]="tableDataList" [tableDataList3]="tableDataList" [tableDataList4]="tableDataList"></app-dynamic-table>
+<!-- 
+<app-dynamic-table [tableDataList1]="cleanenergyTable" 
+                   [tableDataList2]="tableDataList"
+                   [tableDataList3]="tableDataList" 
+                   [tableDataList4]="tableDataList"> 
+                                                      </app-dynamic-table> -->
+
+<!-- Solar Panel -->                                 
+<div class="box">
+  <table>
+    <caption>Solar Panel</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Sunshine duration <br> (today)</th>
+        <th>Production </th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let panel of solarPanels">
+        <td>{{ panel.name }}</td>
+        <td>{{ panel.location }}</td>
+        <td>{{ panel.sunrise }} hours</td>
+        <td>{{ panel.productionAmount }} w/h</td>
+        <td > <button #buttonCell class="button-cell" (click)="updateSolarpanel(panel)">
+          {{ panel.status ? 'On' : 'Off' }}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>                                              
+
+<!-- Turbine -->  
+<div class="box">
+  <table>
+    <caption>Turbine</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Windspeed <br> (today)</th>
+        <th>Production </th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let turbin of turbine">
+        <td>{{ turbin.name }}</td>
+        <td>{{ turbin.location }}</td>
+        <td>{{ turbin.wind_speed }} km/h</td>
+        <td>{{ turbin.productionAmount }} w/h</td>
+        <td > <button #buttonCell class="button-cell" (click)="updateTurbine(turbin)">
+          {{ turbin.status ? 'On' : 'Off' }}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>                                              
