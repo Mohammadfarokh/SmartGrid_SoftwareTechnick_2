@@ -6,7 +6,7 @@ import { AddDevicesComponent } from './add-devices/add-devices.component';
 
 const routes: Routes = [
   { path: 'shsfrontendla/src/app/homepage', component: HomepageComponent },
-  { path: 'SGS/src/app/add-Devices', component: AddDevicesComponent},
+  { path: 'shsfrontendla/src/app/add-devices', component: AddDevicesComponent},
 ];
 
 @NgModule({
