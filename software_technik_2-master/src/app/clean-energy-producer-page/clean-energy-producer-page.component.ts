@@ -155,7 +155,7 @@ export class CleanEnergyProducerPageComponent implements OnInit {
         const newBattery: Battery = {
           name: data.name,
           location: data.location,
-          capacity: data.location,
+          capacity: data.capacity,
         };
         this.Batterys.push(newBattery);
         form.reset();
