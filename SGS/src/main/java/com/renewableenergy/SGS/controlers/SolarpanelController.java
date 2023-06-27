@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.renewableenergy.SGS.SgsApplication;
 import com.renewableenergy.SGS.SolarpanelService;
 import com.renewableenergy.SGS.TurbineService;
 import com.renewableenergy.SGS.entity.Solarpanel;
 import com.renewableenergy.SGS.entity.Turbine;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/solarpanel")
 public class SolarpanelController {
+	
+	  Random random = new Random();
 	
 	  private final SolarpanelService solarpanelService ;
 	  
@@ -31,7 +35,37 @@ public class SolarpanelController {
 	  @GetMapping("/all")
 	  public ResponseEntity<List<Solarpanel>> getAllSolarpanel()
 	  {
+		  
 		  List<Solarpanel> solarpanel = solarpanelService.findAllSolarpanel();
+		 
+		  double summe=0;
+		  double randumSumme=0;
+		  
+		  for(Solarpanel panle : solarpanel) {
+			  // Sunshine duration
+			  panle.setSunrise(7);
+			  
+			  double pamount=panle.getProductionAmount();
+			  double randomNumber=0;
+			  if(panle.isStatus()) {
+			  // Production (W/h)
+			  randomNumber = random.nextInt(10) + 1;
+			  pamount +=  randomNumber;
+			  panle.setProductionAmount(pamount);
+			  solarpanelService.updateSolarpanel(panle);			  
+			  }
+			// set electricity_producedv
+			  summe += pamount;
+			  randumSumme += randomNumber;
+			    
+		  }
+		  
+		  if(SgsApplication.electricity_producedv == 0 ) {
+			  SgsApplication.electricity_producedv += summe ;
+		  }else {
+			  SgsApplication.electricity_producedv +=  randumSumme;
+		  }
+		  
 		  return new ResponseEntity<>(solarpanel,HttpStatus.OK);
 	  }
 	  

@@ -1,19 +1,20 @@
 package com.renewableenergy.SGS;
 
 import com.renewableenergy.SGS.entity.*;
-
-
 import java.util.List;
+import java.util.Random;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Random;
 
 import jakarta.persistence.*;
 
 @RestController
 @RequestMapping("/turbine")
 public class TurbineController {
-	
+	 Random random = new Random();
 	
 	  private final TurbineService turbineService ;
 	  
@@ -25,6 +26,19 @@ public class TurbineController {
 	  public ResponseEntity<List<Turbine>> getAllTurbine()
 	  {
 		  List<Turbine> turbine = turbineService.findAllTurbine();
+		  for(Turbine turbin : turbine) {
+			  // Sunshine duration
+			  turbin.setWind_speed(15);
+			  
+			  if(turbin.isStatus()) {
+			  // Production (W/h)
+			  double randomNumber = random.nextInt(10) + 1;
+			  turbin.setProductionAmount(turbin.getProductionAmount() + randomNumber);
+			  turbineService.updateTurbine(turbin);
+			  }
+			  
+		  }
+		  
 		  return new ResponseEntity<>(turbine,HttpStatus.OK);
 	  }
 	  

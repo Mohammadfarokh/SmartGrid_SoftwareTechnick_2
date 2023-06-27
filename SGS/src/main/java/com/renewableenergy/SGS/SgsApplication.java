@@ -15,27 +15,33 @@ import com.renewableenergy.SGS.entity.Battary;
 
 @SpringBootApplication
 public class SgsApplication {
+	
+	public  static  double electrecity_incoming ;
+	
+	public  static  double electricity_producedv ;
+	
+	public  static  double lectricity_consumed ;
 
 	public static void main(String[] args) {
     	ConfigurableApplicationContext context = SpringApplication.run(SgsApplication.class, args) ;
-    	
+
 
         SmartGridService smartGridDao = context.getBean(SmartGridService.class);
-        System.out.println("SmartGridDao");
-        smartGridDao.list().forEach(System.out::println);
+        System.out.println("**** Running ****");
+      // smartGridDao.list().forEach(System.out::println);
         
         // Battery
-        BattaryService  battaryService = context.getBean(BattaryService.class);
+    //    BattaryService  battaryService = context.getBean(BattaryService.class);
         
       //battaryService.addNewBattary(new Battary("Dortmund",2000,1500,true));
       //battaryService.addNewBattary(new Battary("Essen",3000,500,true));
 
-    	int anzBattry=battaryService.anzBattary();
+    	//int anzBattry=battaryService.anzBattary();
     	
-    	List<Battary> battarylist = new ArrayList<>();
-    	battarylist = battaryService.list();
+    	//List<Battary> battarylist = new ArrayList<>();
+    //	battarylist = battaryService.list();
     	 
-        battaryService.list().forEach(System.out::println);
+    //    battaryService.list().forEach(System.out::println);
         
     	// SmartGridManagement
     	/* SmartGridManagement smartGridManagement = new SmartGridManagement(context);
