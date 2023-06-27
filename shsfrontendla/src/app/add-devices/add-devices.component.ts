@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-devices',
   templateUrl: './add-devices.component.html',
   styleUrls: ['./add-devices.component.css']
 })
-export class AddDevicesComponent {
+export class AddDevicesComponent implements OnInit {
+  constructor() {}
 
+  ngOnInit(): void {
+   
+  }
 }
