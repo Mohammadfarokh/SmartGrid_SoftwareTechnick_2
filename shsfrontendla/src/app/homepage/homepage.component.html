@@ -17,14 +17,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Brand A</td>
-          <td>1000mAh</td>
-        </tr>
-        <tr>
-          <td>Brand B</td>
-          <td>2000mAh</td>
-        </tr>
+        <tr *ngFor="let row of Batterys">
+          <td>{{ row.name }}</td>
+          <td>{{ row.capacity }}</td>
+      </tr>
+
       </tbody>
     </table>
 
@@ -37,14 +34,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Product X</td>
-          <td>$10</td>
-        </tr>
-        <tr>
-          <td>Product Y</td>
-          <td>$15</td>
-        </tr>
+        <tr *ngFor="let row of StandardConsumers">
+          <td>{{ row.name }}</td>
+          <td>{{ row.consumed }}</td>
+      </tr>
       </tbody>
     </table>
 
@@ -57,14 +50,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Item A</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Item B</td>
-          <td>10</td>
-        </tr>
+        <tr *ngFor="let row of VariableConsumers">
+          <td>{{ row.name }}</td>
+          <td>{{ row.consumed }}</td>
+      </tr>
       </tbody>
     </table>
 
@@ -77,14 +66,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Model X</td>
-          <td>100W</td>
-        </tr>
-        <tr>
-          <td>Model Y</td>
-          <td>200W</td>
-        </tr>
+        <tr *ngFor="let row of SolarPanels">
+          <td>{{ row.name }}</td>
+          <td>{{ row.maxOutput }}</td>
+      </tr>
       </tbody>
     </table>
     <table>
@@ -96,14 +81,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Type A</td>
-          <td>500kW</td>
-        </tr>
-        <tr>
-          <td>Type B</td>
-          <td>1000kW</td>
-        </tr>
+        <tr *ngFor="let row of Turbines">
+          <td>{{ row.name }}</td>
+          <td>{{ row.maxOutput }}</td>
+      </tr>
       </tbody>
     </table>
 
