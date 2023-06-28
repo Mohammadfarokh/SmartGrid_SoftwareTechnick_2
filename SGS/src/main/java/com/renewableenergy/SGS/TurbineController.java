@@ -1,5 +1,6 @@
 package com.renewableenergy.SGS;
 
+import com.renewableenergy.SGS.API.WeatherAPIExample;
 import com.renewableenergy.SGS.entity.*;
 import java.util.List;
 import java.util.Random;
@@ -28,7 +29,8 @@ public class TurbineController {
 		  List<Turbine> turbine = turbineService.findAllTurbine();
 		  for(Turbine turbin : turbine) {
 			  // Sunshine duration
-			  turbin.setWind_speed(15);
+			  double windspeed = WeatherAPIExample.getWindSpeed(turbin.getLocation());
+			  turbin.setWind_speed(windspeed);
 			  
 			  if(turbin.isStatus()) {
 			  // Production (W/h)

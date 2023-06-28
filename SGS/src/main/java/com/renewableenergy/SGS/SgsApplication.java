@@ -10,7 +10,7 @@ import org.springframework.web.filter.*;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-
+import com.renewableenergy.SGS.API.WeatherAPIExample;
 import com.renewableenergy.SGS.entity.Battary;
 
 @SpringBootApplication
@@ -21,12 +21,14 @@ public class SgsApplication {
 	public  static  double electricity_producedv ;
 	
 	public  static  double lectricity_consumed ;
+	
+
 
 	public static void main(String[] args) {
     	ConfigurableApplicationContext context = SpringApplication.run(SgsApplication.class, args) ;
 
-
         SmartGridService smartGridDao = context.getBean(SmartGridService.class);
+        
         System.out.println("**** Running ****");
       // smartGridDao.list().forEach(System.out::println);
         
