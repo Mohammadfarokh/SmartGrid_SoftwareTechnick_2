@@ -23,10 +23,13 @@ export class CleanEnergyProducerPageComponent implements OnInit {
   Batterys: Battery[] = [];
   Factorys: Factory[] = [];
   CleanEnergyDevices: CleanEnergyDevice[] = [];
+ 
   ngOnInit() {
+     /* zum löschen
     this.getAddedBatterys();
     this.getAddedCleanEnergyDevices();
     this.getAddedFactorys();
+    */
   }
 
   constructor(private http: HttpClient) {}
@@ -38,23 +41,38 @@ export class CleanEnergyProducerPageComponent implements OnInit {
     }
     // Perform any other operations with the button element
   }
+  //add Factory
   submitForm1(form: any) {
-    const data = {
+    const factoryData = {
       name: form.value.name,
       location: form.value.location,
     };
-    this.http.post('', data).subscribe({
+    this.http.post('http://localhost:9595/factory/add', factoryData).subscribe({
       next: (response) => {
-        console.log('Erfolgreich gesendet:', response);
-        const newFactory: Factory = {
-          name: data.name,
-          location: data.location,
-        };
-        this.Factorys.push(newFactory);
         form.reset();
+        alert('Successfully added:');
       },
       error: (error) => {
         console.log('Error submitting form:', error);
+        
+      },
+    });
+  }
+   //add Battery
+  submitForm3(form: any) {
+    const data = {
+      name: form.value.name,
+      location: form.value.location,
+      capacity: form.value.capacity,
+    };
+    this.http.post('http://localhost:9595/battery/add', data).subscribe({
+      next: (response) => {
+        form.reset();
+        alert('Successfully added:');
+      },
+      error: (error) => {
+        console.log('Error submitting form:', error);
+        
       },
     });
   }
@@ -87,7 +105,7 @@ export class CleanEnergyProducerPageComponent implements OnInit {
 
     }
 
-    // Add Turbine
+    // Add solarPanel
     else if(form2.value.type == "solarpanel"){
       this.http.post('http://localhost:9595/solarpanel/add', solarpanelData).subscribe({
         next: (response) => {
@@ -108,7 +126,7 @@ export class CleanEnergyProducerPageComponent implements OnInit {
 
   }
 
-  
+  /*am Ende Zum löschen
   getAddedBatterys() {
     this.http.get<Battery[]>('your-backend-url/smart-homes').subscribe({
       next: (response: Battery[]) => {
@@ -141,28 +159,6 @@ export class CleanEnergyProducerPageComponent implements OnInit {
         },
       });
   }
+*/
 
-
-  submitForm3(form: any) {
-    const data = {
-      name: form.value.name,
-      location: form.value.location,
-      capacity: form.value.capacity,
-    };
-    this.http.post('http://localhost:9595/turbine/add', data).subscribe({
-      next: (response) => {
-        console.log('Erfolgreich gesendet:', response);
-        const newBattery: Battery = {
-          name: data.name,
-          location: data.location,
-          capacity: data.capacity,
-        };
-        this.Batterys.push(newBattery);
-        form.reset();
-      },
-      error: (error) => {
-        console.log('Error submitting form:', error);
-      },
-    });
-  }
 }
