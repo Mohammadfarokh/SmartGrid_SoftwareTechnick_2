@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class SmartMeter {
+public class SmartMeter implements Observer {
 	@Id
 	@SequenceGenerator(
 	name= "smartmeter_sequence", sequenceName= "smartmeter_sequence",
@@ -80,6 +80,14 @@ public class SmartMeter {
 		return "SmartMeter [id=" + id + ", name=" + name + ", producedEnergy=" + producedEnergy
 				+ ", consumedEnergyWithTariff=" + consumedEnergyWithTariff + ", consumedEnergyWithoutTariff="
 				+ consumedEnergyWithoutTariff + ", smartHome=" + smartHome + "]";
+	}
+
+	@Override
+	public void update(double producedEnergy, double consumedEnergyWithTariff, double consumedEnergyWithoutTarif) {
+		// TODO Auto-generated method stub
+		this.producedEnergy = producedEnergy;
+		this.consumedEnergyWithTariff = consumedEnergyWithTariff;
+		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTarif;
 	}
 	
 	

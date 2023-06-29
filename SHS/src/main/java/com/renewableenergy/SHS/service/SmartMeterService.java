@@ -8,18 +8,22 @@ import org.springframework.stereotype.Service;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.entity.SmartMeter;
 import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
+import com.renewableenergy.SHS.repository.SmartHomeRepository;
 import com.renewableenergy.SHS.repository.SmartMeterRepository;
 
 @Service
-public class SmartMeterService implements Observer{
+public class SmartMeterService {
 	private final SmartMeterRepository smr;
+	private final SmartHomeRepository shr;
 	@Autowired
-	public SmartMeterService(SmartMeterRepository smr) {
+	public SmartMeterService(SmartHomeRepository shr, SmartMeterRepository smr) {
 		this.smr = smr;
+		this.shr = shr;
 	}
-	public void addSmartMeter(String name, double producedEnergy, double consumedEnergyWithTariff,
+	public void addSmartMeter(long id_smartHome, String name, double producedEnergy, double consumedEnergyWithTariff,
 			double consumedEnergyWithoutTariff) {
 		SmartMeter v1 = new SmartMeter(name,producedEnergy,consumedEnergyWithTariff,consumedEnergyWithoutTariff);
+		v1.setSmartHome(shr.getById(id_smartHome));
 		this.smr.save(v1);
 	}
 	
@@ -35,11 +39,6 @@ public class SmartMeterService implements Observer{
 			return false;
 		}
 	}
-	@Override
-	public void update(long id, long producedEnergy, long consumedEnergyWithTariff, long consumedEnergyWithoutTarif) {
-		this.smr.findById(id).ifPresent(t -> t.setProducedEnergy(producedEnergy));
-		this.smr.findById(id).ifPresent(t -> t.setConsumedEnergyWithTariff(consumedEnergyWithTariff));
-		this.smr.findById(id).ifPresent(t -> t.setConsumedEnergyWithoutTariff(consumedEnergyWithoutTarif));
-	}
+	
 
 }

@@ -10,9 +10,11 @@ public class EnergyConsumerDTO {
 	Status mystatus;
 	SmartHome smarthome;
 	boolean isStandart; 
+	long id_smartHome;
 	
-	public EnergyConsumerDTO(long id, String name, double consumedElectrecity, Status mystatus, SmartHome smarthome,
+	public EnergyConsumerDTO(long id_smartHome, long id, String name, double consumedElectrecity, Status mystatus, SmartHome smarthome,
 			boolean	isStandart) {
+		this.id_smartHome = id_smartHome;
 		this.id = id;
 		this.name = name;
 		this.consumedElectrecity = consumedElectrecity;
@@ -24,6 +26,12 @@ public class EnergyConsumerDTO {
 		
 	}
 	
+	public long getId_smartHome() {
+		return id_smartHome;
+	}
+	public void setId_smartHome(long id_smartHome) {
+		this.id_smartHome = id_smartHome;
+	}
 	public boolean isStandart() {
 		return isStandart;
 	}

@@ -3,6 +3,7 @@ package com.renewableenergy.SHS.entity;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 
@@ -26,8 +27,9 @@ import jakarta.persistence.Table;
 import com.renewableenergy.SGS.entity.SmartGrid;
 import com.renewableenergy.SGS.entity.Tariff;
 
-
-public class SmartHome {
+@Entity
+@Table
+public class SmartHome extends Observabel{
 	@Id
 	@SequenceGenerator(
 	name= "smarthome_sequence", sequenceName= "smarthome_sequence",
@@ -38,11 +40,12 @@ public class SmartHome {
 	private long id;
 	private String name;
 	private String location;
-	private double neededElectricity;
+	private double electricityConsumed;
 	private double electricityConsumedWithoutTariff;
 	private double electricityConsumedWithTariff;
 	private double electricityProduced;
 	private double realtimeCapasity;
+	private LinkedList<Observer> observerlist = new LinkedList<Observer>();
 	@OneToMany
 	Set<HomeBattary> homebattarylist;
 	@OneToMany
@@ -61,7 +64,7 @@ public class SmartHome {
 			double electricityConsumedWithTariff,double electricityProduced, double realtimeCapasity) {
 		this.name = name;
 		this.location = location;
-		this.neededElectricity = 0;
+		this.electricityConsumed = 0;
 		this.electricityConsumedWithoutTariff = 0;
 		this.electricityConsumedWithTariff=0;
 		this.electricityProduced = 0;
@@ -71,6 +74,18 @@ public class SmartHome {
 		this.energyconsumerlist = new HashSet<>();
 		this.smartmeter = new SmartMeter("smartmeter for" + this.name, this.getElectricityProduced(),
 				this.electricityConsumedWithTariff,this.electricityConsumedWithoutTariff);
+	}
+	public void addToElectricityProduced(double num) {
+		this.electricityProduced += num;
+	}
+	public void addToElectricityConsumedWithTariff(double num) {
+		this.electricityConsumedWithTariff += num;
+	}
+	public void addToElectricityConsumedWithoutTariff(double num) {
+		this.electricityConsumedWithoutTariff += num;
+	}
+	public void addToElectricityConsumed(double num) {
+		this.electricityConsumed += num;
 	}
 	public long getId() {
 		return id;
@@ -90,11 +105,11 @@ public class SmartHome {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public double getNeededElectricity() {
-		return neededElectricity;
+	public double getelectricityConsumed() {
+		return electricityConsumed;
 	}
-	public void setNeededElectricity(double neededElectricity) {
-		this.neededElectricity = neededElectricity;
+	public void setelectricityConsumed(double electricityConsumed) {
+		this.electricityConsumed = electricityConsumed;
 	}
 	
 	public double getElectricityConsumedWithoutTariff() {
@@ -147,12 +162,30 @@ public class SmartHome {
 	}
 	@Override
 	public String toString() {
-		return "SmartHome [id=" + id + ", name=" + name + ", location=" + location + ", neededElectricity="
-				+ neededElectricity + ", electricityConsumedWithoutTariff=" + electricityConsumedWithoutTariff
+		return "SmartHome [id=" + id + ", name=" + name + ", location=" + location + ", electricityConsumed="
+				+ electricityConsumed + ", electricityConsumedWithoutTariff=" + electricityConsumedWithoutTariff
 				+ ", electricityConsumedWithTariff=" + electricityConsumedWithTariff + ", electricityProduced="
 				+ electricityProduced + ", realtimeCapasity=" + realtimeCapasity + ", homebattarylist="
 				+ homebattarylist + ", energyproducerlist=" + energyproducerlist + ", energyconsumerlist="
 				+ energyconsumerlist + ", smartmeter=" + smartmeter + "]";
+	}
+	@Override
+	public void attach(Observer o) {
+		// TODO Auto-generated method stub
+		this.observerlist.add(o);
+	}
+	@Override
+	public void detach(Observer o) {
+		// TODO Auto-generated method stub
+		this.observerlist.remove(o);
+		
+	}
+	@Override
+	public void notifyObserver() {
+		// TODO Auto-generated method stub
+		for(Observer v : observerlist) {
+			v.update(this.electricityProduced, this.electricityConsumedWithTariff, this.electricityConsumedWithoutTariff);
+		}
 	}
 	
 }

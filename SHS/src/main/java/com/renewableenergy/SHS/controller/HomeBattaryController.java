@@ -21,6 +21,7 @@ import com.renewableenergy.SHS.service.HomeTurbine;
 @RequestMapping(value = "api/v1/home-battary")
 public class HomeBattaryController {
 		public final HomeBattaryService hb;
+		//add smarthomeservice 
 		@Autowired
 		HomeBattaryController(HomeBattaryService hb){
 			this.hb = hb;
@@ -30,7 +31,8 @@ public class HomeBattaryController {
 		public boolean addHomeBattary(@RequestBody HomeBattaryDTO request) {
 			//you have to check for adding Exception
 			try {
-				hb.addHomeBattary(request.getName(), request.getMaxCapacity() );
+				//SmartHome v1 = smarthomeservice.getbyid(request.getid) 
+				hb.addHomeBattary(request.getId_smartHome(),request.getName(), request.getMaxCapacity() );
 			}catch(Exception e) {
 				e.printStackTrace();
 				return false;

@@ -8,23 +8,30 @@ import com.renewableenergy.SHS.entity.EnergyConsumer;
 import com.renewableenergy.SHS.entity.EnergyConsumer.Status;
 import com.renewableenergy.SHS.entity.SmartHome;
 import com.renewableenergy.SHS.repository.EnergyConsumerRepository;
+import com.renewableenergy.SHS.repository.SmartHomeRepository;
 import com.renewableenergy.SHS.entity.EnergyConsumer.Status;;
 @Service
 public class StandartConsumerService extends Creator {
 
-	public StandartConsumerService(EnergyConsumerRepository ecr) {
-		super(ecr);
+	public StandartConsumerService(SmartHomeRepository shr, EnergyConsumerRepository ecr) {
+		super(shr, ecr);
 		// TODO Auto-generated constructor stub
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public void factory(String name, double consumedElectricity, boolean isStandart) {
+	public void factory(long id_smartHome, String name, double consumedElectricity, boolean isStandart) {
 		// TODO Auto-generated method stub
 		if (isStandart == true) {
 			EnergyConsumer ecih = new EnergyConsumer(name, consumedElectricity);
 			ecih.setMystatus(Status.ALLWAYS);
+			ecih.setSmarthome(super.getShs().getById(id_smartHome));
 			super.getEcr().save(ecih);	
 		}
+	}
+	
+	public void addStandartConsumer(EnergyConsumer ec) {
+		super.getEcr().save(ec);
 	}
 	
 	public List<EnergyConsumer> getEnergyConsumer(){

@@ -29,7 +29,7 @@ public class SmartMeterController {
 	public boolean addSmartMeter(@RequestBody SmartMeterDTO request) {
 		//you have to check for adding Exception
 		try {
-			sms.addSmartMeter(request.getName(), request.getProducedEnergy(),
+			sms.addSmartMeter(request.getId_smartHome(),request.getName(), request.getProducedEnergy(),
 					request.getConsumedEnergyWithTariff(), request.getConsumedEnergyWithoutTariff());
 		}catch(Exception e) {
 			e.printStackTrace();

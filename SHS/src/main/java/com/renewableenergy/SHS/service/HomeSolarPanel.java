@@ -8,18 +8,28 @@ import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
+import com.renewableenergy.SHS.repository.SmartHomeRepository;
 
 @Service
 public class HomeSolarPanel{
 	private final EnergyProducerinHomeRepository epihr;
+	private final SmartHomeRepository shr;
 	@Autowired
-	public HomeSolarPanel(EnergyProducerinHomeRepository epihr) {
+	public HomeSolarPanel(SmartHomeRepository shr,EnergyProducerinHomeRepository epihr) {
 		this.epihr = epihr;
+		this.shr = shr;
 	}
 	
-	public void addHomeSolarPanel(String name,LocalDateTime sunrise, LocalDateTime sunset) {
+	@SuppressWarnings("deprecation")
+	public void addHomeSolarPanel(long id_smartHome,String name,LocalDateTime sunrise, LocalDateTime sunset) {
+		//
 		EnergyProducerinHome v1 = new EnergyProducerinHome(name, sunrise, sunset);
+		v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
+	}
+	
+	public void addHomeSolarPanle(EnergyProducerinHome epih) {
+		this.epihr.save(epih);
 	}
 	
 	public List<EnergyProducerinHome> getSolarPanel(String type){

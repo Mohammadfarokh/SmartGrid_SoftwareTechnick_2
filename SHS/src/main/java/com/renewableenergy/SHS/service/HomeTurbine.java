@@ -8,17 +8,25 @@ import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
+import com.renewableenergy.SHS.repository.SmartHomeRepository;
 
 @Service
 public class HomeTurbine {
 	private final EnergyProducerinHomeRepository epihr;
+	private final SmartHomeRepository shr;
 	@Autowired
-	public HomeTurbine(EnergyProducerinHomeRepository epihr) {
+	public HomeTurbine(SmartHomeRepository shr,EnergyProducerinHomeRepository epihr) {
 		this.epihr = epihr;
+		this.shr = shr;
 	}
-	public void addHomeTurbine(String name,double windspeed) {
+	@SuppressWarnings("deprecation")
+	public void addHomeTurbine(long id_smartHome,String name,double windspeed) {
 		EnergyProducerinHome v1 = new EnergyProducerinHome(name,windspeed);
+		v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
+	}
+	public void addHomeTurbine(EnergyProducerinHome epih) {
+		this.epihr.save(epih);
 	}
 	
 	public List<EnergyProducerinHome> getHomeTurbine(String type){

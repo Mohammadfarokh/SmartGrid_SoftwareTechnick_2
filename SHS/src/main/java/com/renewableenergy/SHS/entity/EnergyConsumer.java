@@ -37,6 +37,10 @@ public class EnergyConsumer {
 	public EnergyConsumer(String name, double consumedElectrecity) {
 			this.name = name;
 			this.consumedElectrecity = consumedElectrecity;
+			
+	}
+	public void addConsumedElectricity(double num) {
+		this.consumedElectrecity += num;
 	}
 	public long getId() {
 		return id;

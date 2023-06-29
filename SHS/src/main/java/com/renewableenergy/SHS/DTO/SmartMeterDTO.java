@@ -5,6 +5,7 @@ import com.renewableenergy.SHS.entity.SmartHome;
 import jakarta.persistence.OneToOne;
 
 public class SmartMeterDTO {
+	long id_smartHome;
 	 long id;
 	 String name;
 	 double producedEnergy;
@@ -13,8 +14,9 @@ public class SmartMeterDTO {
 	 SmartHome smartHome;
 	public SmartMeterDTO() {
 	}
-	public SmartMeterDTO(long id, String name, double producedEnergy, double consumedEnergyWithTariff,
+	public SmartMeterDTO(long id_smartHome, long id, String name, double producedEnergy, double consumedEnergyWithTariff,
 			double consumedEnergyWithoutTariff, SmartHome smartHome) {
+		this.id_smartHome = id_smartHome;
 		this.id = id;
 		this.name = name;
 		this.producedEnergy = producedEnergy;
@@ -27,6 +29,12 @@ public class SmartMeterDTO {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public long getId_smartHome() {
+		return id_smartHome;
+	}
+	public void setId_smartHome(long id_smartHome) {
+		this.id_smartHome = id_smartHome;
 	}
 	public String getName() {
 		return name;

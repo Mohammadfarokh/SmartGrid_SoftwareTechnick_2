@@ -6,16 +6,17 @@ import com.renewableenergy.SHS.entity.EnergyConsumer;
 import com.renewableenergy.SHS.entity.SmartHome;
 import com.renewableenergy.SHS.entity.EnergyConsumer.Status;
 import com.renewableenergy.SHS.repository.EnergyConsumerRepository;
+import com.renewableenergy.SHS.repository.SmartHomeRepository;
 @Service
 public class VariabelConsumerService extends Creator {
 
-	public VariabelConsumerService(EnergyConsumerRepository ecr) {
-		super(ecr);
+	public VariabelConsumerService(SmartHomeRepository shr,EnergyConsumerRepository ecr) {
+		super(shr,ecr);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void factory(String name, double consumedElectricity, boolean isStandart) {
+	public void factory(long id_smartHome,String name, double consumedElectricity, boolean isStandart) {
 		// TODO Auto-generated method stub
 		if (isStandart == false) {
 			EnergyConsumer ecih = new EnergyConsumer(name, consumedElectricity);
@@ -24,8 +25,13 @@ public class VariabelConsumerService extends Creator {
 			}else {
 				ecih.setMystatus(Status.OFF);
 			}
+			ecih.setSmarthome(super.getShs().getById(id_smartHome));
 			super.getEcr().save(ecih);	
 		}
+	}
+	
+	public void addVariabelConsumer(EnergyConsumer ec) {
+		super.getEcr().save(ec);
 	}
 	public boolean deleteVariabelConsumer(long id) {
 		try {
