@@ -1,0 +1,98 @@
+<div class="box-container">
+    <h1>SmartMeter</h1>
+    <div class="box">
+      <h3>consumption:{{ value1 }}</h3>
+    </div>
+  
+    <div class="box">
+      <h3>production:{{ value2 }}</h3>
+    </div>
+  
+  </div>
+  <div class="table-container">
+    <table class="table">
+      <caption>
+        Battery</caption>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>capacity</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let battery of Batteries">
+            <td>{{ battery.name }}</td>
+            <td>{{ battery.capacity }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <table>
+        <caption><b>Standard Consumer</b></caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>consumption</th>
+            <th>Tarif</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let StandardConsumer of StandardConsumers">
+            <td>{{ StandardConsumer.name }}</td>
+            <td>{{ StandardConsumer.consumed }}</td>
+            <td>{{ StandardConsumer.artDerTarif }}</td>
+        </tr>
+        </tbody>
+      </table>
+  
+      <table>
+        <caption><b>Variable Consumer</b></caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>consumption</th>
+            <th>Tarif</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let VariableConsumer of VariableConsumers">
+            <td>{{ VariableConsumer.name }}</td>
+            <td>{{ VariableConsumer.consumed }}</td>
+            <td>{{ VariableConsumer.artDerTarif }}</td>
+        </tr>
+        </tbody>
+      </table>
+  
+      <table>
+        <caption><b>Solar Panel</b></caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>MaxOutput</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let SolarPanel of SolarPanels">
+            <td>{{ SolarPanel.name }}</td>
+            <td>{{ SolarPanel.maxOutput }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <table>
+        <caption><b>Turbine</b></caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>MaxOutput</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Turbine of Turbines">
+            <td>{{ Turbine.name }}</td>
+            <td>{{ Turbine.maxOutput }}</td>
+        </tr>
+        </tbody>
+      </table>
+  
+    </div>
