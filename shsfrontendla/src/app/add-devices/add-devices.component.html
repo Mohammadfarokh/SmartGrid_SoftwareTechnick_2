@@ -1,0 +1,58 @@
+<div class="container">
+    <form #form1="ngForm" (submit)="submitForm1(form1)">
+      <div class="box">
+        <h3>Add standardConsumer</h3>
+        <label for="name1">Name:</label>
+        <input type="text" id="name1" name="name1" ngModel>
+        <label for="consumed1">consumed:</label>
+        <input type="text" id="consumed1" name="consumed1" ngModel>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <form #form4="ngForm" (submit)="submitForm1(form4)">
+        <div class="box">
+          <h3>Add variableConsumer</h3>
+          <label for="name2">Name:</label>
+          <input type="text" id="name2" name="name2" ngModel>
+          <label for="consumed2">consumed:</label>
+          <input type="text" id="consumed2" name="consumed2" ngModel>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+  
+    <!-- Add Clean Energy Device  -->
+    <form #form2="ngForm" (submit)="submitForm2(form2)">
+      <div class="box">
+        <h3>Add Clean Energy Device</h3>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" ngModel>
+        
+        
+  
+        <label for="type">Type:</label>
+        <select id="type" name="type" ngModel required>
+          <option value="turbine">Turbine</option>
+          <option value="solarpanel">Solarpanel</option>
+        </select>
+  
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  
+    <form #form3="ngForm" (submit)="submitForm3(form3)">
+      <div class="box">
+        <h3>Add Battery</h3>
+        <label for="name3">Name:</label>
+        <input type="text" id="name3" name="name3" ngModel>
+  
+      
+  
+        <label for="capacity3">Capacity:</label>
+        <input type="text" id="capacity3" name="capacity3" ngModel>
+  
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  
