@@ -60,8 +60,7 @@ public class SmartHome extends Observabel{
 //	private SmartGrid smartGrid;
 	public SmartHome() {
 	}
-	public SmartHome(String name,String location,  double neededElectricity, double electricityConsumedWithoutTariff,
-			double electricityConsumedWithTariff,double electricityProduced, double realtimeCapasity) {
+	public SmartHome(String name,String location) {
 		this.name = name;
 		this.location = location;
 		this.electricityConsumed = 0;
