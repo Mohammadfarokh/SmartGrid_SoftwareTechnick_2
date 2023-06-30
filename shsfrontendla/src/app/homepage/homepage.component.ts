@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
 
 interface Battery {
   name: string;
@@ -124,16 +125,18 @@ export class HomepageComponent implements OnInit {
       button.innerHTML = 'ON';
       button.classList.add('on');
       button.classList.remove('off');
-      this.http
-        .put<any>('Backend-link', battery)
-        .subscribe({
-          next: (response) => {
-            console.log('battery updated successfully:', response);
-          },
-          error: (error) => {
-            console.error('Error updating battery:', error);
-          },
-        });
+      setInterval(() => {
+        this.http
+          .put<any>('Backend-link', battery)
+          .subscribe({
+            next: (response) => {
+              console.log('battery updated successfully:', response);
+            },
+            error: (error) => {
+              console.error('Error updating battery:', error);
+            },
+          });
+      }, 2000);
     } else {
       button?.innerHTML === 'OFF';
       button?.classList.add('off');
@@ -147,16 +150,18 @@ export class HomepageComponent implements OnInit {
       button.innerHTML = 'ON';
       button.classList.add('on');
       button.classList.remove('off');
-      this.http
-        .put<any>('Backend-link', StandardConsumer)
-        .subscribe({
-          next: (response) => {
-            console.log('StandardConsumer updated successfully:', response);
-          },
-          error: (error) => {
-            console.error('Error updating StandardConsumer:', error);
-          },
-        });
+      setInterval(() => {
+        this.http
+          .put<any>('Backend-link', StandardConsumer)
+          .subscribe({
+            next: (response) => {
+              console.log('StandardConsumer updated successfully:', response);
+            },
+            error: (error) => {
+              console.error('Error updating StandardConsumer:', error);
+            },
+          });
+      }, 2000);
     } else {
       button?.innerHTML === 'OFF';
       button?.classList.add('off');
@@ -169,16 +174,18 @@ export class HomepageComponent implements OnInit {
       button.innerHTML = 'ON';
       button.classList.add('on');
       button.classList.remove('off');
-      this.http
-        .put<any>('Backend-link', VariableConsumer)
-        .subscribe({
-          next: (response) => {
-            console.log('VariableConsumer updated successfully:', response);
-          },
-          error: (error) => {
-            console.error('Error updating VariableConsumer:', error);
-          },
-        });
+      setInterval(() => {
+        this.http
+          .put<any>('Backend-link', VariableConsumer)
+          .subscribe({
+            next: (response) => {
+              console.log('VariableConsumer updated successfully:', response);
+            },
+            error: (error) => {
+              console.error('Error updating VariableConsumer:', error);
+            },
+          });
+      }, 2000);
     } else {
       button?.innerHTML === 'OFF';
       button?.classList.add('off');
@@ -192,16 +199,18 @@ export class HomepageComponent implements OnInit {
       button.innerHTML = 'ON';
       button.classList.add('on');
       button.classList.remove('off');
-      this.http
-        .put<any>('Backend-link', SolarPanel)
-        .subscribe({
-          next: (response) => {
-            console.log('Solarpanel updated successfully:', response);
-          },
-          error: (error) => {
-            console.error('Error updating solarpanel:', error);
-          },
-        });
+      setInterval(() => {
+        this.http
+          .put<any>('Backend-link', SolarPanel)
+          .subscribe({
+            next: (response) => {
+              console.log('SolarPanel updated successfully:', response);
+            },
+            error: (error) => {
+              console.error('Error updating SolarPanel:', error);
+            },
+          });
+      }, 2000);
     } else {
       button?.innerHTML === 'OFF';
       button?.classList.add('off');
@@ -215,16 +224,18 @@ export class HomepageComponent implements OnInit {
       button.innerHTML = 'ON';
       button.classList.add('on');
       button.classList.remove('off');
-      this.http
-        .put<any>('Backend-link', Turbine)
-        .subscribe({
-          next: (response) => {
-            console.log('Turbine updated successfully:', response);
-          },
-          error: (error) => {
-            console.error('Error updating Turbine:', error);
-          },
-        });
+      setInterval(() => {
+        this.http
+          .put<any>('Backend-link', Turbine)
+          .subscribe({
+            next: (response) => {
+              console.log('Turbine updated successfully:', response);
+            },
+            error: (error) => {
+              console.error('Error updating Turbine:', error);
+            },
+          });
+      }, 2000);
     } else {
       button?.innerHTML === 'OFF';
       button?.classList.add('off');
