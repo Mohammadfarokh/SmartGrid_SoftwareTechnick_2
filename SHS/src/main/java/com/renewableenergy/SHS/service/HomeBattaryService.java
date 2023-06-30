@@ -21,12 +21,16 @@ public class HomeBattaryService {
 		this.shr = shr;
 		this.hbr = hbr;
 	}
-	@SuppressWarnings("deprecation")
-	public void addHomeBattary(long id_smartHome, String name,double maxCapacity) {
+	//@SuppressWarnings("deprecation")
+	public void addHomeBattary(/*long id_smartHome, */String name,double maxCapacity) {
 		HomeBattary v1 = new HomeBattary(name, maxCapacity);
 		//v1.setSmartHome(argument)
-		v1.setSmarthome(shr.getById(id_smartHome));
+		//v1.setSmarthome(shr.getById(id_smartHome));
 		this.hbr.save(v1);
+	}
+	
+	public void updateBattary(HomeBattary hb) {
+		this.hbr.save(hb);
 	}
 	
 	public List<HomeBattary> getBattary(){

@@ -37,12 +37,12 @@ public class HomeBattary {
 //	Set<SmartHome> smarthomes;
 	@ManyToOne
 	SmartHome smarthome;
-	public enum Status{
-		GOOD,
-		MIDDEL, 
-		BAD
-	}
-	Status mystatus;
+//	public enum Status{
+//		GOOD,
+//		MIDDEL, 
+//		BAD
+//	}
+//	Status mystatus;
 	public HomeBattary() {
 	}
 	
@@ -53,7 +53,7 @@ public class HomeBattary {
 		this.realtimeCapacity = 0;
 		this.reachedMax = 0;
 		this.charging = false;
-		this.mystatus = Status.BAD;
+		this.smarthome=null;
 	}
 
 	public long getId() {
@@ -120,19 +120,19 @@ public class HomeBattary {
 		this.smarthome = smarthome;
 	}
 
-	public Status getMystatus() {
-		return mystatus;
-	}
-
-	public void setMystatus(Status mystatus) {
-		this.mystatus = mystatus;
-	}
+//	public Status getMystatus() {
+//		return mystatus;
+//	}
+//
+//	public void setMystatus(Status mystatus) {
+//		this.mystatus = mystatus;
+//	}
 
 	@Override
 	public String toString() {
 		return "HomeBattary [id=" + id + ", name=" + name + ", maxCapacity=" + maxCapacity + ", consumedElectrictiy="
 				+ consumedElectrictiy + ", realtimeCapacity=" + realtimeCapacity + ", reachedMax=" + reachedMax
-				+ ", charging=" + charging + ", smarthome=" + smarthome + ", mystatus=" + mystatus + "]";
+				+ ", charging=" + charging + ", smarthome=" + smarthome + /*", mystatus=" + mystatus +*/ "]";
 	}
 	
 }

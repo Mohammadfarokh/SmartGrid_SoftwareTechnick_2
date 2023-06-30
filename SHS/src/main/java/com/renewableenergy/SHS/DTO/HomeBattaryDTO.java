@@ -1,7 +1,6 @@
 package com.renewableenergy.SHS.DTO;
 
 import com.renewableenergy.SHS.entity.SmartHome;
-import com.renewableenergy.SHS.entity.HomeBattary.Status;
 
 public class HomeBattaryDTO {
 	long id_smartHome; 
@@ -13,11 +12,10 @@ public class HomeBattaryDTO {
 	 int reachedMax;
 	 boolean charging;
 	 SmartHome smarthome;
-	 Status mystatus;
 	public HomeBattaryDTO() {
 	}
 	public HomeBattaryDTO(long id_smartHome, long id, String name, double maxCapacity, double consumedElectrictiy, double realtimeCapacity,
-			int reachedMax, boolean charging, SmartHome smarthome, Status mystatus) {
+			int reachedMax, boolean charging, SmartHome smarthome) {
 		this.id_smartHome = id_smartHome;
 		this.id = id;
 		this.name = name;
@@ -27,7 +25,6 @@ public class HomeBattaryDTO {
 		this.reachedMax = reachedMax;
 		this.charging = charging;
 		this.smarthome = smarthome;
-		this.mystatus = mystatus;
 	}
 	public long getId() {
 		return id;
@@ -83,11 +80,11 @@ public class HomeBattaryDTO {
 	public void setSmarthome(SmartHome smarthome) {
 		this.smarthome = smarthome;
 	}
-	public Status getMystatus() {
-		return mystatus;
-	}
-	public void setMystatus(Status mystatus) {
-		this.mystatus = mystatus;
-	}
+//	public Status getMystatus() {
+//		return mystatus;
+//	}
+//	public void setMystatus(Status mystatus) {
+//		this.mystatus = mystatus;
+//	}
 	 
 }
