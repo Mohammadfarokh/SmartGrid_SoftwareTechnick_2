@@ -37,3 +37,13 @@ td {
   text-align: left;
   border: 1px solid #ccc;
 }
+
+button.on {
+  background-color: green;
+  color: white;
+}
+
+button.off {
+  background-color: red;
+  color: white;
+}

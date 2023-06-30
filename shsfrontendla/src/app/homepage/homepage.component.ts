@@ -122,6 +122,8 @@ export class HomepageComponent implements OnInit {
     const button = document.getElementById('batteryButton');
     if (button?.innerHTML === 'OFF') {
       button.innerHTML = 'ON';
+      button.classList.add('on');
+      button.classList.remove('off');
       this.http
         .put<any>('http://localhost:9595/solarpanel/update', battery)
         .subscribe({
@@ -132,13 +134,19 @@ export class HomepageComponent implements OnInit {
             console.error('Error updating solarpanel:', error);
           },
         });
-    } else button?.innerHTML === 'OFF';
+    } else {
+      button?.innerHTML === 'OFF';
+      button?.classList.add('off');
+      button?.classList.remove('on');
+    }
   }
 
   StandardConsumerToggleButton(StandardConsumer: any) {
     const button = document.getElementById('StandardConsumerButton');
     if (button?.innerHTML === 'OFF') {
       button.innerHTML = 'ON';
+      button.classList.add('on');
+      button.classList.remove('off');
       this.http
         .put<any>('http://localhost:9595/solarpanel/update', StandardConsumer)
         .subscribe({
@@ -149,12 +157,18 @@ export class HomepageComponent implements OnInit {
             console.error('Error updating solarpanel:', error);
           },
         });
-    } else button?.innerHTML === 'OFF';
+    } else {
+      button?.innerHTML === 'OFF';
+      button?.classList.add('off');
+      button?.classList.remove('on');
+    }
   }
   VariableConsumerToggleButton(VariableConsumer: any) {
     const button = document.getElementById('VariableConsumerButton');
     if (button?.innerHTML === 'OFF') {
       button.innerHTML = 'ON';
+      button.classList.add('on');
+      button.classList.remove('off');
       this.http
         .put<any>('http://localhost:9595/solarpanel/update', VariableConsumer)
         .subscribe({
@@ -165,13 +179,19 @@ export class HomepageComponent implements OnInit {
             console.error('Error updating solarpanel:', error);
           },
         });
-    } else button?.innerHTML === 'OFF';
+    } else {
+      button?.innerHTML === 'OFF';
+      button?.classList.add('off');
+      button?.classList.remove('on');
+    };
   }
 
   SolarPanelToggleButton(SolarPanel: any) {
     const button = document.getElementById('SolarPanelButton');
     if (button?.innerHTML === 'OFF') {
       button.innerHTML = 'ON';
+      button.classList.add('on');
+      button.classList.remove('off');
       this.http
         .put<any>('http://localhost:9595/solarpanel/update', SolarPanel)
         .subscribe({
@@ -182,13 +202,19 @@ export class HomepageComponent implements OnInit {
             console.error('Error updating solarpanel:', error);
           },
         });
-    } else button?.innerHTML === 'OFF';
+    } else {
+      button?.innerHTML === 'OFF';
+      button?.classList.add('off');
+      button?.classList.remove('on');
+    }
   }
 
   TurbineToggleButton(Turbine: any) {
     const button = document.getElementById('SolarPanelButton');
     if (button?.innerHTML === 'OFF') {
       button.innerHTML = 'ON';
+      button.classList.add('on');
+      button.classList.remove('off');
       this.http
         .put<any>('http://localhost:9595/solarpanel/update', Turbine)
         .subscribe({
@@ -199,6 +225,10 @@ export class HomepageComponent implements OnInit {
             console.error('Error updating solarpanel:', error);
           },
         });
-    } else button?.innerHTML === 'OFF';
+    } else {
+      button?.innerHTML === 'OFF';
+      button?.classList.add('off');
+      button?.classList.remove('on');
+    }
   }
 }
