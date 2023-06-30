@@ -125,13 +125,13 @@ export class HomepageComponent implements OnInit {
       button.classList.add('on');
       button.classList.remove('off');
       this.http
-        .put<any>('http://localhost:9595/solarpanel/update', battery)
+        .put<any>('Backend-link', battery)
         .subscribe({
           next: (response) => {
-            console.log('Solarpanel updated successfully:', response);
+            console.log('battery updated successfully:', response);
           },
           error: (error) => {
-            console.error('Error updating solarpanel:', error);
+            console.error('Error updating battery:', error);
           },
         });
     } else {
@@ -148,13 +148,13 @@ export class HomepageComponent implements OnInit {
       button.classList.add('on');
       button.classList.remove('off');
       this.http
-        .put<any>('http://localhost:9595/solarpanel/update', StandardConsumer)
+        .put<any>('Backend-link', StandardConsumer)
         .subscribe({
           next: (response) => {
-            console.log('Solarpanel updated successfully:', response);
+            console.log('StandardConsumer updated successfully:', response);
           },
           error: (error) => {
-            console.error('Error updating solarpanel:', error);
+            console.error('Error updating StandardConsumer:', error);
           },
         });
     } else {
@@ -170,13 +170,13 @@ export class HomepageComponent implements OnInit {
       button.classList.add('on');
       button.classList.remove('off');
       this.http
-        .put<any>('http://localhost:9595/solarpanel/update', VariableConsumer)
+        .put<any>('Backend-link', VariableConsumer)
         .subscribe({
           next: (response) => {
-            console.log('Solarpanel updated successfully:', response);
+            console.log('VariableConsumer updated successfully:', response);
           },
           error: (error) => {
-            console.error('Error updating solarpanel:', error);
+            console.error('Error updating VariableConsumer:', error);
           },
         });
     } else {
@@ -193,7 +193,7 @@ export class HomepageComponent implements OnInit {
       button.classList.add('on');
       button.classList.remove('off');
       this.http
-        .put<any>('http://localhost:9595/solarpanel/update', SolarPanel)
+        .put<any>('Backend-link', SolarPanel)
         .subscribe({
           next: (response) => {
             console.log('Solarpanel updated successfully:', response);
@@ -210,19 +210,19 @@ export class HomepageComponent implements OnInit {
   }
 
   TurbineToggleButton(Turbine: any) {
-    const button = document.getElementById('SolarPanelButton');
+    const button = document.getElementById('TurbineButton');
     if (button?.innerHTML === 'OFF') {
       button.innerHTML = 'ON';
       button.classList.add('on');
       button.classList.remove('off');
       this.http
-        .put<any>('http://localhost:9595/solarpanel/update', Turbine)
+        .put<any>('Backend-link', Turbine)
         .subscribe({
           next: (response) => {
-            console.log('Solarpanel updated successfully:', response);
+            console.log('Turbine updated successfully:', response);
           },
           error: (error) => {
-            console.error('Error updating solarpanel:', error);
+            console.error('Error updating Turbine:', error);
           },
         });
     } else {
