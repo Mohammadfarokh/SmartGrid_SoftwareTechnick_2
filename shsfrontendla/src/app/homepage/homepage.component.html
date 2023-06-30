@@ -3,31 +3,34 @@
     <div class="box">
       <h3>consumption:{{ value1 }}</h3>
     </div>
-  
+
     <div class="box">
       <h3>production:{{ value2 }}</h3>
     </div>
-  
+
   </div>
   <div class="table-container">
     <table class="table">
-      <caption>
-        Battery</caption>
+      <caption>Battery</caption>
       <thead>
         <tr>
           <th>name</th>
           <th>capacity</th>
-          
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let battery of Batteries">
-            <td>{{ battery.name }}</td>
-            <td>{{ battery.capacity }}</td>
-          </tr>
-        </tbody>
-      </table>
-  
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let battery of Batteries">
+          <td>{{ battery.name }}</td>
+          <td>{{ battery.capacity }}</td>
+          <td>
+            <button id="batteryButton" (click)="batteryToggleButton(battery)">OFF</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
       <table>
         <caption><b>Standard Consumer</b></caption>
         <thead>
@@ -35,6 +38,7 @@
             <th>Name</th>
             <th>consumption</th>
             <th>Tarif</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -42,10 +46,13 @@
             <td>{{ StandardConsumer.name }}</td>
             <td>{{ StandardConsumer.consumed }}</td>
             <td>{{ StandardConsumer.artDerTarif }}</td>
+            <td>
+              <button id="StandardConsumerButton" (click)="StandardConsumerToggleButton(StandardConsumer)">OFF</button>
+            </td>
         </tr>
         </tbody>
       </table>
-  
+
       <table>
         <caption><b>Variable Consumer</b></caption>
         <thead>
@@ -53,6 +60,7 @@
             <th>Name</th>
             <th>consumption</th>
             <th>Tarif</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -60,22 +68,30 @@
             <td>{{ VariableConsumer.name }}</td>
             <td>{{ VariableConsumer.consumed }}</td>
             <td>{{ VariableConsumer.artDerTarif }}</td>
+            <td>
+              <button id="VariableConsumerButton" (click)="VariableConsumerToggleButton(VariableConsumer)">OFF</button>
+            </td>
+
         </tr>
         </tbody>
       </table>
-  
+
       <table>
         <caption><b>Solar Panel</b></caption>
         <thead>
           <tr>
             <th>Name</th>
             <th>MaxOutput</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let SolarPanel of SolarPanels">
             <td>{{ SolarPanel.name }}</td>
             <td>{{ SolarPanel.maxOutput }}</td>
+            <td>
+              <button id="SolarPanelButton" (click)="SolarPanelToggleButton(SolarPanel)">OFF</button>
+            </td>
         </tr>
         </tbody>
       </table>
@@ -85,14 +101,18 @@
           <tr>
             <th>Name</th>
             <th>MaxOutput</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let Turbine of Turbines">
             <td>{{ Turbine.name }}</td>
             <td>{{ Turbine.maxOutput }}</td>
+            <td>
+              <button id="TurbineButton" (click)="TurbineToggleButton(Turbine)">OFF</button>
+            </td>
         </tr>
         </tbody>
       </table>
-  
+
     </div>
