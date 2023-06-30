@@ -19,10 +19,10 @@ public class HomeTurbine {
 		this.epihr = epihr;
 		this.shr = shr;
 	}
-	@SuppressWarnings("deprecation")
-	public void addHomeTurbine(long id_smartHome,String name,double windspeed) {
+	//@SuppressWarnings("deprecation")
+	public void addHomeTurbine(/*long id_smartHome,*/String name,double windspeed) {
 		EnergyProducerinHome v1 = new EnergyProducerinHome(name,windspeed);
-		v1.setSmarthome(shr.getById(id_smartHome));
+		//v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
 	}
 	public void addHomeTurbine(EnergyProducerinHome epih) {
@@ -31,6 +31,9 @@ public class HomeTurbine {
 	
 	public List<EnergyProducerinHome> getHomeTurbine(String type){
 		return this.epihr.findByType(type);
+	}
+	public void update(EnergyProducerinHome epih) {
+		this.epihr.save(epih);
 	}
 	public boolean deleteHomeTurbine(long id) {
 		try {

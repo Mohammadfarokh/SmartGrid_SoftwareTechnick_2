@@ -8,6 +8,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.renewableenergy.SHS.DTO.EnergyConsumerDTO;
 import com.renewableenergy.SHS.DTO.EnergyProducerinHomeDTO;
 import com.renewableenergy.SHS.entity.EnergyConsumer;
-import com.renewableenergy.SHS.entity.EnergyConsumer.Status;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.entity.SmartHome;
 import com.renewableenergy.SHS.service.SmartHomeService;
@@ -40,10 +40,10 @@ public class EnergyConsumerController {
 	}
 	
 	@PostMapping(value = "/standart-consumer-add")
-	public boolean addStandartConsumer(@RequestBody EnergyConsumerDTO request) {
+	public boolean addStandartConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
-			scs.factory(request.getId_smartHome(),request.getName(), request.getConsumedElectrecity(), request.isStandart());
+			scs.factory(/*request.getId_smartHome(),*/request.getName(), request.getConsumedElectrecity(), request.getType());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -51,7 +51,7 @@ public class EnergyConsumerController {
 	    return true;
 	}
 	@PostMapping(value = "/standart-consumer-remove")
-	public boolean removeStandartConsumer(@RequestBody EnergyConsumerDTO request) {
+	public boolean removeStandartConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
 			scs.deleteStandartConsumer(request.getId());
@@ -62,38 +62,50 @@ public class EnergyConsumerController {
 		}
 	    return true;
 	}
+	 @PutMapping("/standart-consumer-update")
+	  public boolean updateSolarpanel(@RequestBody EnergyConsumer request){
+		 try {
+			 scs.update(request);
+			}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		    return true;
+	  }
 	
 	@GetMapping(value = "/consumer-show")
-	public List<EnergyConsumer> getEnergyConsumer(@RequestBody EnergyConsumerDTO request){
+	public List<EnergyConsumer> getEnergyConsumer(){
 		listeEnergyConsumer = scs.getEnergyConsumer();
 		double totalconsumewithTariff = 0;
 		double totalconsumewithoutTariff = 0;
 		  for(EnergyConsumer consumer : listeEnergyConsumer) {
 			  // Sunshine duration
-		  if(consumer.getMystatus() == Status.ALLWAYS ) {
+		  if(consumer.getMystatus().equals("allways") ) {
 			  double camount=consumer.getConsumedElectrecity();
 			  totalconsumewithTariff += camount;
 			  consumer.addConsumedElectricity(camount);
-			  scs.addStandartConsumer(consumer);			  
-		  } else if(consumer.getMystatus() == Status.ON) {
+			  scs.update(consumer);			  
+		  } else if(consumer.getMystatus().equals("on")) {
 			  double camount=consumer.getConsumedElectrecity();
 			  totalconsumewithoutTariff += camount;
 			  consumer.addConsumedElectricity(camount);
-			  vcs.addVariabelConsumer(consumer);
+			  vcs.update(consumer);
 		  }
+		  //muss noch angepasst werden
+//		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
+//		  sh.addToElectricityConsumedWithoutTariff(totalconsumewithoutTariff);
+//		  sh.addToElectricityConsumedWithTariff(totalconsumewithTariff);
+		 // return listeEnergyConsumer;
+	
 		  }
-		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
-		  sh.addToElectricityConsumedWithoutTariff(totalconsumewithoutTariff);
-		  sh.addToElectricityConsumedWithTariff(totalconsumewithTariff);
-		  return listeEnergyConsumer;
-		//return scs.getEnergyConsumer();
+			return scs.getEnergyConsumer();
 	}
 	
 	@PostMapping(value = "/variabel-consumer-add")
-	public boolean addVariabelConsumer(@RequestBody EnergyConsumerDTO request) {
+	public boolean addVariabelConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
-			vcs.factory(request.getId_smartHome(),request.getName(),request.getConsumedElectrecity(), request.isStandart());
+			vcs.factory(/*request.getId_smartHome(),*/request.getName(),request.getConsumedElectrecity(), request.getType());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -101,7 +113,7 @@ public class EnergyConsumerController {
 	    return true;
 	}
 	@PostMapping(value = "/variabel-consumer-remove")
-	public boolean removeVariabelConsumer(@RequestBody EnergyConsumerDTO request) {
+	public boolean removeVariabelConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
 			vcs.deleteVariabelConsumer(request.getId());

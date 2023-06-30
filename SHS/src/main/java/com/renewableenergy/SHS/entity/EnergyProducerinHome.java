@@ -49,10 +49,11 @@ public class EnergyProducerinHome {
 		this.maxOutput = 100;
 		this.sunrise = sunrise;
 		this.sunset = sunset;
-		this.wind_speed = (Double) null;
+		this.wind_speed = 0;
 		this.consume = 10;
 		this.efficiency = 0;
 		this.type = "solarpanel";
+		this.smarthome = null;
 	}
 	public EnergyProducerinHome(String name, double wind_speed) {
 		this.name = name;
@@ -67,6 +68,7 @@ public class EnergyProducerinHome {
 		this.consume = 50;
 		this.efficiency = 0;
 		this.type = "turbine";
+		this.smarthome = null;
 	}
 	public long getId() {
 		return id;

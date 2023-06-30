@@ -20,13 +20,15 @@ public class SmartHomeService {
 		this.shr = shr;
 		//attach(this.shr.getSmartMeter(null));
 	}
-	public void addSmartHome(String name,String location,  double neededElectricity, double electricityConsumedWithoutTariff,
-			double electricityConsumedWithTariff,double electricityProduced, double realtimeCapasity) {
-		SmartHome v1 = new SmartHome(name,location, neededElectricity,electricityConsumedWithoutTariff, electricityConsumedWithTariff,
-				electricityProduced, realtimeCapasity);
+	public void addSmartHome(String name,String location) {
+		SmartHome v1 = new SmartHome(name,location);
 		//entity smarthome add function that creats smartmeter
 		//attach(v1.getSmartmeter());
 		this.shr.save(v1);
+	}
+	
+	public void update(SmartHome sh) {
+		this.shr.save(sh);
 	}
 	
 	public List<SmartHome> getSmartHome(){

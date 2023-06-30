@@ -1,10 +1,11 @@
 package com.renewableenergy.SHS.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SHS.entity.EnergyConsumer;
 import com.renewableenergy.SHS.entity.SmartHome;
-import com.renewableenergy.SHS.entity.EnergyConsumer.Status;
 import com.renewableenergy.SHS.repository.EnergyConsumerRepository;
 import com.renewableenergy.SHS.repository.SmartHomeRepository;
 @Service
@@ -16,22 +17,30 @@ public class VariabelConsumerService extends Creator {
 	}
 
 	@Override
-	public void factory(long id_smartHome,String name, double consumedElectricity, boolean isStandart) {
+	public void factory(/*long id_smartHome,*/String name, double consumedElectricity, String type) {
 		// TODO Auto-generated method stub
-		if (isStandart == false) {
 			EnergyConsumer ecih = new EnergyConsumer(name, consumedElectricity);
-			if(getTariffInfo()) {
-				ecih.setMystatus(Status.ON);
-			}else {
-				ecih.setMystatus(Status.OFF);
-			}
-			ecih.setSmarthome(super.getShs().getById(id_smartHome));
+			ecih.setMystatus("on");
+			ecih.setType(type);
+			//muss noch angepasst werden
+//			if(getTariffInfo()) {
+//				ecih.setMystatus(Status.ON);
+//			}else {
+//				ecih.setMystatus(Status.OFF);
+//			}
+			//ecih.setSmarthome(super.getShs().getById(id_smartHome));
 			super.getEcr().save(ecih);	
-		}
+	}
+	
+	public void update(EnergyConsumer ec) {
+		super.getEcr().save(ec);
 	}
 	
 	public void addVariabelConsumer(EnergyConsumer ec) {
 		super.getEcr().save(ec);
+	}
+	public List<EnergyConsumer> getEnergyConsumer(){
+		return super.getEcr().findAll();
 	}
 	public boolean deleteVariabelConsumer(long id) {
 		try {

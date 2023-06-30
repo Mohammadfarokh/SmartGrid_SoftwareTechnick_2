@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
+import com.renewableenergy.SHS.entity.SmartHome;
 import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
 import com.renewableenergy.SHS.repository.SmartHomeRepository;
 
@@ -20,15 +21,18 @@ public class HomeSolarPanel{
 		this.shr = shr;
 	}
 	
-	@SuppressWarnings("deprecation")
-	public void addHomeSolarPanel(long id_smartHome,String name,LocalDateTime sunrise, LocalDateTime sunset) {
+	//@SuppressWarnings("deprecation")
+	public void addHomeSolarPanel(/*long id_smartHome,*/String name,LocalDateTime sunrise, LocalDateTime sunset) {
 		//
 		EnergyProducerinHome v1 = new EnergyProducerinHome(name, sunrise, sunset);
-		v1.setSmarthome(shr.getById(id_smartHome));
+		//v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
 	}
 	
 	public void addHomeSolarPanle(EnergyProducerinHome epih) {
+		this.epihr.save(epih);
+	}
+	public void update(EnergyProducerinHome epih) {
 		this.epihr.save(epih);
 	}
 	

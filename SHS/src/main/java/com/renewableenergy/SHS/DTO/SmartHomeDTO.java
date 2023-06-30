@@ -22,6 +22,7 @@ public class SmartHomeDTO {
 	 SmartMeter smartmeter;
 	public SmartHomeDTO() {
 	}
+
 	public SmartHomeDTO(long id, String name, String location, double neededElectricity,
 			double electricityConsumedWithoutTariff, double electricityConsumedWithTariff, double electricityProduced,
 			double realtimeCapasity, Set<HomeBattary> homebattarylist, Set<EnergyProducerinHome> energyproducerlist,

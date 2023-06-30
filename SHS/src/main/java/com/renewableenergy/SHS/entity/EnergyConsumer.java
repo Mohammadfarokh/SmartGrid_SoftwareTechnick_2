@@ -24,20 +24,20 @@ public class EnergyConsumer {
 	private long id;
 	private String name;
 	private double consumedElectrecity;
-	public enum Status{
-		ON,
-		OFF,
-		ALLWAYS
-	}
-	private Status mystatus;
-	@ManyToOne
-	SmartHome smarthome;
+//	public enum Status{
+//		ON,
+//		OFF,
+//		ALLWAYS
+//	}
+	private String mystatus;
+	private String type;
+//	@ManyToOne
+//	SmartHome smarthome;
 	public EnergyConsumer() {
 	}
 	public EnergyConsumer(String name, double consumedElectrecity) {
 			this.name = name;
-			this.consumedElectrecity = consumedElectrecity;
-			
+			this.consumedElectrecity = consumedElectrecity;	
 	}
 	public void addConsumedElectricity(double num) {
 		this.consumedElectrecity += num;
@@ -54,6 +54,12 @@ public class EnergyConsumer {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public double getConsumedElectrecity() {
 		return consumedElectrecity;
 	}
@@ -61,21 +67,22 @@ public class EnergyConsumer {
 		this.consumedElectrecity = consumedElectrecity;
 	}
 
-	public Status getMystatus() {
+	public String getMystatus() {
 		return mystatus;
 	}
-	public void setMystatus(Status mystatus) {
+	public void setMystatus(String mystatus) {
 		this.mystatus = mystatus;
 	}
-	public SmartHome getSmarthome() {
-		return smarthome;
-	}
-	public void setSmarthome(SmartHome smarthome) {
-		this.smarthome = smarthome;
-	}
+//	public SmartHome getSmarthome() {
+//		return smarthome;
+//	}
+//	public void setSmarthome(SmartHome smarthome) {
+//		this.smarthome = smarthome;
+//	}
 	@Override
 	public String toString() {
 		return "EnergyConsumer [id=" + id + ", name=" + name + ", consumedElectrecity=" + consumedElectrecity
-				+ ", status=" + mystatus + ", smarthome=" + smarthome + "]";
+				+ ", mystatus=" + mystatus + ", type=" + type + /*", smarthome=" + smarthome + */"]";
 	}
+
 }

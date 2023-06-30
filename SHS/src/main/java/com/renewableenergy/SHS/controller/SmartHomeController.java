@@ -3,12 +3,16 @@ package com.renewableenergy.SHS.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.renewableenergy.SGS.entity.Solarpanel;
 import com.renewableenergy.SHS.DTO.HomeBattaryDTO;
 import com.renewableenergy.SHS.DTO.SmartHomeDTO;
 import com.renewableenergy.SHS.DTO.SmartMeterDTO;
@@ -26,12 +30,10 @@ public class SmartHomeController {
 		this.shs = shs;
 	}
 	@PostMapping(value = "/smart-home-add")
-	public boolean addSmartHome(@RequestBody SmartHomeDTO request) {
+	public boolean addSmartHome(@RequestBody /*SmartHomeDTO*/ SmartHome request) {
 		//you have to check for adding Exception
 		try {
-			shs.addSmartHome(request.getName(), request.getLocation(),request.getNeededElectricity(),
-					request.getElectricityConsumedWithoutTariff(), request.getElectricityConsumedWithTariff(), request.getElectricityProduced(),
-					request.getRealtimeCapasity());
+			shs.addSmartHome(request.getName(), request.getLocation());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -42,6 +44,16 @@ public class SmartHomeController {
 	public List<SmartHome> getSmartHome(){
 		return shs.getSmartHome();
 	}
+	 @PutMapping("/smart-home-update")
+	  public boolean updateSolarpanel(@RequestBody SmartHome request){
+		 try {
+				shs.update(request);
+			}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		    return true;
+	  }
 	@PostMapping(value = "/smart-home-remove")
 	public boolean removeSmartHome(@RequestBody SmartHomeDTO request) {
 		//you have to check for adding Exception

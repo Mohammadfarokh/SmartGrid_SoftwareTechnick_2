@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SHS.entity.EnergyConsumer;
-import com.renewableenergy.SHS.entity.EnergyConsumer.Status;
+import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.entity.SmartHome;
 import com.renewableenergy.SHS.repository.EnergyConsumerRepository;
 import com.renewableenergy.SHS.repository.SmartHomeRepository;
-import com.renewableenergy.SHS.entity.EnergyConsumer.Status;;
 @Service
 public class StandartConsumerService extends Creator {
 
@@ -18,16 +17,16 @@ public class StandartConsumerService extends Creator {
 		// TODO Auto-generated constructor stub
 	}
 
-	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	@Override
-	public void factory(long id_smartHome, String name, double consumedElectricity, boolean isStandart) {
+	public void factory(/*long id_smartHome,*/ String name, double consumedElectricity, String type) {
 		// TODO Auto-generated method stub
-		if (isStandart == true) {
 			EnergyConsumer ecih = new EnergyConsumer(name, consumedElectricity);
-			ecih.setMystatus(Status.ALLWAYS);
-			ecih.setSmarthome(super.getShs().getById(id_smartHome));
+			ecih.setMystatus("allways");
+			ecih.setType(type);
+			//ecih.setSmarthome(super.getShs().getById(id_smartHome));
 			super.getEcr().save(ecih);	
-		}
+		
 	}
 	
 	public void addStandartConsumer(EnergyConsumer ec) {
@@ -36,6 +35,9 @@ public class StandartConsumerService extends Creator {
 	
 	public List<EnergyConsumer> getEnergyConsumer(){
 		return super.getEcr().findAll();
+	}
+	public void update(EnergyConsumer ec) {
+		super.getEcr().save(ec);
 	}
 	public boolean deleteStandartConsumer(long id) {
 		try {

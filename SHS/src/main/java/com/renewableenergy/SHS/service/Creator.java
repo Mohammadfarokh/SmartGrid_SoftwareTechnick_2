@@ -18,8 +18,8 @@ public abstract class Creator{
 	}
 
 
-	public abstract void factory(long id_smartHome, String name, double consumedElectricity
-			, boolean isStandart);
+	public abstract void factory(/*long id_smartHome, */String name, double consumedElectricity
+			, String type);
 
 	public EnergyConsumerRepository getEcr() {
 		return ecr;

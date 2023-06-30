@@ -8,6 +8,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,10 +43,10 @@ public class CleanEnergyinHomeController {
 	}
 	
 	@PostMapping(value = "/solar-panel-add")
-	public boolean addHomeSolarPanel(@RequestBody EnergyProducerinHomeDTO request) {
+	public boolean addHomeSolarPanel(@RequestBody EnergyProducerinHome request) {
 		//you have to check for adding Exception
 		try {
-			hsp.addHomeSolarPanel(request.getId_smartHome(),request.getName(), request.getSunrise(), request.getSunset() );
+			hsp.addHomeSolarPanel(/*request.getId_smartHome(),*/request.getName(), request.getSunrise(), request.getSunset() );
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -53,15 +54,16 @@ public class CleanEnergyinHomeController {
 		}
 	    return true;
 	}
+	
 	@GetMapping(value = "/solar-panel-show")
-	public List<EnergyProducerinHome> getSolarPanel(@RequestBody EnergyProducerinHomeDTO request){
+	public List<EnergyProducerinHome> getSolarPanel(@RequestBody EnergyProducerinHome request){
 		liste_solarpanel = hsp.getSolarPanel(request.getType());
 		double summe=0;
 		double randumSumme=0;
 		  
 		  for(EnergyProducerinHome panle : liste_solarpanel) {
 			  // Sunshine duration
-			  hsp.deleteSolarPanel(panle.getId());
+			  //hsp.deleteSolarPanel(panle.getId());
 			  panle.setSunrise(LocalDateTime.of(2023, 07, 28, 5, 00, 00, 000000));
 			  panle.setSunset(LocalDateTime.of(2023, 07, 28, 20, 00, 00, 000000));
 			  
@@ -72,22 +74,33 @@ public class CleanEnergyinHomeController {
 			  randomNumber = random.nextInt(10) + 1;
 			  pamount +=  randomNumber;
 			  panle.setProducedElectrecity(pamount);
-			  hsp.addHomeSolarPanle(panle);
+			  hsp.update(panle);
 			 
 			  }
 			// set electricity_producedv
 			  summe += pamount;
 			  randumSumme += randomNumber;
 		  }
-		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
-		  if(sh.getElectricityProduced() == 0 ) {
-			  sh.addToElectricityProduced(summe);
-		  }else {
-			  sh.addToElectricityProduced(randumSumme);
-		  }
-		  return liste_solarpanel;
-		//return hsp.getSolarPanel(request.getType());
+		  //muss noch angepasst werden
+//		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
+//		  if(sh.getElectricityProduced() == 0 ) {
+//			  sh.addToElectricityProduced(summe);
+//		  }else {
+//			  sh.addToElectricityProduced(randumSumme);
+//		  }
+		 // return liste_solarpanel;
+		return hsp.getSolarPanel(request.getType());
 	}
+	 @PutMapping("/solar-panel-update")
+	  public boolean updateSolarpanel(@RequestBody EnergyProducerinHome request){
+		 try {
+			 hsp.update(request);
+			}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		    return true;
+	  }
 	@PostMapping(value = "/solar-panel-remove")
 	public boolean removeHomeSolarPanel(@RequestBody EnergyProducerinHomeDTO request) {
 		//you have to check for adding Exception
@@ -102,10 +115,10 @@ public class CleanEnergyinHomeController {
 	}
 	
 	@PostMapping(value = "/turbine-add")
-	public boolean addHomeTurbine(@RequestBody EnergyProducerinHomeDTO request) {
+	public boolean addHomeTurbine(@RequestBody EnergyProducerinHome request) {
 		//you have to check for adding Exception
 		try {
-			ht.addHomeTurbine(request.getId_smartHome(),request.getName(), request.getWind_speed());
+			ht.addHomeTurbine(/*request.getId_smartHome(),*/request.getName(), request.getWind_speed());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -113,14 +126,14 @@ public class CleanEnergyinHomeController {
 	    return true;
 	}
 	@GetMapping(value = "/turbine-show")
-	public List<EnergyProducerinHome> getHomeTurbine(@RequestBody EnergyProducerinHomeDTO request){
+	public List<EnergyProducerinHome> getHomeTurbine(@RequestBody EnergyProducerinHome request){
 		liste_homeTurbine = ht.getHomeTurbine(request.getType());
 		double summe=0;
 		double randumSumme=0;
 		  
 		  for(EnergyProducerinHome turbine : liste_homeTurbine) {
 			  // Sunshine duration
-			  ht.deleteHomeTurbine(turbine.getId());
+			 // ht.deleteHomeTurbine(turbine.getId());
 			  turbine.setWind_speed(50);
 			  
 			  double pamount=turbine.getProducedElectrecity();
@@ -130,25 +143,35 @@ public class CleanEnergyinHomeController {
 			  randomNumber = random.nextInt(10) + 1;
 			  pamount +=  randomNumber;
 			  turbine.setProducedElectrecity(pamount);
-			  ht.addHomeTurbine(turbine);
-			  
-			 
+			  ht.update(turbine);
 			  }
 			// set electricity_producedv
 			  summe += pamount;
 			  randumSumme += randomNumber;
 		  }
-		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
-		  if(sh.getElectricityProduced() == 0 ) {
-			  sh.addToElectricityProduced(summe);
-		  }else {
-			  sh.addToElectricityProduced(randumSumme);
-		  }
-		  return liste_homeTurbine;
+		  //muss noch angepasst werden
+//		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
+//		  if(sh.getElectricityProduced() == 0 ) {
+//			  sh.addToElectricityProduced(summe);
+//		  }else {
+//			  sh.addToElectricityProduced(randumSumme);
+//		  }
+		  return ht.getHomeTurbine(request.getType());
+		 // return liste_homeTurbine;
 		//return ht.getHomeTurbine(request.getType());
 	}
+	 @PutMapping("/turbine-update")
+	  public boolean updateHomeTurbine(@RequestBody EnergyProducerinHome request){
+		 try {
+			 ht.update(request);
+			}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		    return true;
+	  }
 	@PostMapping(value = "/turbine-remove")
-	public boolean removeHomeTurbine(@RequestBody EnergyProducerinHomeDTO request) {
+	public boolean removeHomeTurbine(@RequestBody EnergyProducerinHome request) {
 		//you have to check for adding Exception
 		try {
 			ht.deleteHomeTurbine(request.getId());
