@@ -127,9 +127,10 @@
       <tr *ngFor="let battery of batteries">
         <td>{{ battery.name }}</td>
         <td>{{ battery.capacity }}</td>
-        <td><button #buttonCell class="button-cell" (click)="updateBattery(battery)">{{ battery.name }}</button></td>
+        <td><button #buttonCell class="button-cell" (click)="updateBattery(battery)">{{ battery.status }}</button></td>
         <td style="color: rgb(149, 47, 47);">{{ battery.production }}</td>
         <td>{{ battery.location }}</td>
+        <td>{{ battery.amount }}</td>
       </tr>
     </tbody>
   </table>

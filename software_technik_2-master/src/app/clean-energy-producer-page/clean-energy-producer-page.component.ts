@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+/*
 interface Battery {
   name: string;
   location: string;
@@ -13,17 +14,18 @@ interface Factory {
   name: string;
   location: string;
 }
-
+*/
 @Component({
   selector: 'app-clean-energy-producer-page',
   templateUrl: './clean-energy-producer-page.component.html',
   styleUrls: ['./clean-energy-producer-page.component.css'],
 })
 export class CleanEnergyProducerPageComponent implements OnInit {
+  /*
   Batterys: Battery[] = [];
   Factorys: Factory[] = [];
   CleanEnergyDevices: CleanEnergyDevice[] = [];
- 
+ */
   ngOnInit() {
      /* zum löschen
     this.getAddedBatterys();
@@ -59,15 +61,15 @@ export class CleanEnergyProducerPageComponent implements OnInit {
     });
   }
    //add Battery
-  submitForm3(form: any) {
+  submitForm3(form3: any) {
     const data = {
-      name: form.value.name,
-      location: form.value.location,
-      capacity: form.value.capacity,
+      name: form3.value.name,
+      location: form3.value.location,
+      capacity: form3.value.capacity,
     };
     this.http.post('http://localhost:9595/battery/add', data).subscribe({
       next: (response) => {
-        form.reset();
+        form3.reset();
         alert('Successfully added:');
       },
       error: (error) => {
