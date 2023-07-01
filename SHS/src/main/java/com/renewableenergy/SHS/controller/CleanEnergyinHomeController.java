@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,6 +56,7 @@ public class CleanEnergyinHomeController {
 	}
 	
 	@GetMapping(value = "/solar-panel-show")
+	@CrossOrigin("*") 
 	public List<EnergyProducerinHome> getSolarPanel(@RequestBody EnergyProducerinHome request){
 		liste_solarpanel = hsp.getSolarPanel(request.getType());
 		double summe=0;
@@ -125,6 +127,7 @@ public class CleanEnergyinHomeController {
 	    return true;
 	}
 	@GetMapping(value = "/turbine-show")
+	@CrossOrigin("*") 
 	public List<EnergyProducerinHome> getHomeTurbine(@RequestBody EnergyProducerinHome request){
 		liste_homeTurbine = ht.getHomeTurbine(request.getType());
 		double summe=0;

@@ -3,6 +3,7 @@ package com.renewableenergy.SHS.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,6 +43,7 @@ public class HomeBattaryController {
 		    return true;
 		}
 		@GetMapping(value = "/home-battary-show")
+		@CrossOrigin("*") 
 		public List<HomeBattary> getSolarPanel(){
 			return hb.getBattary();
 		}
