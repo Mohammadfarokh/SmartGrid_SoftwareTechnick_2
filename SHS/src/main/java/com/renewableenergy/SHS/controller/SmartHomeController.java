@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.renewableenergy.SGS.entity.Solarpanel;
+
 import com.renewableenergy.SHS.DTO.HomeBattaryDTO;
 import com.renewableenergy.SHS.DTO.SmartHomeDTO;
 import com.renewableenergy.SHS.DTO.SmartMeterDTO;

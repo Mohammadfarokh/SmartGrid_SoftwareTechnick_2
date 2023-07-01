@@ -26,8 +26,7 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-import com.renewableenergy.SGS.entity.SmartGrid;
-import com.renewableenergy.SGS.entity.Tariff;
+
 
 @Entity
 @Table
