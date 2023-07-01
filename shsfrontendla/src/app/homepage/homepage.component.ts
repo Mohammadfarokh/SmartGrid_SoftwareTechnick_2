@@ -3,28 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 
-interface Battery {
-  name: string;
-  capacity: number;
-}
-interface StandardConsumer {
-  name: string;
-  consumed: number;
-  artDerTarif: string;
-}
-interface VariableConsumer {
-  name: string;
-  consumed: number;
-  artDerTarif: string;
-}
-interface SolarPanel {
-  name: string;
-  maxOutput: number;
-}
-interface Turbine {
-  name: string;
-  maxOutput: number;
-}
+
 
 @Component({
   selector: 'app-homepage',
@@ -32,27 +11,27 @@ interface Turbine {
   styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
-  value1: String = '';
-  value2: String = '';
-  Batteries: Battery[] = [];
-  StandardConsumers: StandardConsumer[] = [];
-  VariableConsumers: VariableConsumer[] = [];
-  SolarPanels: SolarPanel[] = [];
-  Turbines: Turbine[] = [];
+  value1:number | undefined;
+  value2: number | undefined;
+  Batteries:any[]| undefined;
+  StandardConsumers:any[] | undefined;
+  
+  SolarPanels: any[] | undefined;
+  Turbines: any[] | undefined;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.ConsumptionProductionValue();
+/*    this.ConsumptionProductionValue();*/
     this.getAddedBatterys();
     this.getAddedSolarPanels();
     this.getAddedTurbines();
     this.getAddedStandardConsumers();
-    this.getAddedVariableConsumers();
+    
   }
   getAddedBatterys() {
-    this.http.get<Battery[]>('your-backend-url/smart-homes').subscribe({
-      next: (response: Battery[]) => {
+    this.http.get<any[]>('http://localhost:9595/api/v1/home-battary/home-battary-show').subscribe({
+      next: (response: any[]) => {
         this.Batteries = response;
       },
       error: (error: any) => {
@@ -62,31 +41,22 @@ export class HomepageComponent implements OnInit {
   }
   getAddedStandardConsumers() {
     this.http
-      .get<StandardConsumer[]>('your-backend-url/smart-homes')
+      .get<any[]>('http://localhost:9595/api/v1/energy-consumer/consumer-show')
       .subscribe({
-        next: (response: StandardConsumer[]) => {
-          this.StandardConsumers = response;
+        next: respons => {
+          console.log("IAM HEREEEEstandardconsumer");
+          this.StandardConsumers = respons;
         },
         error: (error: any) => {
           console.log('Error fetching Standard Consumers:', error);
         },
       });
   }
-  getAddedVariableConsumers() {
-    this.http
-      .get<VariableConsumer[]>('your-backend-url/smart-homes')
-      .subscribe({
-        next: (response: VariableConsumer[]) => {
-          this.VariableConsumers = response;
-        },
-        error: (error: any) => {
-          console.log('Error fetching Variable Consumers:', error);
-        },
-      });
-  }
+ 
   getAddedSolarPanels() {
-    this.http.get<SolarPanel[]>('your-backend-url/smart-homes').subscribe({
-      next: (response: SolarPanel[]) => {
+    this.http.get<any[]>('http://localhost:9595/api/v1/energy-producer/solar-panel-show').subscribe({
+      next: response=> {
+        console.log("IAM HEREEEE");
         this.SolarPanels = response;
       },
       error: (error: any) => {
@@ -95,8 +65,9 @@ export class HomepageComponent implements OnInit {
     });
   }
   getAddedTurbines() {
-    this.http.get<Turbine[]>('your-backend-url/smart-homes').subscribe({
-      next: (response: Turbine[]) => {
+    this.http.get<any[]>('http://localhost:9595/api/v1/energy-producer/turbine-show').subscribe({
+      next: response => {
+        console.log("IAM HEREEEETURBINE");
         this.Turbines = response;
       },
       error: (error: any) => {
@@ -104,7 +75,7 @@ export class HomepageComponent implements OnInit {
       },
     });
   }
-
+/*
   ConsumptionProductionValue() {
     this.http.get<any>('Backend-link').subscribe(
       (response) => {
@@ -119,6 +90,7 @@ export class HomepageComponent implements OnInit {
       }
     );
   }
+  /*
   batteryToggleButton(battery: any) {
     const button = document.getElementById('batteryButton');
     if (button?.innerHTML === 'OFF') {
@@ -242,4 +214,8 @@ export class HomepageComponent implements OnInit {
       button?.classList.remove('on');
     }
   }
+  
+}
+
+*/
 }

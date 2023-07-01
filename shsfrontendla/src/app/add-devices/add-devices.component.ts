@@ -42,8 +42,10 @@ export class AddDevicesComponent implements OnInit {
     const stansardconsumerData = {
       name: form1.value.name,
       consumed: form1.value.consumed,
+     
     };
-    this.http.post('http://localhost:9595/stansardconsumer/add', stansardconsumerData).subscribe({
+    
+    this.http.post('http://localhost:9595/api/v1/energy-consumer/standart-consumer-add', stansardconsumerData).subscribe({
       next: (response) => {
         form1.reset();
         alert('Successfully added:');
@@ -104,7 +106,7 @@ export class AddDevicesComponent implements OnInit {
 
     // Add Turbine
     if(form3.value.type == "turbine"){
-    this.http.post('http://localhost:9595/turbine/add', turbineData).subscribe({
+    this.http.post('http://localhost:9595/api/v1/energy-producer', turbineData).subscribe({
       next: (response) => {
         form3.reset();
         alert('Successfully added:');
