@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -74,6 +75,7 @@ public class EnergyConsumerController {
 	  }
 	
 	@GetMapping(value = "/consumer-show")
+	@CrossOrigin("*") 
 	public List<EnergyConsumer> getEnergyConsumer(){
 		listeEnergyConsumer = scs.getEnergyConsumer();
 		double totalconsumewithTariff = 0;
