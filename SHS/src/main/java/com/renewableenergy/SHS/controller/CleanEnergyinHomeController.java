@@ -57,8 +57,8 @@ public class CleanEnergyinHomeController {
 	
 	@GetMapping(value = "/solar-panel-show")
 	@CrossOrigin("*") 
-	public List<EnergyProducerinHome> getSolarPanel(@RequestBody EnergyProducerinHome request){
-		liste_solarpanel = hsp.getSolarPanel(request.getType());
+	public List<EnergyProducerinHome> getSolarPanel(){
+		liste_solarpanel = hsp.getSolarPanel("solarpanel");
 		double summe=0;
 		double randumSumme=0;
 		  
@@ -90,7 +90,7 @@ public class CleanEnergyinHomeController {
 //			  sh.addToElectricityProduced(randumSumme);
 //		  }
 		 // return liste_solarpanel;
-		return hsp.getSolarPanel(request.getType());
+		return hsp.getSolarPanel("solarpanel");
 	}
 	 @PutMapping("/solar-panel-update")
 	  public boolean updateSolarpanel(@RequestBody EnergyProducerinHome request){
@@ -128,8 +128,8 @@ public class CleanEnergyinHomeController {
 	}
 	@GetMapping(value = "/turbine-show")
 	@CrossOrigin("*") 
-	public List<EnergyProducerinHome> getHomeTurbine(@RequestBody EnergyProducerinHome request){
-		liste_homeTurbine = ht.getHomeTurbine(request.getType());
+	public List<EnergyProducerinHome> getHomeTurbine(){
+		liste_homeTurbine = ht.getHomeTurbine("turbine");
 		double summe=0;
 		double randumSumme=0;
 		  
@@ -158,7 +158,7 @@ public class CleanEnergyinHomeController {
 //		  }else {
 //			  sh.addToElectricityProduced(randumSumme);
 //		  }
-		  return ht.getHomeTurbine(request.getType());
+		  return ht.getHomeTurbine("turbine");
 		 // return liste_homeTurbine;
 		//return ht.getHomeTurbine(request.getType());
 	}
