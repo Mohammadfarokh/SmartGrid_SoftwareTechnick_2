@@ -1,6 +1,7 @@
 package com.renewableenergy.SHS.entity;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.Set;
 
 import com.renewableenergy.SHS.entity.SmartHome;
@@ -69,6 +70,11 @@ public class EnergyProducerinHome {
 		this.efficiency = 0;
 		this.type = "turbine";
 		this.smarthome = null;
+	}
+	
+	public void calculate(EnergyProducerinHome ep) {
+		Random random = new Random();
+		
 	}
 	public long getId() {
 		return id;

@@ -41,6 +41,7 @@ public class EnergyConsumerController {
 	}
 	
 	@PostMapping(value = "/standart-consumer-add")
+	@CrossOrigin("*") 
 	public boolean addStandartConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
@@ -104,6 +105,7 @@ public class EnergyConsumerController {
 	}
 	
 	@PostMapping(value = "/variabel-consumer-add")
+	@CrossOrigin("*") 
 	public boolean addVariabelConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
