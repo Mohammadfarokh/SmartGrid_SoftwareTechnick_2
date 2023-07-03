@@ -43,6 +43,7 @@ public class CleanEnergyinHomeController {
 	}
 	
 	@PostMapping(value = "/solar-panel-add")
+	@CrossOrigin("*") 
 	public boolean addHomeSolarPanel(@RequestBody EnergyProducerinHome request) {
 		//you have to check for adding Exception
 		try {
@@ -116,6 +117,7 @@ public class CleanEnergyinHomeController {
 	}
 	
 	@PostMapping(value = "/turbine-add")
+	@CrossOrigin("*") 
 	public boolean addHomeTurbine(@RequestBody EnergyProducerinHome request) {
 		//you have to check for adding Exception
 		try {
