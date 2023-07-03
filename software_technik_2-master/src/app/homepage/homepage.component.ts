@@ -22,11 +22,9 @@ export class HomepageComponent implements OnInit {
     this.getAllTurbine();
     this.getSmartgridData();
     
-  
-    
-   
-    
-    /*  setInterval(() => {
+
+    // 
+     /* setInterval(() => {
         this.getAllSolarPanels();
       }, 2000);
 
@@ -40,7 +38,7 @@ export class HomepageComponent implements OnInit {
 
       setInterval(() => {
        this.calculateAdjustedConsumed();
-      }, 2500); */
+      }, 2500);  */
  
   }
 
