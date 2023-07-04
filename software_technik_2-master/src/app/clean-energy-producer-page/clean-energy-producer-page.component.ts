@@ -129,39 +129,6 @@ export class CleanEnergyProducerPageComponent implements OnInit {
 
   }
 
-  /*am Ende Zum löschen
-  getAddedBatterys() {
-    this.http.get<Battery[]>('your-backend-url/smart-homes').subscribe({
-      next: (response: Battery[]) => {
-        this.Batterys = response;
-      },
-      error: (error: any) => {
-        console.log('Error fetching Batterys:', error);
-      },
-    });
-  }
-  getAddedFactorys() {
-    this.http.get<Factory[]>('your-backend-url/smart-homes').subscribe({
-      next: (response: Factory[]) => {
-        this.Factorys = response;
-      },
-      error: (error: any) => {
-        console.log('Error fetching Factorys:', error);
-      },
-    });
-  }
-  getAddedCleanEnergyDevices() {
-    this.http
-      .get<CleanEnergyDevice[]>('your-backend-url/smart-homes')
-      .subscribe({
-        next: (response: CleanEnergyDevice[]) => {
-          this.CleanEnergyDevices = response;
-        },
-        error: (error: any) => {
-          console.log('Error fetching CleanEnergyDevice:', error);
-        },
-      });
-  }
-*/
+  
 
 }
