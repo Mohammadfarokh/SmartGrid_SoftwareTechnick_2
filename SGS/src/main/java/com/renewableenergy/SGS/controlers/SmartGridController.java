@@ -1,6 +1,7 @@
 package com.renewableenergy.SGS.controlers;
 
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,14 +29,16 @@ public class SmartGridController {
 		  
 		  List<SmartGrid> smartGrid = smartGridService.findAllSolarpanel();
 		  for(SmartGrid smartgrid : smartGrid) {
+			  SgsApplication.lectricity_consumed = smartgrid.getLectricityConsumed();
 			  // electrecity_incoming
-			  smartgrid.setElectrecityIncoming(SgsApplication.electrecity_incoming);
+			  SgsApplication.electrecity_incoming = smartgrid.getLectricityConsumed();
 			  
+			  smartgrid.setElectrecityIncoming(SgsApplication.electricity_producedv);
 			// electricity_producedv
 			  smartgrid.setElectricityProducedv(SgsApplication.electricity_producedv);
 			  
 			// electricity_producedv
-			  smartgrid.setLectricityConsumed(500);
+			 
 			  
 		  }
 		  return new ResponseEntity<>(smartGrid,HttpStatus.OK);
@@ -46,14 +49,15 @@ public class SmartGridController {
 	  public ResponseEntity<SmartGrid> updateSolarpanel(@RequestBody SmartGrid smartGrid){
 		  SmartGrid newSmartGrid = smartGridService.updateSolarpanel(smartGrid);
 		  // electrecity_incoming
-		  newSmartGrid.setElectrecityIncoming(SgsApplication.electrecity_incoming);
+		 newSmartGrid.setElectrecityIncoming(SgsApplication.electrecity_incoming);
 		  
 		// electricity_producedv
 		  newSmartGrid.setElectricityProducedv(SgsApplication.electricity_producedv);
 		  
 		// electricity_producedv
-		//  newSmartGrid.setLectricityConsumed(SgsApplication.lectricity_consumed);
-		  newSmartGrid.setLectricityConsumed(500);
+		 // newSmartGrid.setLectricityConsumed(SgsApplication.lectricity_consumed);
+		  
+		  
 		  return new ResponseEntity<>(newSmartGrid,HttpStatus.OK);
 	  }
 	  

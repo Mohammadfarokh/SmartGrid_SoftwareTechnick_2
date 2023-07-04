@@ -44,7 +44,7 @@ public class MqttBeans {
 	public MessageProducer inbound() {
 		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter("serverIn",
 				mqttClientFactory(), "#");
-
+		
 		adapter.setCompletionTimeout(5000);
 		adapter.setConverter(new DefaultPahoMessageConverter());
 		adapter.setQos(2);
@@ -61,10 +61,18 @@ public class MqttBeans {
 			@Override
 			public void handleMessage(Message<?> message) throws MessagingException {
 				String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
+				
 				if(topic.equals("myTopic")) {
 					System.out.println("This is the topic");
 				}
+				
 				System.out.println(message.getPayload());
+				System.out.println(topic);
+				
+				if(topic.equals("myTopic")) {
+					System.out.println(topic);
+				}
+				
 			}
 
 		};

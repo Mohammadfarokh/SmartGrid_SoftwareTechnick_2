@@ -20,21 +20,24 @@ import jakarta.persistence.Table;
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	private String location ; 
+	private String name ; 
 	
+	private String location ; 
+
 	private double capacity;
 	
 	private double saveAmount;
 	
 	private boolean status;
 
-	public Battary( String location, double capacity, double saveAmount, boolean status) {
+	public Battary( String name, String location, double capacity, double saveAmount, boolean status) {
 		super();
 
 		this.location = location;
 		this.capacity = capacity;
 		this.saveAmount = saveAmount;
 		this.status = status;
+		this.name=name;
 	}
 
 	public Battary() {
@@ -85,6 +88,14 @@ import jakarta.persistence.Table;
 	public String toString() {
 		return "Battary [id=" + id + ", location=" + location + ", capacity=" + capacity + ", saveAmount=" + saveAmount
 				+ ", status=" + status + "]";
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	
