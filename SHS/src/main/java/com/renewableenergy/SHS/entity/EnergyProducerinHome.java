@@ -108,6 +108,13 @@ public class EnergyProducerinHome {
 		Random random = new Random();
 		
 	}
+	
+	public double getTotalProduce() {
+		return totalProduce;
+	}
+	public void setTotalProduce(double totalProduce) {
+		this.totalProduce = totalProduce;
+	}
 	public long getId() {
 		return id;
 	}
