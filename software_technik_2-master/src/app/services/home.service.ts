@@ -14,7 +14,7 @@ export class HomeService {
       'Content-Type': 'application/json',
     }),
   };
-baseUrl:string ="http://localhost:959/"
+baseUrl:string ="http://localhost:9595/"
 
 
 
