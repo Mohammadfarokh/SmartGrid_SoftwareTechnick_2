@@ -78,20 +78,20 @@ public class EnergyProducerinHome {
 	}
 	
 	public void calculateProducSolarPanel() {
-		this.totalProduce += producedElectrecity;
+		this.totalProduce += maxOutput;
 		if (ShsApplication.producedEnergy == 0) {
-			ShsApplication.producedEnergy = producedElectrecity;
+			ShsApplication.producedEnergy = maxOutput;
 		}else {
-			ShsApplication.producedEnergy += producedElectrecity;
+			ShsApplication.producedEnergy += maxOutput;
 		}
 	}
 	
 	public void calculateProducTurbine() {
-		this.totalProduce += producedElectrecity * 2;
+		this.totalProduce += maxOutput * 2;
 		if (ShsApplication.producedEnergy == 0) {
-			ShsApplication.producedEnergy = producedElectrecity * 2;
+			ShsApplication.producedEnergy = maxOutput * 2;
 		}else {
-			ShsApplication.producedEnergy += producedElectrecity * 2;
+			ShsApplication.producedEnergy += maxOutput * 2;
 		}
 	}
 	
