@@ -1,7 +1,10 @@
 package com.renewableenergy.SHS.entity;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.Set;
+
+import com.renewableenergy.SHS.ShsApplication;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,19 +27,48 @@ public class EnergyConsumer {
 	private long id;
 	private String name;
 	private double consumedElectrecity;
-	public enum Status{
-		ON,
-		OFF,
-		ALLWAYS
-	}
-	private Status mystatus;
-	@ManyToOne
-	SmartHome smarthome;
+	private double totalConsume;
+//	public enum Status{
+//		ON,
+//		OFF,
+//		ALLWAYS
+//	}
+	private String mystatus;
+	private String type;
+//	@ManyToOne
+//	SmartHome smarthome;
 	public EnergyConsumer() {
 	}
 	public EnergyConsumer(String name, double consumedElectrecity) {
 			this.name = name;
 			this.consumedElectrecity = consumedElectrecity;
+			this.totalConsume = 0;
+	}
+	public void calculateConsumeStandart() {
+		this.totalConsume += consumedElectrecity;
+		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
+			ShsApplication.consumedEnergyWithTariff = consumedElectrecity;
+		}else {
+			ShsApplication.consumedEnergyWithTariff += consumedElectrecity;
+		}
+	}
+	public void calculateConsumeVariabel() {
+		this.totalConsume += consumedElectrecity * 2;
+		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
+			ShsApplication.consumedEnergyWithoutTariff = consumedElectrecity;
+		}else {
+			ShsApplication.consumedEnergyWithoutTariff +=  consumedElectrecity * 2;
+		}
+	}
+	public void addConsumedElectricity(double num) {
+		this.consumedElectrecity += num;
+	}
+	
+	public double getTotalConsume() {
+		return totalConsume;
+	}
+	public void setTotalConsume(double totalConsume) {
+		this.totalConsume = totalConsume;
 	}
 	public long getId() {
 		return id;
@@ -50,6 +82,12 @@ public class EnergyConsumer {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public double getConsumedElectrecity() {
 		return consumedElectrecity;
 	}
@@ -57,21 +95,22 @@ public class EnergyConsumer {
 		this.consumedElectrecity = consumedElectrecity;
 	}
 
-	public Status getMystatus() {
+	public String getMystatus() {
 		return mystatus;
 	}
-	public void setMystatus(Status mystatus) {
+	public void setMystatus(String mystatus) {
 		this.mystatus = mystatus;
 	}
-	public SmartHome getSmarthome() {
-		return smarthome;
-	}
-	public void setSmarthome(SmartHome smarthome) {
-		this.smarthome = smarthome;
-	}
+//	public SmartHome getSmarthome() {
+//		return smarthome;
+//	}
+//	public void setSmarthome(SmartHome smarthome) {
+//		this.smarthome = smarthome;
+//	}
 	@Override
 	public String toString() {
 		return "EnergyConsumer [id=" + id + ", name=" + name + ", consumedElectrecity=" + consumedElectrecity
-				+ ", status=" + mystatus + ", smarthome=" + smarthome + "]";
+				+ ", mystatus=" + mystatus + ", type=" + type + /*", smarthome=" + smarthome + */"]";
 	}
+
 }

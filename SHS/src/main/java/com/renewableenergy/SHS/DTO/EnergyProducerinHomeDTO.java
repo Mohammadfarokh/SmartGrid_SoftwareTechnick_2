@@ -3,6 +3,7 @@ package com.renewableenergy.SHS.DTO;
 import java.time.LocalDateTime;
 
 public class EnergyProducerinHomeDTO {
+	long id_smartHome;
 	 long id;
 	 String name;
 	 boolean status;
@@ -16,9 +17,10 @@ public class EnergyProducerinHomeDTO {
 	 LocalDateTime sunset;
 	 double wind_speed;
 	 String type;
-	public EnergyProducerinHomeDTO(long id, String name, boolean status, double consumedElectrecity,
+	public EnergyProducerinHomeDTO(long id_smartHome, long id, String name, boolean status, double consumedElectrecity,
 			double producedElectrecity, double realtimeCapacity, double maxOutput, double consume, double efficiency,
 			LocalDateTime sunrise, LocalDateTime sunset, String type) {
+		this.id_smartHome = id_smartHome;
 		this.id = id;
 		this.name = name;
 		this.status = status;
@@ -52,6 +54,12 @@ public class EnergyProducerinHomeDTO {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public long getId_smartHome() {
+		return id_smartHome;
+	}
+	public void setId_smartHome(long id_smartHome) {
+		this.id_smartHome = id_smartHome;
 	}
 	public String getName() {
 		return name;

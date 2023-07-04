@@ -14,7 +14,7 @@ import com.renewableenergy.SGS.SgsApplication;
 public class WeatherAPIExample {
 	
 	 public static void main(String[] args) {
-		// WeatherAPIExample.getWindSpeed("Essen");
+		 WeatherAPIExample.getWindSpeed("Essen");
 
 	 }
 	 

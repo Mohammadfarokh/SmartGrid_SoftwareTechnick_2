@@ -12,23 +12,33 @@ import com.renewableenergy.SHS.repository.SmartHomeRepository;
 import com.renewableenergy.SHS.repository.SmartMeterRepository;
 
 @Service
-public class SmartHomeService extends Observabel{
-	private List<Observer> observerlist;
+public class SmartHomeService {
+	
 	private final SmartHomeRepository shr;
 	@Autowired
 	public SmartHomeService(SmartHomeRepository shr) {
 		this.shr = shr;
-		this.observerlist = new LinkedList<Observer>();
+		//attach(this.shr.getSmartMeter(null));
 	}
-	public void addSmartHome(String name,String location,  double neededElectricity, double electricityConsumedWithoutTariff,
-			double electricityConsumedWithTariff,double electricityProduced, double realtimeCapasity) {
-		SmartHome v1 = new SmartHome(name,location, neededElectricity,electricityConsumedWithoutTariff, electricityConsumedWithTariff,
-				electricityProduced, realtimeCapasity);
+	public void addSmartHome(String name,String location) {
+		SmartHome v1 = new SmartHome(name,location);
+		//entity smarthome add function that creats smartmeter
+		//attach(v1.getSmartmeter());
 		this.shr.save(v1);
+	}
+	 public void addSmartHomeObjekt(SmartHome sh) {
+		 this.shr.save(sh);
+	 }
+	public void update(SmartHome sh) {
+		this.shr.save(sh);
 	}
 	
 	public List<SmartHome> getSmartHome(){
 		return this.shr.findAll();
+	}
+	
+	public SmartHome getSmartHome(long id) {
+		return this.shr.getById(id);
 	}
 	public boolean deleteSmartHome(long id) {
 		try {
@@ -39,21 +49,5 @@ public class SmartHomeService extends Observabel{
 			return false;
 		}
 	}
-	@Override
-	public void attach(Observer o) {
-		this.observerlist.add(o);
-		
-	}
-	@Override
-	public void detach(Observer o) {
-		this.observerlist.remove(o);
-		
-	}
-	@Override
-	public void notifyObserver() {
-		for(Observer v : observerlist) {
-			v.update(0, 0, 0, 0);
-		}
-		
-	}
+	
 }

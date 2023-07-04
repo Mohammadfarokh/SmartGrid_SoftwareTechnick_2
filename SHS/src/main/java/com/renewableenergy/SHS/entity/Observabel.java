@@ -1,4 +1,4 @@
-package com.renewableenergy.SHS.service;
+package com.renewableenergy.SHS.entity;
 
 public abstract class Observabel {
 	public abstract void attach(Observer o);

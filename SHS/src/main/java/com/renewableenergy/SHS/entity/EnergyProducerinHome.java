@@ -1,8 +1,10 @@
 package com.renewableenergy.SHS.entity;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.Set;
 
+import com.renewableenergy.SHS.ShsApplication;
 import com.renewableenergy.SHS.entity.SmartHome;
 
 import jakarta.persistence.Entity;
@@ -28,6 +30,7 @@ public class EnergyProducerinHome {
 	private boolean status;
 	private double consumedElectrecity;
 	private double producedElectrecity;
+	private double totalProduce;
 	private double realtimeCapacity;
 	private double maxOutput;
 	private double consume;
@@ -36,8 +39,8 @@ public class EnergyProducerinHome {
 	private LocalDateTime sunset;
 	private double wind_speed;
 	private String type;
-	@ManyToOne
-	SmartHome smarthome;
+//	@ManyToOne
+//	SmartHome smarthome;
 	public EnergyProducerinHome() {
 	}
 	public EnergyProducerinHome(String name, LocalDateTime sunrise, LocalDateTime sunset) {
@@ -47,12 +50,15 @@ public class EnergyProducerinHome {
 		this.producedElectrecity = 0;
 		this.realtimeCapacity = 0;
 		this.maxOutput = 100;
-		this.sunrise = sunrise;
+		calculateSunrise();
+		calculateSunset();
 		this.sunset = sunset;
-		this.wind_speed = (Double) null;
+		this.wind_speed = 0;
 		this.consume = 10;
 		this.efficiency = 0;
 		this.type = "solarpanel";
+	//	this.smarthome = null;
+		this.totalProduce = 0;
 	}
 	public EnergyProducerinHome(String name, double wind_speed) {
 		this.name = name;
@@ -63,10 +69,51 @@ public class EnergyProducerinHome {
 		this.maxOutput = 500;
 		this.sunrise = null;
 		this.sunset = null;
-		this.wind_speed = wind_speed;
+		calculateWindspeed();
 		this.consume = 50;
 		this.efficiency = 0;
 		this.type = "turbine";
+	//	this.smarthome = null;
+		this.totalProduce = 0;
+	}
+	
+	public void calculateProducSolarPanel() {
+		this.totalProduce += maxOutput;
+		if (ShsApplication.producedEnergy == 0) {
+			ShsApplication.producedEnergy = maxOutput;
+		}else {
+			ShsApplication.producedEnergy += maxOutput;
+		}
+	}
+	
+	public void calculateProducTurbine() {
+		this.totalProduce += maxOutput * 2;
+		if (ShsApplication.producedEnergy == 0) {
+			ShsApplication.producedEnergy = maxOutput * 2;
+		}else {
+			ShsApplication.producedEnergy += maxOutput * 2;
+		}
+	}
+	
+	public void calculateSunrise() {
+		this.sunrise = LocalDateTime.of(2023, 07, 28, 5, 00, 00, 000000);
+	}
+	public void calculateSunset() {
+		this.sunset = LocalDateTime.of(2023, 07, 28, 8, 00, 00, 000000);
+	}
+	public void calculateWindspeed() {
+		this.wind_speed = 10;
+	}
+	public void calculate(EnergyProducerinHome ep) {
+		Random random = new Random();
+		
+	}
+	
+	public double getTotalProduce() {
+		return totalProduce;
+	}
+	public void setTotalProduce(double totalProduce) {
+		this.totalProduce = totalProduce;
 	}
 	public long getId() {
 		return id;
@@ -147,19 +194,19 @@ public class EnergyProducerinHome {
 	public void setWind_speed(double wind_speed) {
 		this.wind_speed = wind_speed;
 	}
-	public SmartHome getSmarthome() {
-		return smarthome;
-	}
-	public void setSmarthome(SmartHome smarthome) {
-		this.smarthome = smarthome;
-	}
+//	public SmartHome getSmarthome() {
+//		return smarthome;
+//	}
+//	public void setSmarthome(SmartHome smarthome) {
+//		this.smarthome = smarthome;
+//	}
 	@Override
 	public String toString() {
 		return "EnergyProducerinHome [id=" + id + ", name=" + name + ", status=" + status + ", consumedElectrecity="
 				+ consumedElectrecity + ", producedElectrecity=" + producedElectrecity + ", realtimeCapacity="
 				+ realtimeCapacity + ", maxOutput=" + maxOutput + ", consume=" + consume + ", efficiency=" + efficiency
-				+ ", sunrise=" + sunrise + ", sunset=" + sunset + ", wind_speed=" + wind_speed + ", smarthome="
-				+ smarthome +", type="
+				+ ", sunrise=" + sunrise + ", sunset=" + sunset + ", wind_speed=" + wind_speed + /*", smarthome="
+				+ smarthome +*/", type="
 						+ type + "]";
 	}
 	
