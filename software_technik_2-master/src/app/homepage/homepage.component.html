@@ -1,25 +1,27 @@
 <div class="container">
   <div class="infoBox infoBox-consumed">
 
-    <h3>Consumed: {{ smartgridData[0]?.lectricityConsumed }} w/h</h3>
+    <h3>Consumed: {{ smartgridData[0]?.lectricityConsumed }} w/h
+      <br> from SHS
+    </h3>
 
     
   </div>
 
   <div class="infoBox infoBox-produced">
     <h3>Produced:   {{ smartgridData[0]?.electricityProducedv }} w/h</h3>
-    
+    <h3>Batteries_Save: {{ calculateAdjustedConsumed()}} w/h</h3>
     <button (click)="updateSmartgridData(smartgridData[0])">Send to Database</button>
   
   </div>
 
-  <div class="infoBox infoBox-difference">
-    <h3>Difference: {{ calculateAdjustedConsumed()}} w/h</h3>
-   
-  </div>
+
   <div class="infoBox infoBox-CAPACITY">
-    <!--hier MUSS die Name der Metghode geändert werden je nachdem wie heißt die Methode die die summe von alle capacity berechnet-->
-    <h3 >batteries_Capacity: {{ calculateAdjustedConsumed()}} w/h</h3>
+
+    <h3 >  Incoming:  {{ smartgridData[0]?.lectricityConsumed }} w/h 
+      
+    </h3>
+   
    
   </div>
 </div>
@@ -31,36 +33,11 @@
                    [tableDataList4]="tableDataList"> 
                                                       </app-dynamic-table> -->
 
-<!-- Solar Panel -->                                 
-<div class="box">
-  <table>
-    <caption>Solar Panel</caption>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Sunshine duration <br> (today)</th>
-        <th style="color: rgb(149, 47, 47);">Production </th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let panel of solarPanels">
-        <td>{{ panel.name }}</td>
-        <td>{{ panel.location }}</td>
-        <td>{{ panel.sunrise }} hours</td>
-        <td style="color: rgb(149, 47, 47);">{{ panel.productionAmount }} w/h</td>
-        <td > <button #buttonCell class="button-cell" (click)="updateSolarpanel(panel)">
-          {{ panel.status ? 'On' : 'Off' }}</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>                                              
+                                              
 
 <!-- Turbine -->  
-<div class="box">
-  <table>
+<div class="table-container" style="width: 100%;">
+  <table  class="table">
     <caption>Turbine</caption>
     <thead>
       <tr>
@@ -85,8 +62,68 @@
   </table>
 </div>     
 
+
+
+
+<!---Battery--->
+<div class="table-container" style="width: 100%;">
+  <table class="table">
+    <caption>
+      Battery</caption>
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>location</th>
+        <th>save amount</th>
+        <th>capacity</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let battery of batteries">
+        <td>{{ battery.name }}</td>
+        <td>{{ battery.location }} </td>
+        <td>{{ battery.saveAmount }} w/h</td>
+        <td>{{ battery.capacity }} w/h</td>
+        <td><button #buttonCell class="button-cell" (click)="updateBattery(battery)">
+          {{ battery.status ? 'charging' : 'in Using' }}
+        </button></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Solar Panel -->                                 
+<div class="table-container" style="width: 100%;">
+  <table class="table">
+    <caption>Solar Panel</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Sunshine duration <br> (today)</th>
+        <th style="color: rgb(149, 47, 47);">Production </th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let panel of solarPanels">
+        <td>{{ panel.name }}</td>
+        <td>{{ panel.location }}</td>
+        <td>{{ panel.sunrise }} hours</td>
+        <td style="color: rgb(149, 47, 47);">{{ panel.productionAmount }} w/h</td>
+        <td > <button #buttonCell class="button-cell" (click)="updateSolarpanel(panel)">
+          {{ panel.status ? 'On' : 'Off' }}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
 <!------>
-<div class="table-container">
+<div class="table-container" style="width: 100%;">
   <table class="table">
     <caption>
       conventional energy power plant</caption>
@@ -108,30 +145,4 @@
     </tbody>
   </table>
 </div>
-<!------>
-<div class="table-container">
-  <table class="table">
-    <caption>
-      Battery</caption>
-    <thead>
-      <tr>
-        <th>name</th>
-        <th>capacity</th>
-        <th>status</th>
-        <th>location</th>
-        <th>amount</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let battery of batteries">
-        <td>{{ battery.name }}</td>
-        <td>{{ battery.capacity }}</td>
-        <td><button #buttonCell class="button-cell" (click)="updateBattery(battery)">{{ battery.status }}</button></td>
-        <td style="color: rgb(149, 47, 47);">{{ battery.production }}</td>
-        <td>{{ battery.location }}</td>
-        <td>{{ battery.amount }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>

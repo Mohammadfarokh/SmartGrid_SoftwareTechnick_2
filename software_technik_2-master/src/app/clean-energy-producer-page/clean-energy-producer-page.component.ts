@@ -63,9 +63,9 @@ export class CleanEnergyProducerPageComponent implements OnInit {
    //add Battery
   submitForm3(form3: any) {
     const data = {
-      name: form3.value.name,
-      location: form3.value.location,
-      capacity: form3.value.capacity,
+      name: form3.value.name3,
+      location: form3.value.location3,
+      capacity: form3.value.capacity3,
     };
     this.http.post('http://localhost:9595/battery/add', data).subscribe({
       next: (response) => {
@@ -73,6 +73,7 @@ export class CleanEnergyProducerPageComponent implements OnInit {
         alert('Successfully added:');
       },
       error: (error) => {
+        alert('Error');
         console.log('Error submitting form:', error);
         
       },
