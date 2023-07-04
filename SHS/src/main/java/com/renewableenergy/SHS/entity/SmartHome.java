@@ -9,6 +9,7 @@ import java.util.Set;
 
 //tariff and SmartGrid from SGS muss be imported
 import com.renewableenergy.SHS.entity.HomeBattary;
+import com.renewableenergy.SHS.ShsApplication;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 
 import jakarta.persistence.CascadeType;
@@ -47,15 +48,15 @@ public class SmartHome extends Observabel{
 	private double electricityProduced;
 	private double realtimeCapasity;
 	private LinkedList<Observer> observerlist = new LinkedList<Observer>();
-	@OneToMany
-	Set<HomeBattary> homebattarylist;
-	@OneToMany
-	Set<EnergyProducerinHome> energyproducerlist;
+//	@OneToMany
+//	Set<HomeBattary> homebattarylist;
+//	@OneToMany
+//	Set<EnergyProducerinHome> energyproducerlist;
 //	@OneToMany
 //	Set<EnergyConsumer> energyconsumerlist;
-	 @OneToOne(cascade = CascadeType.ALL)
-	 @PrimaryKeyJoinColumn
-	private SmartMeter smartmeter;
+//	 @OneToOne(cascade = CascadeType.ALL)
+//	 @PrimaryKeyJoinColumn
+//	private SmartMeter smartmeter;
 //  @OneToOne
 //	private Tariff tariff;
 //	@ManyToOne
@@ -65,20 +66,20 @@ public class SmartHome extends Observabel{
 	public SmartHome(String name,String location) {
 		this.name = name;
 		this.location = location;
-		this.electricityConsumed = 0;
-		this.electricityConsumedWithoutTariff = 0;
-		this.electricityConsumedWithTariff=0;
-		this.electricityProduced = 0;
-		this.realtimeCapasity = 0;
+		this.electricityConsumed = 10;
+		this.electricityConsumedWithoutTariff = 10;
+		this.electricityConsumedWithTariff=10;
+		this.electricityProduced = 10;
+		this.realtimeCapasity = 10;
 //		this.homebattarylist = new HashSet<>();
 //		this.energyproducerlist = new HashSet<>();
 //		this.energyconsumerlist = new HashSet<>();
 //		this.smartmeter = new SmartMeter("smartmeter for" + this.name, this.getElectricityProduced(),
 //				this.electricityConsumedWithTariff,this.electricityConsumedWithoutTariff);
-		this.homebattarylist = null;
-		this.energyproducerlist = null;
-	//	this.energyconsumerlist = null;
-		this.smartmeter = null;
+//		this.homebattarylist = null;
+//		this.energyproducerlist = null;
+//		this.energyconsumerlist = null;
+//		this.smartmeter = null;
 	}
 	public void addToElectricityProduced(double num) {
 		this.electricityProduced += num;
@@ -141,38 +142,38 @@ public class SmartHome extends Observabel{
 	public void setRealtimeCapasity(double realtimeCapasity) {
 		this.realtimeCapasity = realtimeCapasity;
 	}
-	public Set<HomeBattary> getHomebattarylist() {
-		return homebattarylist;
-	}
-	public void setHomebattarylist(Set<HomeBattary> homebattarylist) {
-		this.homebattarylist = homebattarylist;
-	}
-	public Set<EnergyProducerinHome> getEnergyproducerlist() {
-		return energyproducerlist;
-	}
-	public void setEnergyproducerlist(Set<EnergyProducerinHome> energyproducerlist) {
-		this.energyproducerlist = energyproducerlist;
-	}
+//	public Set<HomeBattary> getHomebattarylist() {
+//		return homebattarylist;
+//	}
+//	public void setHomebattarylist(Set<HomeBattary> homebattarylist) {
+//		this.homebattarylist = homebattarylist;
+//	}
+//	public Set<EnergyProducerinHome> getEnergyproducerlist() {
+//		return energyproducerlist;
+//	}
+//	public void setEnergyproducerlist(Set<EnergyProducerinHome> energyproducerlist) {
+//		this.energyproducerlist = energyproducerlist;
+//	}
 //	public Set<EnergyConsumer> getEnergyconsumerlist() {
 //		return energyconsumerlist;
 //	}
 //	public void setEnergyconsumerlist(Set<EnergyConsumer> energyconsumerlist) {
 //		this.energyconsumerlist = energyconsumerlist;
 //	}
-	public SmartMeter getSmartmeter() {
-		return smartmeter;
-	}
-	public void setSmartmeter(SmartMeter smartmeter) {
-		this.smartmeter = smartmeter;
-	}
+//	public SmartMeter getSmartmeter() {
+//		return smartmeter;
+//	}
+//	public void setSmartmeter(SmartMeter smartmeter) {
+//		this.smartmeter = smartmeter;
+//	}
 	@Override
 	public String toString() {
 		return "SmartHome [id=" + id + ", name=" + name + ", location=" + location + ", electricityConsumed="
 				+ electricityConsumed + ", electricityConsumedWithoutTariff=" + electricityConsumedWithoutTariff
 				+ ", electricityConsumedWithTariff=" + electricityConsumedWithTariff + ", electricityProduced="
-				+ electricityProduced + ", realtimeCapasity=" + realtimeCapasity + ", homebattarylist="
-				+ homebattarylist + ", energyproducerlist=" + energyproducerlist +/* ", energyconsumerlist="
-				+ energyconsumerlist + */ ", smartmeter="+ smartmeter + "]";
+				+ electricityProduced + ", realtimeCapasity=" + realtimeCapasity +/* ", homebattarylist="
+				+ homebattarylist + ", energyproducerlist=" + energyproducerlist + ", energyconsumerlist="
+				+ energyconsumerlist +  ", smartmeter="+ smartmeter + */"]";
 	}
 	@Override
 	public void attach(Observer o) {
@@ -188,8 +189,14 @@ public class SmartHome extends Observabel{
 	@Override
 	public void notifyObserver() {
 		// TODO Auto-generated method stub
-		for(Observer v : observerlist) {
-			v.update(this.electricityProduced, this.electricityConsumedWithTariff, this.electricityConsumedWithoutTariff);
+		for(Observer v : this.observerlist) {
+			v.update(ShsApplication.sh.getElectricityProduced(), ShsApplication.sh.getElectricityConsumedWithTariff(), ShsApplication.sh.getElectricityConsumedWithoutTariff());
+		}
+	}
+	
+	public void druckObserver() {
+		for(Observer a : observerlist) {
+			System.out.println(a.toString());
 		}
 	}
 	

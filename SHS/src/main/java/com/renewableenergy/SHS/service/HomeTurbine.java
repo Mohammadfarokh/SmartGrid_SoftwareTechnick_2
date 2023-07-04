@@ -20,8 +20,8 @@ public class HomeTurbine {
 		this.shr = shr;
 	}
 	//@SuppressWarnings("deprecation")
-	public void addHomeTurbine(/*long id_smartHome,*/String name,double windspeed) {
-		EnergyProducerinHome v1 = new EnergyProducerinHome(name,windspeed);
+	public void addHomeTurbine(String name) {
+		EnergyProducerinHome v1 = new EnergyProducerinHome(name, 0 );
 		//v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
 	}

@@ -1,10 +1,12 @@
 package com.renewableenergy.SHS.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.renewableenergy.SHS.ShsApplication;
 import com.renewableenergy.SHS.entity.EnergyProducerinHome;
 import com.renewableenergy.SHS.entity.SmartMeter;
 import com.renewableenergy.SHS.repository.EnergyProducerinHomeRepository;
@@ -20,15 +22,27 @@ public class SmartMeterService {
 		this.smr = smr;
 		this.shr = shr;
 	}
-	public void addSmartMeter(long id_smartHome, String name, double producedEnergy, double consumedEnergyWithTariff,
+	public void addSmartMeter(String name, double producedEnergy, double consumedEnergyWithTariff,
 			double consumedEnergyWithoutTariff) {
-		SmartMeter v1 = new SmartMeter(name,producedEnergy,consumedEnergyWithTariff,consumedEnergyWithoutTariff);
-		v1.setSmartHome(shr.getById(id_smartHome));
+		SmartMeter v1 = new SmartMeter(name);
 		this.smr.save(v1);
 	}
 	
+	public void addSmartMeterObjekt(SmartMeter sm) {
+		this.smr.save(sm);
+	}
+	
 	public List<SmartMeter> getSmartMeter(){
+		LinkedList<SmartMeter> smlist = new LinkedList<SmartMeter>();
+		for(SmartMeter s : smlist) {
+			s.notifyme();
+			update(s);
+		}
+		ShsApplication.sh.druckObserver();
 		return this.smr.findAll();
+	}
+	public void update(SmartMeter sm) {
+		this.smr.save(sm);
 	}
 	public boolean deleteSmartMeter(long id) {
 		try {

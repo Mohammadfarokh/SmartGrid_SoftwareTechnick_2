@@ -1,7 +1,10 @@
 package com.renewableenergy.SHS.entity;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.Set;
+
+import com.renewableenergy.SHS.ShsApplication;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +27,7 @@ public class EnergyConsumer {
 	private long id;
 	private String name;
 	private double consumedElectrecity;
+	private double totalConsume;
 //	public enum Status{
 //		ON,
 //		OFF,
@@ -37,10 +41,34 @@ public class EnergyConsumer {
 	}
 	public EnergyConsumer(String name, double consumedElectrecity) {
 			this.name = name;
-			this.consumedElectrecity = consumedElectrecity;	
+			this.consumedElectrecity = consumedElectrecity;
+			this.totalConsume = 0;
+	}
+	public void calculateConsumeStandart() {
+		this.totalConsume += consumedElectrecity;
+		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
+			ShsApplication.consumedEnergyWithTariff = consumedElectrecity;
+		}else {
+			ShsApplication.consumedEnergyWithTariff += consumedElectrecity;
+		}
+	}
+	public void calculateConsumeVariabel() {
+		this.totalConsume += consumedElectrecity * 2;
+		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
+			ShsApplication.consumedEnergyWithoutTariff = consumedElectrecity;
+		}else {
+			ShsApplication.consumedEnergyWithoutTariff +=  consumedElectrecity * 2;
+		}
 	}
 	public void addConsumedElectricity(double num) {
 		this.consumedElectrecity += num;
+	}
+	
+	public double getTotalConsume() {
+		return totalConsume;
+	}
+	public void setTotalConsume(double totalConsume) {
+		this.totalConsume = totalConsume;
 	}
 	public long getId() {
 		return id;

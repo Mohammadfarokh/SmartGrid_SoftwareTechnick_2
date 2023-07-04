@@ -1,5 +1,6 @@
 package com.renewableenergy.SHS.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.renewableenergy.SHS.ShsApplication;
 import com.renewableenergy.SHS.DTO.EnergyConsumerDTO;
 import com.renewableenergy.SHS.DTO.EnergyProducerinHomeDTO;
 import com.renewableenergy.SHS.DTO.HomeBattaryDTO;
@@ -35,7 +37,7 @@ public class HomeBattaryController {
 			//you have to check for adding Exception
 			try {
 				//SmartHome v1 = smarthomeservice.getbyid(request.getid) 
-				hb.addHomeBattary(/*request.getId_smartHome(),*/request.getName(), request.getMaxCapacity() );
+				hb.addHomeBattary(request.getName(), request.getMaxCapacity() );
 			}catch(Exception e) {
 				e.printStackTrace();
 				return false;
@@ -44,11 +46,21 @@ public class HomeBattaryController {
 		}
 		@GetMapping(value = "/home-battary-show")
 		@CrossOrigin("*") 
-		public List<HomeBattary> getSolarPanel(){
+		public List<HomeBattary> getHomeBattary(){
+			LinkedList<HomeBattary> hblist = new LinkedList<HomeBattary>();
+			for( HomeBattary battary : hblist) {
+				if(battary.checkNeededElectricity() && ShsApplication.producedEnergy > 5) {
+					battary.charging();
+				}else {
+					battary.setCharging(false);
+				}
+				hb.updateBattary(battary);
+			}
 			return hb.getBattary();
 		}
 		
 		 @PutMapping("/home-battary-update")
+		 @CrossOrigin("*") 
 		  public boolean updateHomeBattary(@RequestBody HomeBattary request){
 			 try {
 				 hb.updateBattary(request);

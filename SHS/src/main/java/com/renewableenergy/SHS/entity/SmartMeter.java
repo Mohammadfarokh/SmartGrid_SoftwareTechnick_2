@@ -1,5 +1,7 @@
 package com.renewableenergy.SHS.entity;
 
+import com.renewableenergy.SHS.ShsApplication;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,20 +28,25 @@ public class SmartMeter implements Observer {
 	private double producedEnergy;
 	private double consumedEnergyWithTariff;
 	private double consumedEnergyWithoutTariff;
-	@OneToOne
-    @MapsId
-    @JoinColumn(name = "smart_home_id")
-	private SmartHome smartHome;
+//	@OneToOne
+//    @MapsId
+//    @JoinColumn(name = "smart_home_id")
+//	private SmartHome smartHome;
 	
 	public SmartMeter() {
 	}
 	
-	public SmartMeter(String name, double producedEnergy, double consumedEnergyWithTariff,
-			double consumedEnergyWithoutTariff) {
+	public SmartMeter(String name) {
 		this.name = name;
-		this.producedEnergy = producedEnergy;
-		this.consumedEnergyWithTariff = consumedEnergyWithTariff;
-		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTariff;
+		this.producedEnergy = 0;
+		this.consumedEnergyWithoutTariff = 0;
+		this.consumedEnergyWithoutTariff = 0;
+		ShsApplication.sh.attach(this);
+		//ShsApplication.sh.notifyObserver();
+	}
+	
+	public void notifyme() {
+		ShsApplication.sh.notifyObserver();
 	}
 
 	public long getId() {
@@ -72,27 +79,27 @@ public class SmartMeter implements Observer {
 	public void setConsumedEnergyWithoutTariff(double consumedEnergyWithoutTariff) {
 		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTariff;
 	}
-	public SmartHome getSmartHome() {
-		return smartHome;
-	}
-	public void setSmartHome(SmartHome smartHome) {
-		this.smartHome = smartHome;
-	}
+//	public SmartHome getSmartHome() {
+//		return smartHome;
+//	}
+//	public void setSmartHome(SmartHome smartHome) {
+//		this.smartHome = smartHome;
+//	}
 
 	@Override
 	public String toString() {
 		return "SmartMeter [id=" + id + ", name=" + name + ", producedEnergy=" + producedEnergy
 				+ ", consumedEnergyWithTariff=" + consumedEnergyWithTariff + ", consumedEnergyWithoutTariff="
-				+ consumedEnergyWithoutTariff + ", smartHome=" + smartHome + "]";
+				+ consumedEnergyWithoutTariff + /*", smartHome=" + smartHome +*/ "]";
 	}
 
 	@Override
 	public void update(double producedEnergy, double consumedEnergyWithTariff, double consumedEnergyWithoutTarif) {
 		// TODO Auto-generated method stub
-		this.producedEnergy = producedEnergy;
-		this.consumedEnergyWithTariff = consumedEnergyWithTariff;
-		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTarif;
+		ShsApplication.sm.setProducedEnergy(producedEnergy);
+		ShsApplication.sm.setConsumedEnergyWithTariff(consumedEnergyWithTariff);
+		ShsApplication.sm.setConsumedEnergyWithTariff(consumedEnergyWithoutTarif);
+//		this.consumedEnergyWithTariff = consumedEnergyWithTariff;
+//		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTarif;
 	}
-	
-	
 }

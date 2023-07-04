@@ -22,9 +22,9 @@ public class HomeSolarPanel{
 	}
 	
 	//@SuppressWarnings("deprecation")
-	public void addHomeSolarPanel(/*long id_smartHome,*/String name,LocalDateTime sunrise, LocalDateTime sunset) {
+	public void addHomeSolarPanel(String name) {
 		//
-		EnergyProducerinHome v1 = new EnergyProducerinHome(name, sunrise, sunset);
+		EnergyProducerinHome v1 = new EnergyProducerinHome(name, null, null);
 		//v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
 	}

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.renewableenergy.SHS.ShsApplication;
 import com.renewableenergy.SHS.entity.SmartHome;
 
 import jakarta.persistence.Entity;
@@ -35,8 +36,8 @@ public class HomeBattary {
 	private boolean charging;
 //	@ManyToMany(mappedBy = "battarys")
 //	Set<SmartHome> smarthomes;
-	@ManyToOne
-	SmartHome smarthome;
+//	@ManyToOne
+//	SmartHome smarthome;
 //	public enum Status{
 //		GOOD,
 //		MIDDEL, 
@@ -53,7 +54,16 @@ public class HomeBattary {
 		this.realtimeCapacity = 0;
 		this.reachedMax = 0;
 		this.charging = false;
-		this.smarthome=null;
+	}
+	
+	public void charging() {
+		this.charging = true;
+		ShsApplication.producedEnergy -= 5;
+		this.realtimeCapacity += 5;
+	}
+	
+	public boolean checkNeededElectricity() {
+		return this.maxCapacity > this.realtimeCapacity;
 	}
 
 	public long getId() {
@@ -112,13 +122,13 @@ public class HomeBattary {
 		this.charging = charging;
 	}
 
-	public SmartHome getSmarthome() {
-		return smarthome;
-	}
-
-	public void setSmarthome(SmartHome smarthome) {
-		this.smarthome = smarthome;
-	}
+//	public SmartHome getSmarthome() {
+//		return smarthome;
+//	}
+//
+//	public void setSmarthome(SmartHome smarthome) {
+//		this.smarthome = smarthome;
+//	}
 
 //	public Status getMystatus() {
 //		return mystatus;
@@ -132,7 +142,7 @@ public class HomeBattary {
 	public String toString() {
 		return "HomeBattary [id=" + id + ", name=" + name + ", maxCapacity=" + maxCapacity + ", consumedElectrictiy="
 				+ consumedElectrictiy + ", realtimeCapacity=" + realtimeCapacity + ", reachedMax=" + reachedMax
-				+ ", charging=" + charging + ", smarthome=" + smarthome + /*", mystatus=" + mystatus +*/ "]";
+				+ ", charging=" + charging + /*", smarthome=" + smarthome + ", mystatus=" + mystatus +*/ "]";
 	}
 	
 }

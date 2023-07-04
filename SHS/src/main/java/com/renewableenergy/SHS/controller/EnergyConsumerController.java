@@ -45,7 +45,7 @@ public class EnergyConsumerController {
 	public boolean addStandartConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
-			scs.factory(/*request.getId_smartHome(),*/request.getName(), request.getConsumedElectrecity(), request.getType());
+			scs.factory(request.getName(), request.getConsumedElectrecity(), request.getType());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -65,7 +65,8 @@ public class EnergyConsumerController {
 	    return true;
 	}
 	 @PutMapping("/standart-consumer-update")
-	  public boolean updateSolarpanel(@RequestBody EnergyConsumer request){
+	 @CrossOrigin("*") 
+	  public boolean updateStandartConsumer(@RequestBody EnergyConsumer request){
 		 try {
 			 scs.update(request);
 			}catch(Exception e) {
@@ -79,19 +80,12 @@ public class EnergyConsumerController {
 	@CrossOrigin("*") 
 	public List<EnergyConsumer> getEnergyConsumer(){
 		listeEnergyConsumer = scs.getEnergyConsumer();
-		double totalconsumewithTariff = 0;
-		double totalconsumewithoutTariff = 0;
 		  for(EnergyConsumer consumer : listeEnergyConsumer) {
-			  // Sunshine duration
 		  if(consumer.getMystatus().equals("allways") ) {
-			  double camount=consumer.getConsumedElectrecity();
-			  totalconsumewithTariff += camount;
-			  consumer.addConsumedElectricity(camount);
+			  consumer.calculateConsumeStandart();
 			  scs.update(consumer);			  
 		  } else if(consumer.getMystatus().equals("on")) {
-			  double camount=consumer.getConsumedElectrecity();
-			  totalconsumewithoutTariff += camount;
-			  consumer.addConsumedElectricity(camount);
+			  consumer.calculateConsumeVariabel();
 			  vcs.update(consumer);
 		  }
 		  //muss noch angepasst werden
@@ -109,7 +103,7 @@ public class EnergyConsumerController {
 	public boolean addVariabelConsumer(@RequestBody EnergyConsumer request) {
 		//you have to check for adding Exception
 		try {
-			vcs.factory(/*request.getId_smartHome(),*/request.getName(),request.getConsumedElectrecity(), request.getType());
+			vcs.factory(request.getName(),request.getConsumedElectrecity(), request.getType());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -128,4 +122,15 @@ public class EnergyConsumerController {
 		}
 	    return true;
 	}
+	@PutMapping("/variabel-consumer-update")
+	 @CrossOrigin("*") 
+	  public boolean updateVariabelConsumer(@RequestBody EnergyConsumer request){
+		 try {
+			 vcs.update(request);
+			}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		    return true;
+	  }
 }

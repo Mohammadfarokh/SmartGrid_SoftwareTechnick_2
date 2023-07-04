@@ -43,10 +43,11 @@ public class CleanEnergyinHomeController {
 	}
 	
 	@PostMapping(value = "/solar-panel-add")
+	@CrossOrigin("*") 
 	public boolean addHomeSolarPanel(@RequestBody EnergyProducerinHome request) {
 		//you have to check for adding Exception
 		try {
-			hsp.addHomeSolarPanel(/*request.getId_smartHome(),*/request.getName(), request.getSunrise(), request.getSunset() );
+			hsp.addHomeSolarPanel(request.getName());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -65,22 +66,22 @@ public class CleanEnergyinHomeController {
 		  for(EnergyProducerinHome panle : liste_solarpanel) {
 			  // Sunshine duration
 			  //hsp.deleteSolarPanel(panle.getId());
-			  panle.setSunrise(LocalDateTime.of(2023, 07, 28, 5, 00, 00, 000000));
-			  panle.setSunset(LocalDateTime.of(2023, 07, 28, 20, 00, 00, 000000));
-			  
-			  double pamount=panle.getProducedElectrecity();
-			  double randomNumber=0;
+			 // panle.setSunrise(LocalDateTime.of(2023, 07, 28, 5, 00, 00, 000000));
+			 // panle.setSunset(LocalDateTime.of(2023, 07, 28, 20, 00, 00, 000000));
+			 // double pamount=panle.getProducedElectrecity();
+			 // double randomNumber=0;
 			  if(panle.isStatus()) {
 			  // Production (W/h)
-			  randomNumber = random.nextInt(10) + 1;
-			  pamount +=  randomNumber;
-			  panle.setProducedElectrecity(pamount);
+			 // randomNumber = random.nextInt(10) + 1;
+			 // pamount +=  randomNumber;
+			 // panle.setProducedElectrecity(pamount);
+			  panle.calculateProducSolarPanel();
 			  hsp.update(panle);
 			 
 			  }
 			// set electricity_producedv
-			  summe += pamount;
-			  randumSumme += randomNumber;
+//			  summe += pamount;
+//			  randumSumme += randomNumber;
 		  }
 		  //muss noch angepasst werden
 //		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
@@ -93,6 +94,7 @@ public class CleanEnergyinHomeController {
 		return hsp.getSolarPanel("solarpanel");
 	}
 	 @PutMapping("/solar-panel-update")
+	 @CrossOrigin("*") 
 	  public boolean updateSolarpanel(@RequestBody EnergyProducerinHome request){
 		 try {
 			 hsp.update(request);
@@ -116,10 +118,11 @@ public class CleanEnergyinHomeController {
 	}
 	
 	@PostMapping(value = "/turbine-add")
+	@CrossOrigin("*") 
 	public boolean addHomeTurbine(@RequestBody EnergyProducerinHome request) {
 		//you have to check for adding Exception
 		try {
-			ht.addHomeTurbine(/*request.getId_smartHome(),*/request.getName(), request.getWind_speed());
+			ht.addHomeTurbine(request.getName());
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -130,26 +133,27 @@ public class CleanEnergyinHomeController {
 	@CrossOrigin("*") 
 	public List<EnergyProducerinHome> getHomeTurbine(){
 		liste_homeTurbine = ht.getHomeTurbine("turbine");
-		double summe=0;
-		double randumSumme=0;
+//		double summe=0;
+//		double randumSumme=0;
 		  
 		  for(EnergyProducerinHome turbine : liste_homeTurbine) {
 			  // Sunshine duration
 			 // ht.deleteHomeTurbine(turbine.getId());
-			  turbine.setWind_speed(50);
+//			  turbine.setWind_speed(50);
 			  
-			  double pamount=turbine.getProducedElectrecity();
-			  double randomNumber=0;
+//			  double pamount=turbine.getProducedElectrecity();
+//			  double randomNumber=0;
 			  if(turbine.isStatus()) {
 			  // Production (W/h)
-			  randomNumber = random.nextInt(10) + 1;
-			  pamount +=  randomNumber;
-			  turbine.setProducedElectrecity(pamount);
+				  turbine.calculateProducTurbine();
+//			  randomNumber = random.nextInt(10) + 1;
+//			  pamount +=  randomNumber;
+//			  turbine.setProducedElectrecity(pamount);
 			  ht.update(turbine);
 			  }
 			// set electricity_producedv
-			  summe += pamount;
-			  randumSumme += randomNumber;
+//			  summe += pamount;
+//			  randumSumme += randomNumber;
 		  }
 		  //muss noch angepasst werden
 //		  SmartHome sh = shs.getSmartHome(request.getId_smartHome());
@@ -163,6 +167,7 @@ public class CleanEnergyinHomeController {
 		//return ht.getHomeTurbine(request.getType());
 	}
 	 @PutMapping("/turbine-update")
+	 @CrossOrigin("*") 
 	  public boolean updateHomeTurbine(@RequestBody EnergyProducerinHome request){
 		 try {
 			 ht.update(request);

@@ -26,7 +26,9 @@ public class SmartHomeService {
 		//attach(v1.getSmartmeter());
 		this.shr.save(v1);
 	}
-	
+	 public void addSmartHomeObjekt(SmartHome sh) {
+		 this.shr.save(sh);
+	 }
 	public void update(SmartHome sh) {
 		this.shr.save(sh);
 	}

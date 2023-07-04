@@ -31,7 +31,8 @@ public class SmartHomeController {
 		this.shs = shs;
 	}
 	@PostMapping(value = "/smart-home-add")
-	public boolean addSmartHome(@RequestBody /*SmartHomeDTO*/ SmartHome request) {
+	@CrossOrigin("*") 
+	public boolean addSmartHome(@RequestBody SmartHome request) {
 		//you have to check for adding Exception
 		try {
 			shs.addSmartHome(request.getName(), request.getLocation());
@@ -47,6 +48,7 @@ public class SmartHomeController {
 		return shs.getSmartHome();
 	}
 	 @PutMapping("/smart-home-update")
+	 @CrossOrigin("*") 
 	  public boolean updateSolarpanel(@RequestBody SmartHome request){
 		 try {
 				shs.update(request);
