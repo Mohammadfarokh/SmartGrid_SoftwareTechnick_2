@@ -33,6 +33,7 @@ public class HomeBattaryController {
 		}
 		
 		@PostMapping(value = "/home-battary-add")
+		@CrossOrigin("*") 
 		public boolean addHomeBattary(@RequestBody HomeBattary request) {
 			//you have to check for adding Exception
 			try {
