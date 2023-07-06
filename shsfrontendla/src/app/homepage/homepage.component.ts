@@ -11,10 +11,9 @@ import { interval } from 'rxjs';
   styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
-  value1:number | undefined;
-  value2: number | undefined;
+  SmartMeter!:any[];
   Batteries:any[]| undefined;
-  StandardConsumers:any[] | undefined;
+  Consumers:any[] | undefined;
   
   SolarPanels: any[] | undefined;
   Turbines: any[] | undefined;
@@ -26,9 +25,25 @@ export class HomepageComponent implements OnInit {
     this.getAddedBatterys();
     this.getAddedSolarPanels();
     this.getAddedTurbines();
-    this.getAddedStandardConsumers();
+    this.getAddedConsumers();
+    this.getSmartMeterInfos();
     
   }
+  getSmartMeterInfos() {
+    this.http.get<any[]>('http://localhost:9595/api/v1/smart-meter/smart-meter-show').subscribe({
+      next: (response: any[]) => {
+        this.SmartMeter = response;
+      },
+      error: (error: any) => {
+        console.log('Error fetching Batterys:', error);
+      },
+    });
+  }
+  // updateSmartgrid URL soll noch hinzugefügt werden
+updateSmartMeterData(SmartMeterData: any) {
+  this.http.put<any>('http://localhost:9595/', SmartMeterData)
+    .subscribe();
+}
   getAddedBatterys() {
     this.http.get<any[]>('http://localhost:9595/api/v1/home-battary/home-battary-show').subscribe({
       next: (response: any[]) => {
@@ -39,30 +54,70 @@ export class HomepageComponent implements OnInit {
       },
     });
   }
-  getAddedStandardConsumers() {
+  //URL SOLL NOCH BEARBEITET WERDEN --------------------------------------------------------------------------
+  updateBattery(battery: any) {
+    battery.status = !battery.status;
+    this.http.put<any>('http://localhost:9595/api/v1/home-battary-update', battery)
+      .subscribe({
+        next: response => {
+          console.log('Solarpanel updated successfully:', response);
+        },
+        error: error => {
+          console.error('Error updating battery:', error);
+        }
+      });
+  }
+  getAddedConsumers() {
     this.http
       .get<any[]>('http://localhost:9595/api/v1/energy-consumer/consumer-show')
       .subscribe({
         next: respons => {
           console.log("IAM HEREEEEstandardconsumer");
-          this.StandardConsumers = respons;
+          this.Consumers = respons;
         },
         error: (error: any) => {
           console.log('Error fetching Standard Consumers:', error);
         },
       });
   }
+  //URL SOLL NOCH Consumer WERDEN--------------------------------------------
+  updateConsumers(Consumer: any) {
+    Consumer.status = !Consumer.status;
+    this.http.put<any>('http://localhost:9595/api/v1/standart-consumer-update', Consumer)
+      .subscribe({
+        next:   response => {
+          console.log('Solarpanel updated successfully:', response);
+        },
+        error:error => {
+          console.error('Error updating solarpanel:', error);
+        }
+  });
+  }
  
   getAddedSolarPanels() {
     this.http.get<any[]>('http://localhost:9595/api/v1/energy-producer/solar-panel-show').subscribe({
       next: response=> {
         console.log("IAM HEREEEE");
+       
         this.SolarPanels = response;
       },
       error: (error: any) => {
         console.log('Error fetching Solar Panels:', error);
       },
     });
+  }
+//URL SOLL NOCH SolarPanel WERDEN--------------------------------------------
+  updateSolarpanel(solarpanel: any) {
+    solarpanel.status = !solarpanel.status;
+    this.http.put<any>('http://localhost:9595/api/v1/solar-panel-update', solarpanel)
+      .subscribe({
+        next:   response => {
+          console.log('Solarpanel updated successfully:', response);
+        },
+        error:error => {
+          console.error('Error updating solarpanel:', error);
+        }
+  });
   }
   getAddedTurbines() {
     this.http.get<any[]>('http://localhost:9595/api/v1/energy-producer/turbine-show').subscribe({
@@ -75,21 +130,21 @@ export class HomepageComponent implements OnInit {
       },
     });
   }
-/*
-  ConsumptionProductionValue() {
-    this.http.get<any>('Backend-link').subscribe(
-      (response) => {
-        this.value1 = response.value1;
-        this.value2 = response.value2;
-      },
-      (error) => {
-        console.log(
-          'Error occurred while fetching values from the backend:',
-          error
-        );
-      }
-    );
+  //URL SOLL NOCH BEARBEITET WERDEN --------------------------------------------------------------------------
+  updateTurbine(turbine: any) {
+    turbine.status = !turbine.status;
+    this.http.put<any>('http://localhost:9595/api/v1/turbine-update', turbine)
+      .subscribe({
+        next: response => {
+          console.log('Solarpanel updated successfully:', response);
+        },
+        error: error => {
+          console.error('Error updating solarpanel:', error);
+        }
+      });
   }
+
+}
   /*
   batteryToggleButton(battery: any) {
     const button = document.getElementById('batteryButton');
@@ -99,7 +154,7 @@ export class HomepageComponent implements OnInit {
       button.classList.remove('off');
       setInterval(() => {
         this.http
-          .put<any>('Backend-link', battery)
+          .put<any>('http://localhost:9595/api/v1/home-battary/home-battary-update', battery)
           .subscribe({
             next: (response) => {
               console.log('battery updated successfully:', response);
@@ -115,7 +170,7 @@ export class HomepageComponent implements OnInit {
       button?.classList.remove('on');
     }
   }
-
+/*
   StandardConsumerToggleButton(StandardConsumer: any) {
     const button = document.getElementById('StandardConsumerButton');
     if (button?.innerHTML === 'OFF') {
@@ -218,4 +273,4 @@ export class HomepageComponent implements OnInit {
 }
 
 */
-}
+

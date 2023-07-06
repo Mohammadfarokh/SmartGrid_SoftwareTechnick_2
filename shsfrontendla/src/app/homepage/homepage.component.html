@@ -1,11 +1,14 @@
 <div class="box-container">
     <h1>SmartMeter</h1>
     <div class="box">
-      <h3>consumption:{{ value1 }}</h3>
+      <h3>consumptionWithTariff:{{ SmartMeter[0]?.consumedEnergyWithTariff }}</h3>
     </div>
 
     <div class="box">
-      <h3>production:{{ value2 }}</h3>
+      <h3>production:{{SmartMeter[0]?.producedEnergy}}</h3>
+    </div>
+    <div class="box">
+      <h3>consumptionWithoutTariff:{{SmartMeter[0]?.consumedEnergyWithoutTariff}}</h3>
     </div>
 
   </div>
@@ -22,9 +25,9 @@
       <tbody>
         <tr *ngFor="let battery of Batteries">
           <td>{{ battery.name }}</td>
-          <td>{{ battery.maxCapacity }}</td>
+          <td>{{ battery.realtimeCapacity }}</td>
           <td>
-            <button id="batteryButton">OFF</button>
+            <button  #buttonCell id="batteryButton"(click)="updateBattery(battery)">{{ battery.status ? 'On' : 'Off' }}</button>
           </td>
         </tr>
       </tbody>
@@ -32,7 +35,7 @@
 
 
       <table>
-        <caption><b>Standard Consumer</b></caption>
+        <caption><b> Consumer</b></caption>
         <thead>
           <tr>
             <th>id</th>
@@ -43,30 +46,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let StandardConsumer of StandardConsumers">
-            <td>{{ StandardConsumer.id }}</td>
-            <td>{{ StandardConsumer.name }}</td>
-            <td>{{ StandardConsumer.consumedElectrecity }}</td>
+          <tr *ngFor="let Consumer of Consumers">
+            <td>{{ Consumer.id }}</td>
+            <td>{{ Consumer.name }}</td>
+            <td>{{ Consumer.totalConsume }}</td>
             <td>
-              <button id="StandardConsumerButton" >OFF</button>
+              <button id="StandardConsumerButton"(click)="updateConsumers(Consumer)">{{ Consumer.status ? 'On' : 'Off' }}</button>
             </td>
-            <td>{{ StandardConsumer.type }}</td>
+            <td>{{ Consumer.type }}</td>
         </tr>
         </tbody>
       </table>
 
-      <table>
-        <caption><b>Variable Consumer</b></caption>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>consumption</th>
-            
-            <th>Status</th>
-          </tr>
-        </thead>
-        
-      </table>
+      
 
       <table>
         <caption><b>Solar Panel</b></caption>
@@ -74,6 +66,7 @@
           <tr>
             <th>Name</th>
             <th>MaxOutput</th>
+            <th>produce</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -81,8 +74,9 @@
           <tr *ngFor="let SolarPanel of SolarPanels">
             <td>{{ SolarPanel.name }}</td>
             <td>{{ SolarPanel.maxOutput }}</td>
+            <td>{{ SolarPanel.totalProduce }}</td>
             <td>
-              <button id="SolarPanelButton">OFF</button>
+              <button id="SolarPanelButton"(click)="updateSolarpanel(SolarPanel)">{{ SolarPanel.status ? 'On' : 'Off' }}</button>
             </td>
         </tr>
         </tbody>
@@ -92,7 +86,9 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>MaxOutput</th>
+            <th>Max-Output</th>
+            <th>wind_speed</th>
+            <th>produce</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -100,8 +96,10 @@
           <tr *ngFor="let Turbine of Turbines">
             <td>{{ Turbine.name }}</td>
             <td>{{ Turbine.maxOutput }}</td>
+            <td>{{ Turbine.wind_speed }}</td>
+            <td>{{ Turbine.totalProduce }}</td>
             <td>
-              <button id="TurbineButton" >OFF</button>
+              <button id="TurbineButton"(click)="updateTurbine(Turbine)">{{ Turbine.status ? 'On' : 'Off' }} </button>
             </td>
         </tr>
         </tbody>
