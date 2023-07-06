@@ -35,9 +35,9 @@ public class ShsApplication {
 		SmartMeterService sms = context.getBean(SmartMeterService.class);
 		sm = new SmartMeter("SmartMeter");
 		sms.addSmartMeterObjekt(sm);
-		System.out.println(producedEnergy);
-		System.out.println(consumedEnergyWithTariff);
-		System.out.println(consumedEnergyWithoutTariff);
+//		System.out.println(producedEnergy);
+//		System.out.println(consumedEnergyWithTariff);
+//		System.out.println(consumedEnergyWithoutTariff);
 		sh.druckObserver();
 		sh.attach(sm);
 //		while(true) {

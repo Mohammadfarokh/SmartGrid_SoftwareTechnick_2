@@ -87,12 +87,14 @@ public class EnergyConsumerController {
 			 double res = consumer.calculateConsumeStandart();
 			 for(SmartHome a : listeSmartHome) {
 				 a.addToElectricityConsumedWithoutTariff(res);
+				 shs.update(a);
 			 }
 			  scs.update(consumer);			  
 		  } else if(consumer.getMystatus().equals("on")) {
 			  double res = consumer.calculateConsumeVariabel();
 			  for(SmartHome a : listeSmartHome) {
 				  a.addToElectricityConsumedWithoutTariff(res);
+				  shs.update(a);
 			  }
 			  vcs.update(consumer);
 		  }
