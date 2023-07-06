@@ -27,18 +27,36 @@ public class TurbineController {
 	  public ResponseEntity<List<Turbine>> getAllTurbine()
 	  {
 		  List<Turbine> turbine = turbineService.findAllTurbine();
+		  
+		  double summe=0;
+		  double randumSumme=0;
 		  for(Turbine turbin : turbine) {
 			  // Sunshine duration
-			  double windspeed = WeatherAPIExample.getWindSpeed(turbin.getLocation());
+			  //double windspeed = WeatherAPIExample.getWindSpeed(turbin.getLocation());
+			  
+			  double windspeed = 3; 
 			  turbin.setWind_speed(windspeed);
 			  
+			  double pamount=turbin.getProductionAmount();
+			  double randomNumber=0;
 			  if(turbin.isStatus()) {
 			  // Production (W/h)
-			  double randomNumber = random.nextInt(10) + 1;
-			  turbin.setProductionAmount(turbin.getProductionAmount() + randomNumber);
+			  randomNumber = random.nextInt(10)  * windspeed;
+			  pamount +=  randomNumber;
+			  turbin.setProductionAmount(pamount);
 			  turbineService.updateTurbine(turbin);
 			  }
 			  
+				// set electricity_producedv
+			  summe += pamount;
+			  randumSumme += randomNumber;
+  
+		  }
+		  
+		  if(SgsApplication.electricity_producedv == 0 ) {
+			  SgsApplication.electricity_producedv += summe ;
+		  }else {
+			  SgsApplication.electricity_producedv +=  randumSumme;
 		  }
 		  
 		  return new ResponseEntity<>(turbine,HttpStatus.OK);

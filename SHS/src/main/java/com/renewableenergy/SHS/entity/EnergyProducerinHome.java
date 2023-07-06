@@ -110,6 +110,7 @@ public class EnergyProducerinHome {
 		Random random = new Random();
 		
 	}
+
 	public double getTotalProduce() {
 		return totalProduce;
 	}

@@ -35,7 +35,7 @@ public class SmartGridManagement {
   //battaryService.addNewBattary(new Battary("Dortmund",2000,1500,true));
   //battaryService.addNewBattary(new Battary("Essen",3000,500,true));
     int s;
-	int anzBattry = battaryService.anzBattary();
+	//int anzBattry = battaryService.anzBattary();
    
 	
 	//List<Battary> battarylist = new ArrayList<>();

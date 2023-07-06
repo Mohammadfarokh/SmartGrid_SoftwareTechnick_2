@@ -39,7 +39,7 @@ public class SolarpanelService {
 		
 	}
 	
-	public void deleteTurbine (Long id) {
+	public void deleteSolarpanel (Long id) {
 		solarpanelRepository.deleteSolarpanelById(id);
 	}
 }

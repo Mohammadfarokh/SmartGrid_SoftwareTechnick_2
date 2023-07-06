@@ -2,6 +2,7 @@ package com.renewableenergy.SGS;
 
 import org.springframework.boot.SpringApplication;
 
+
 import java.util.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,11 +17,11 @@ import com.renewableenergy.SGS.entity.Battary;
 @SpringBootApplication
 public class SgsApplication {
 	
-	public  static  double electrecity_incoming ;
+	public static double electrecity_incoming = 0 ;
 	
-	public  static  double electricity_producedv ;
+	public static double electricity_producedv ;
 	
-	public  static  double lectricity_consumed ;
+	public static double lectricity_consumed ;
 	
 
 
@@ -33,9 +34,9 @@ public class SgsApplication {
       // smartGridDao.list().forEach(System.out::println);
         
         // Battery
-    //    BattaryService  battaryService = context.getBean(BattaryService.class);
+     //   BattaryService  battaryService = context.getBean(BattaryService.class);
         
-      //battaryService.addNewBattary(new Battary("Dortmund",2000,1500,true));
+     // battaryService.addNewBattary(new Battary("Dortmund",2000,1500,true));
       //battaryService.addNewBattary(new Battary("Essen",3000,500,true));
 
     	//int anzBattry=battaryService.anzBattary();

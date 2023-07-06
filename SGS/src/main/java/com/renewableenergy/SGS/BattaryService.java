@@ -1,30 +1,44 @@
 package com.renewableenergy.SGS;
 import java.util.List;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SGS.entity.Battary;
+import com.renewableenergy.SGS.entity.Solarpanel;
+
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class BattaryService {
 
+	@Autowired
 	private final BattaryRepository battaryRepository;
-
-	public BattaryService(BattaryRepository battaryRepository) {
-		super();
+	BattaryService(BattaryRepository battaryRepository) {
 		this.battaryRepository = battaryRepository;
 	}
 	
-	 public List<Battary> list() {
-	        return battaryRepository.findAll();
-	    }
-	 
-	 public boolean addNewBattary (Battary battary) {
-		 battaryRepository.save(battary);
-		 return true;
-	 }
-	 public int anzBattary() {
-		 return (int) battaryRepository.count();
-		  
-	 }
+	public Battary addBattary (Battary battary) {
+		return battaryRepository.save(battary);
+	}
+	
+	public List<Battary> findAllBattary(){
+		return battaryRepository.findAll();
+	}
+	
+	public Battary updateBattary(Battary battary) {
+		return battaryRepository.save(battary);
+	}
+	
+	public Battary findBattaryByIdid(Long id ) {
+
+		return battaryRepository.findBattaryById(id);
+		
+	}
+	
+	public void deleteBattarye (Long id) {
+		battaryRepository.deleteBattaryById(id);
+	}
+	
 }

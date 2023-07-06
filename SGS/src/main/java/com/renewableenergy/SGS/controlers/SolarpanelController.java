@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.renewableenergy.SGS.SgsApplication;
 import com.renewableenergy.SGS.SolarpanelService;
-import com.renewableenergy.SGS.TurbineService;
 import com.renewableenergy.SGS.entity.Solarpanel;
-import com.renewableenergy.SGS.entity.Turbine;
 import java.util.Random;
 
 @RestController
@@ -54,6 +52,7 @@ public class SolarpanelController {
 			  panle.setProductionAmount(pamount);
 			  solarpanelService.updateSolarpanel(panle);			  
 			  }
+			  
 			// set electricity_producedv
 			  summe += pamount;
 			  randumSumme += randomNumber;
@@ -70,14 +69,14 @@ public class SolarpanelController {
 	  }
 	  
 	  @GetMapping("/find/{id}")
-	  public ResponseEntity<Solarpanel> getTurbineById(@PathVariable("id") Long id )
+	  public ResponseEntity<Solarpanel> getSolarpanelById(@PathVariable("id") Long id )
 	  {
 		  Solarpanel solarpanel = solarpanelService.findSolarpanelByIdid(id);
 		  return new ResponseEntity<>(solarpanel,HttpStatus.OK);
 	  }
 	  
 	  @PostMapping("/add")
-	  public ResponseEntity<Solarpanel> addTurbine(@RequestBody Solarpanel solarpanel){
+	  public ResponseEntity<Solarpanel> addSolarpanel(@RequestBody Solarpanel solarpanel){
 		  Solarpanel newSolarpanel = solarpanelService.addSolarpanel(solarpanel);
 		  return new ResponseEntity<>(newSolarpanel,HttpStatus.CREATED);
 	  }
@@ -91,7 +90,7 @@ public class SolarpanelController {
 	  
 	  @DeleteMapping("/delete/{id}")
 	  public ResponseEntity<?> deleteSolarpanel(@PathVariable("id") Long id){
-		  solarpanelService.deleteTurbine(id);
+		  solarpanelService.deleteSolarpanel(id);
 		  return new ResponseEntity<>(HttpStatus.OK);
 	  }
 
