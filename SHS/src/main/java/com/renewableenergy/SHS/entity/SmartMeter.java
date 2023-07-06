@@ -96,10 +96,11 @@ public class SmartMeter implements Observer {
 	@Override
 	public void update(double producedEnergy, double consumedEnergyWithTariff, double consumedEnergyWithoutTarif) {
 		// TODO Auto-generated method stub
-		ShsApplication.sm.setProducedEnergy(producedEnergy);
-		ShsApplication.sm.setConsumedEnergyWithTariff(consumedEnergyWithTariff);
-		ShsApplication.sm.setConsumedEnergyWithTariff(consumedEnergyWithoutTarif);
-//		this.consumedEnergyWithTariff = consumedEnergyWithTariff;
-//		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTarif;
+//		ShsApplication.sm.setProducedEnergy(producedEnergy);
+//		ShsApplication.sm.setConsumedEnergyWithTariff(consumedEnergyWithTariff);
+//		ShsApplication.sm.setConsumedEnergyWithTariff(consumedEnergyWithoutTarif);
+		this.consumedEnergyWithTariff = consumedEnergyWithTariff;
+		this.consumedEnergyWithoutTariff = consumedEnergyWithoutTarif;
+		this.producedEnergy = producedEnergy;
 	}
 }

@@ -4,7 +4,7 @@ package com.renewableenergy.SHS.entity;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
+//import java.util.Set;
 
 
 //tariff and SmartGrid from SGS muss be imported
@@ -83,6 +83,9 @@ public class SmartHome extends Observabel{
 	}
 	public void addToElectricityProduced(double num) {
 		this.electricityProduced += num;
+	}
+	public void takeFromElectricityProduce(double sum) {
+		this.electricityProduced -= sum;
 	}
 	public void addToElectricityConsumedWithTariff(double num) {
 		this.electricityConsumedWithTariff += num;
@@ -190,7 +193,8 @@ public class SmartHome extends Observabel{
 	public void notifyObserver() {
 		// TODO Auto-generated method stub
 		for(Observer v : this.observerlist) {
-			v.update(ShsApplication.sh.getElectricityProduced(), ShsApplication.sh.getElectricityConsumedWithTariff(), ShsApplication.sh.getElectricityConsumedWithoutTariff());
+		//	v.update(ShsApplication.sh.getElectricityProduced(), ShsApplication.sh.getElectricityConsumedWithTariff(), ShsApplication.sh.getElectricityConsumedWithoutTariff());
+			v.update(this.electricityProduced, this.electricityConsumedWithTariff, this.electricityConsumedWithoutTariff);
 		}
 	}
 	

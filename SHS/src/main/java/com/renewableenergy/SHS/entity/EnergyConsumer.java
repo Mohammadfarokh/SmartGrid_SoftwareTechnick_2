@@ -2,7 +2,7 @@ package com.renewableenergy.SHS.entity;
 
 import java.time.LocalDateTime;
 import java.util.Random;
-import java.util.Set;
+//import java.util.Set;
 
 import com.renewableenergy.SHS.ShsApplication;
 
@@ -44,21 +44,23 @@ public class EnergyConsumer {
 			this.consumedElectrecity = consumedElectrecity;
 			this.totalConsume = 0;
 	}
-	public void calculateConsumeStandart() {
+	public double calculateConsumeStandart() {
 		this.totalConsume += consumedElectrecity;
-		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
-			ShsApplication.consumedEnergyWithTariff = consumedElectrecity;
-		}else {
-			ShsApplication.consumedEnergyWithTariff += consumedElectrecity;
-		}
+		return consumedElectrecity;
+//		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
+//			ShsApplication.consumedEnergyWithTariff = consumedElectrecity;
+//		}else {
+//			ShsApplication.consumedEnergyWithTariff += consumedElectrecity;
+//		}
 	}
-	public void calculateConsumeVariabel() {
+	public double calculateConsumeVariabel() {
 		this.totalConsume += consumedElectrecity * 2;
-		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
-			ShsApplication.consumedEnergyWithoutTariff = consumedElectrecity;
-		}else {
-			ShsApplication.consumedEnergyWithoutTariff +=  consumedElectrecity * 2;
-		}
+		return consumedElectrecity * 2;
+//		if (ShsApplication.consumedEnergyWithoutTariff == 0) {
+//			ShsApplication.consumedEnergyWithoutTariff = consumedElectrecity;
+//		}else {
+//			ShsApplication.consumedEnergyWithoutTariff +=  consumedElectrecity * 2;
+//		}
 	}
 	public void addConsumedElectricity(double num) {
 		this.consumedElectrecity += num;

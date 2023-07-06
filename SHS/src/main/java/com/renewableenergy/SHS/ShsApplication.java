@@ -25,9 +25,9 @@ public class ShsApplication {
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context =SpringApplication.run(ShsApplication.class, args);
-		producedEnergy = 0;
-		consumedEnergyWithTariff = 0;
-		consumedEnergyWithoutTariff = 0;
+		producedEnergy = 10;
+		consumedEnergyWithTariff = 10;
+		consumedEnergyWithoutTariff = 10;
 		SmartHomeService shs = context.getBean(SmartHomeService.class);
 		sh = new SmartHome("smartHome", "Dortmund");
 		//add construktor for smarthome
@@ -35,8 +35,11 @@ public class ShsApplication {
 		SmartMeterService sms = context.getBean(SmartMeterService.class);
 		sm = new SmartMeter("SmartMeter");
 		sms.addSmartMeterObjekt(sm);
+		System.out.println(producedEnergy);
+		System.out.println(consumedEnergyWithTariff);
+		System.out.println(consumedEnergyWithoutTariff);
 		sh.druckObserver();
-		//		sh.attach(sm);
+		sh.attach(sm);
 //		while(true) {
 //			sh.notifyObserver();
 //		}

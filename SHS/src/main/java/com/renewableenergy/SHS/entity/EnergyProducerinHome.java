@@ -2,7 +2,7 @@ package com.renewableenergy.SHS.entity;
 
 import java.time.LocalDateTime;
 import java.util.Random;
-import java.util.Set;
+//import java.util.Set;
 
 import com.renewableenergy.SHS.ShsApplication;
 import com.renewableenergy.SHS.entity.SmartHome;
@@ -77,22 +77,24 @@ public class EnergyProducerinHome {
 		this.totalProduce = 0;
 	}
 	
-	public void calculateProducSolarPanel() {
+	public double calculateProducSolarPanel() {
 		this.totalProduce += maxOutput;
-		if (ShsApplication.producedEnergy == 0) {
-			ShsApplication.producedEnergy = maxOutput;
-		}else {
-			ShsApplication.producedEnergy += maxOutput;
-		}
+		return this.maxOutput;
+//		if (ShsApplication.producedEnergy == 0) {
+//			ShsApplication.producedEnergy = maxOutput;
+//		}else {
+//			ShsApplication.producedEnergy += maxOutput;
+//		}
 	}
 	
-	public void calculateProducTurbine() {
+	public double calculateProducTurbine() {
 		this.totalProduce += maxOutput * 2;
-		if (ShsApplication.producedEnergy == 0) {
-			ShsApplication.producedEnergy = maxOutput * 2;
-		}else {
-			ShsApplication.producedEnergy += maxOutput * 2;
-		}
+//		if (ShsApplication.producedEnergy == 0) {
+//			ShsApplication.producedEnergy = maxOutput * 2;
+//		}else {
+//			ShsApplication.producedEnergy += maxOutput * 2;
+//		}
+		return this.maxOutput * 2;
 	}
 	
 	public void calculateSunrise() {
@@ -107,6 +109,12 @@ public class EnergyProducerinHome {
 	public void calculate(EnergyProducerinHome ep) {
 		Random random = new Random();
 		
+	}
+	public double getTotalProduce() {
+		return totalProduce;
+	}
+	public void setTotalProduce(double totalProduce) {
+		this.totalProduce = totalProduce;
 	}
 	public long getId() {
 		return id;

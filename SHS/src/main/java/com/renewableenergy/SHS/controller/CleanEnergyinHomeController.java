@@ -31,6 +31,7 @@ public class CleanEnergyinHomeController {
 	public final SmartHomeService shs;
 	public List<EnergyProducerinHome> liste_solarpanel;
 	public List<EnergyProducerinHome> liste_homeTurbine;
+	public List<SmartHome> liste_smarthome;
 	public Random random;
 	@Autowired
 	CleanEnergyinHomeController(HomeSolarPanel hsp, HomeTurbine ht, SmartHomeService shs){
@@ -60,6 +61,7 @@ public class CleanEnergyinHomeController {
 	@CrossOrigin("*") 
 	public List<EnergyProducerinHome> getSolarPanel(){
 		liste_solarpanel = hsp.getSolarPanel("solarpanel");
+		liste_smarthome = shs.getSmartHome();
 		double summe=0;
 		double randumSumme=0;
 		  
@@ -75,9 +77,13 @@ public class CleanEnergyinHomeController {
 			 // randomNumber = random.nextInt(10) + 1;
 			 // pamount +=  randomNumber;
 			 // panle.setProducedElectrecity(pamount);
-			  panle.calculateProducSolarPanel();
+			  double res = panle.calculateProducSolarPanel();
+			  for(SmartHome a : liste_smarthome) {
+				  a.addToElectricityProduced(res);
+				  shs.update(a);
+				  }
 			  hsp.update(panle);
-			 
+			 //service for the variabels from smartmeter
 			  }
 			// set electricity_producedv
 //			  summe += pamount;
@@ -133,6 +139,7 @@ public class CleanEnergyinHomeController {
 	@CrossOrigin("*") 
 	public List<EnergyProducerinHome> getHomeTurbine(){
 		liste_homeTurbine = ht.getHomeTurbine("turbine");
+		liste_smarthome = shs.getSmartHome();
 //		double summe=0;
 //		double randumSumme=0;
 		  
@@ -145,7 +152,11 @@ public class CleanEnergyinHomeController {
 //			  double randomNumber=0;
 			  if(turbine.isStatus()) {
 			  // Production (W/h)
-				  turbine.calculateProducTurbine();
+				double res =   turbine.calculateProducTurbine();
+				 for(SmartHome a : liste_smarthome) {
+					  a.addToElectricityProduced(res);
+					  shs.update(a);
+					  }
 //			  randomNumber = random.nextInt(10) + 1;
 //			  pamount +=  randomNumber;
 //			  turbine.setProducedElectrecity(pamount);

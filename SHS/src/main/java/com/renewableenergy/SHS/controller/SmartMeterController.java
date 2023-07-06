@@ -53,9 +53,11 @@ public class SmartMeterController {
 	public List<SmartMeter> getSmartMeter(){
 		LinkedList <SmartMeter> smlist = new LinkedList<SmartMeter>();
 		for(SmartMeter s : smlist) {
-			s.setConsumedEnergyWithoutTariff(ShsApplication.consumedEnergyWithoutTariff);
-			s.setConsumedEnergyWithTariff(ShsApplication.consumedEnergyWithTariff);
-			s.setProducedEnergy(ShsApplication.producedEnergy);
+//			s.setConsumedEnergyWithoutTariff(ShsApplication.consumedEnergyWithoutTariff);
+//			s.setConsumedEnergyWithTariff(ShsApplication.consumedEnergyWithTariff);
+//			s.setProducedEnergy(ShsApplication.producedEnergy);
+			s.notifyme();
+			System.out.println("done");
 			sms.update(s);
 		}
 		

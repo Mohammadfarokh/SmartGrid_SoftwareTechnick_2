@@ -30,6 +30,7 @@ public class EnergyConsumerController {
 	public final VariabelConsumerService vcs;
 	public final SmartHomeService shs;
 	public List<EnergyConsumer> listeEnergyConsumer;
+	public List<SmartHome> listeSmartHome;
 	Random random = new Random();
 	
 	@Autowired
@@ -80,12 +81,19 @@ public class EnergyConsumerController {
 	@CrossOrigin("*") 
 	public List<EnergyConsumer> getEnergyConsumer(){
 		listeEnergyConsumer = scs.getEnergyConsumer();
+		listeSmartHome = shs.getSmartHome();
 		  for(EnergyConsumer consumer : listeEnergyConsumer) {
 		  if(consumer.getMystatus().equals("allways") ) {
-			  consumer.calculateConsumeStandart();
+			 double res = consumer.calculateConsumeStandart();
+			 for(SmartHome a : listeSmartHome) {
+				 a.addToElectricityConsumedWithoutTariff(res);
+			 }
 			  scs.update(consumer);			  
 		  } else if(consumer.getMystatus().equals("on")) {
-			  consumer.calculateConsumeVariabel();
+			  double res = consumer.calculateConsumeVariabel();
+			  for(SmartHome a : listeSmartHome) {
+				  a.addToElectricityConsumedWithoutTariff(res);
+			  }
 			  vcs.update(consumer);
 		  }
 		  //muss noch angepasst werden
