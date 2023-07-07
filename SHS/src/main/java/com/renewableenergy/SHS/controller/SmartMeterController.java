@@ -28,6 +28,8 @@ import com.renewableenergy.SHS.service.SmartMeterService;
 public class SmartMeterController {
 	public final SmartMeterService sms;
 	public final SmartHomeService shs;
+	List <SmartMeter> smlist = new LinkedList<SmartMeter>();
+	List <SmartHome> shlist = new LinkedList<SmartHome>();
 	@Autowired
 	SmartMeterController(SmartMeterService sms, SmartHomeService shs){
 		this.sms = sms;
@@ -51,13 +53,19 @@ public class SmartMeterController {
 	@GetMapping(value = "/smart-meter-show")
 	@CrossOrigin("*") 
 	public List<SmartMeter> getSmartMeter(){
-		LinkedList <SmartMeter> smlist = new LinkedList<SmartMeter>();
+		smlist = sms.getSmartMeter();
+		shlist = shs.getSmartHome();
 		for(SmartMeter s : smlist) {
 //			s.setConsumedEnergyWithoutTariff(ShsApplication.consumedEnergyWithoutTariff);
 //			s.setConsumedEnergyWithTariff(ShsApplication.consumedEnergyWithTariff);
 //			s.setProducedEnergy(ShsApplication.producedEnergy);
-			s.notifyme();
-			System.out.println("done");
+			for(SmartHome sh : shlist) {
+				s.setConsumedEnergyWithoutTariff(sh.getElectricityConsumedWithoutTariff());
+				s.setConsumedEnergyWithTariff(sh.getElectricityConsumedWithTariff());
+				s.setProducedEnergy(sh.getElectricityProduced());
+			}
+//			s.notifyme();
+//			System.out.println("done");
 			sms.update(s);
 		}
 		

@@ -50,7 +50,7 @@ public class HomeBattaryController {
 		public List<HomeBattary> getHomeBattary(){
 			LinkedList<HomeBattary> hblist = new LinkedList<HomeBattary>();
 			for( HomeBattary battary : hblist) {
-				if(battary.checkNeededElectricity() && ShsApplication.producedEnergy > 5) {
+				if(battary.checkNeededElectricity()/* && ShsApplication.producedEnergy > 5*/) {
 					battary.charging();
 				}else {
 					battary.setCharging(false);

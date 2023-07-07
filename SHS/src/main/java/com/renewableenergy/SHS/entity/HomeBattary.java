@@ -58,7 +58,7 @@ public class HomeBattary {
 	
 	public void charging() {
 		this.charging = true;
-		ShsApplication.producedEnergy -= 5;
+		//ShsApplication.producedEnergy -= 5;
 		this.realtimeCapacity += 5;
 	}
 	

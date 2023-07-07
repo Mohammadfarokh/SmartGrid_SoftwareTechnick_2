@@ -133,7 +133,6 @@ public class EnergyConsumerController {
 	    return true;
 	}
 	@PutMapping("/variabel-consumer-update")
-	 @CrossOrigin("*") 
 	  public boolean updateVariabelConsumer(@RequestBody EnergyConsumer request){
 		 try {
 			 vcs.update(request);

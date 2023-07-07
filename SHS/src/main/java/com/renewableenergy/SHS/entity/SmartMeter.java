@@ -41,7 +41,7 @@ public class SmartMeter implements Observer {
 		this.producedEnergy = 0;
 		this.consumedEnergyWithoutTariff = 0;
 		this.consumedEnergyWithoutTariff = 0;
-		ShsApplication.sh.attach(this);
+		//ShsApplication.sh.attach(this);
 		//ShsApplication.sh.notifyObserver();
 	}
 	

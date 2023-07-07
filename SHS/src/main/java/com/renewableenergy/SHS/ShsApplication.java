@@ -19,15 +19,15 @@ import com.renewableenergy.SHS.service.SmartMeterService;
 public class ShsApplication {
 	public static SmartMeter sm;
 	public static SmartHome sh;
-	public static double producedEnergy;
-	public static double consumedEnergyWithTariff;
-	public static double consumedEnergyWithoutTariff;
+//	public static double producedEnergy;
+//	public static double consumedEnergyWithTariff;
+//	public static double consumedEnergyWithoutTariff;
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context =SpringApplication.run(ShsApplication.class, args);
-		producedEnergy = 10;
-		consumedEnergyWithTariff = 10;
-		consumedEnergyWithoutTariff = 10;
+//		producedEnergy = 10;
+//		consumedEnergyWithTariff = 10;
+//		consumedEnergyWithoutTariff = 10;
 		SmartHomeService shs = context.getBean(SmartHomeService.class);
 		sh = new SmartHome("smartHome", "Dortmund");
 		//add construktor for smarthome
@@ -38,8 +38,8 @@ public class ShsApplication {
 //		System.out.println(producedEnergy);
 //		System.out.println(consumedEnergyWithTariff);
 //		System.out.println(consumedEnergyWithoutTariff);
-		sh.druckObserver();
-		sh.attach(sm);
+//		sh.druckObserver();
+//		sh.attach(sm);
 //		while(true) {
 //			sh.notifyObserver();
 //		}

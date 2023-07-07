@@ -42,11 +42,11 @@ public class SmartHome extends Observabel{
 	private long id;
 	private String name;
 	private String location;
-	private double electricityConsumed;
+	//private double electricityConsumed;
 	private double electricityConsumedWithoutTariff;
 	private double electricityConsumedWithTariff;
 	private double electricityProduced;
-	private double realtimeCapasity;
+	//private double realtimeCapasity;
 	private LinkedList<Observer> observerlist = new LinkedList<Observer>();
 //	@OneToMany
 //	Set<HomeBattary> homebattarylist;
@@ -66,11 +66,11 @@ public class SmartHome extends Observabel{
 	public SmartHome(String name,String location) {
 		this.name = name;
 		this.location = location;
-		this.electricityConsumed = 10;
-		this.electricityConsumedWithoutTariff = 10;
-		this.electricityConsumedWithTariff=10;
-		this.electricityProduced = 10;
-		this.realtimeCapasity = 10;
+		//this.electricityConsumed = 10;
+		this.electricityConsumedWithoutTariff = 0;
+		this.electricityConsumedWithTariff=0;
+		this.electricityProduced = 0;
+		//this.realtimeCapasity = 10;
 //		this.homebattarylist = new HashSet<>();
 //		this.energyproducerlist = new HashSet<>();
 //		this.energyconsumerlist = new HashSet<>();
@@ -93,9 +93,9 @@ public class SmartHome extends Observabel{
 	public void addToElectricityConsumedWithoutTariff(double num) {
 		this.electricityConsumedWithoutTariff += num;
 	}
-	public void addToElectricityConsumed(double num) {
-		this.electricityConsumed += num;
-	}
+//	public void addToElectricityConsumed(double num) {
+//		this.electricityConsumed += num;
+//	}
 	public long getId() {
 		return id;
 	}
@@ -114,12 +114,12 @@ public class SmartHome extends Observabel{
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public double getelectricityConsumed() {
-		return electricityConsumed;
-	}
-	public void setelectricityConsumed(double electricityConsumed) {
-		this.electricityConsumed = electricityConsumed;
-	}
+//	public double getelectricityConsumed() {
+//		return electricityConsumed;
+//	}
+//	public void setelectricityConsumed(double electricityConsumed) {
+//		this.electricityConsumed = electricityConsumed;
+//	}
 	
 	public double getElectricityConsumedWithoutTariff() {
 		return electricityConsumedWithoutTariff;
@@ -139,12 +139,12 @@ public class SmartHome extends Observabel{
 	public void setElectricityProduced(double electricityProduced) {
 		this.electricityProduced = electricityProduced;
 	}
-	public double getRealtimeCapasity() {
-		return realtimeCapasity;
-	}
-	public void setRealtimeCapasity(double realtimeCapasity) {
-		this.realtimeCapasity = realtimeCapasity;
-	}
+//	public double getRealtimeCapasity() {
+//		return realtimeCapasity;
+//	}
+//	public void setRealtimeCapasity(double realtimeCapasity) {
+//		this.realtimeCapasity = realtimeCapasity;
+//	}
 //	public Set<HomeBattary> getHomebattarylist() {
 //		return homebattarylist;
 //	}
@@ -171,10 +171,10 @@ public class SmartHome extends Observabel{
 //	}
 	@Override
 	public String toString() {
-		return "SmartHome [id=" + id + ", name=" + name + ", location=" + location + ", electricityConsumed="
-				+ electricityConsumed + ", electricityConsumedWithoutTariff=" + electricityConsumedWithoutTariff
+		return "SmartHome [id=" + id + ", name=" + name + ", location=" + location +/* ", electricityConsumed="
+				+ electricityConsumed + */", electricityConsumedWithoutTariff=" + electricityConsumedWithoutTariff
 				+ ", electricityConsumedWithTariff=" + electricityConsumedWithTariff + ", electricityProduced="
-				+ electricityProduced + ", realtimeCapasity=" + realtimeCapasity +/* ", homebattarylist="
+				+ electricityProduced +/* ", realtimeCapasity=" + realtimeCapasity + ", homebattarylist="
 				+ homebattarylist + ", energyproducerlist=" + energyproducerlist + ", energyconsumerlist="
 				+ energyconsumerlist +  ", smartmeter="+ smartmeter + */"]";
 	}
