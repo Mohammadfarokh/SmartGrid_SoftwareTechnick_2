@@ -1,12 +1,13 @@
 .bereich {
   display:flex ;
 
-
+  font-size: larger;
    justify-content: flex-end;
 
  }
  .bereich a{
    margin: 1.5%;
+  
  }
    .logo{
      display: flex;
@@ -24,11 +25,12 @@
  }
  img{
    margin-right: 5%;
-   width: 50%;
-   height: 30%;
+   width: 20%;
+   height: 5%;
  }
  body{
   background: linear-gradient(to bottom, #ffffff, #196d95);
+  
 }
 .table-container {
   display: flex;

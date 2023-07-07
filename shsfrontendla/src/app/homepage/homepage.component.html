@@ -1,47 +1,45 @@
 <div class="box-container">
     <h1>SmartMeter</h1>
     <div class="box">
-      <h3>consumptionWithTariff:{{ SmartMeter[0]?.consumedEnergyWithTariff }}</h3>
+      
+      <h3>consumptionWithTariff: {{ SmartMeter[0]?.consumedEnergyWithTariff }}</h3>
     </div>
 
     <div class="box">
-      <h3>production:{{SmartMeter[0]?.producedEnergy}}</h3>
+      <h3>production: {{SmartMeter[0]?.producedEnergy}}</h3>
     </div>
     <div class="box">
-      <h3>consumptionWithoutTariff:{{SmartMeter[0]?.consumedEnergyWithoutTariff}}</h3>
+      <h3>consumptionWithoutTariff: {{SmartMeter[0]?.consumedEnergyWithoutTariff}}</h3>
     </div>
 
   </div>
   <div class="table-container">
     <table class="table">
-      <caption>Battery</caption>
+      <caption><b>Battery</b></caption>
       <thead>
         <tr>
           <th>name</th>
           <th>capacity</th>
-          <th>Status</th>
+          
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let battery of Batteries">
           <td>{{ battery.name }}</td>
           <td>{{ battery.realtimeCapacity }}</td>
-          <td>
-            <button  #buttonCell id="batteryButton"(click)="updateBattery(battery)">{{ battery.status ? 'On' : 'Off' }}</button>
-          </td>
         </tr>
       </tbody>
     </table>
 
 
-      <table>
+      <table class="table">
         <caption><b> Consumer</b></caption>
         <thead>
           <tr>
             <th>id</th>
             <th>Name</th>
             <th>consumedElectrecity</th>
-            <th>Status</th>
+            
             <th>type</th>
           </tr>
         </thead>
@@ -50,9 +48,6 @@
             <td>{{ Consumer.id }}</td>
             <td>{{ Consumer.name }}</td>
             <td>{{ Consumer.totalConsume }}</td>
-            <td>
-              <button id="StandardConsumerButton"(click)="updateConsumers(Consumer)">{{ Consumer.status ? 'On' : 'Off' }}</button>
-            </td>
             <td>{{ Consumer.type }}</td>
         </tr>
         </tbody>
@@ -60,14 +55,14 @@
 
       
 
-      <table>
+      <table class="table">
         <caption><b>Solar Panel</b></caption>
         <thead>
           <tr>
             <th>Name</th>
             <th>MaxOutput</th>
             <th>produce</th>
-            <th>Status</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -75,13 +70,10 @@
             <td>{{ SolarPanel.name }}</td>
             <td>{{ SolarPanel.maxOutput }}</td>
             <td>{{ SolarPanel.totalProduce }}</td>
-            <td>
-              <button id="SolarPanelButton"(click)="updateSolarpanel(SolarPanel)">{{ SolarPanel.status ? 'On' : 'Off' }}</button>
-            </td>
         </tr>
         </tbody>
       </table>
-      <table>
+      <table class="table">
         <caption><b>Turbine</b></caption>
         <thead>
           <tr>
@@ -89,7 +81,7 @@
             <th>Max-Output</th>
             <th>wind_speed</th>
             <th>produce</th>
-            <th>Status</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -98,9 +90,6 @@
             <td>{{ Turbine.maxOutput }}</td>
             <td>{{ Turbine.wind_speed }}</td>
             <td>{{ Turbine.totalProduce }}</td>
-            <td>
-              <button id="TurbineButton"(click)="updateTurbine(Turbine)">{{ Turbine.status ? 'On' : 'Off' }} </button>
-            </td>
         </tr>
         </tbody>
       </table>

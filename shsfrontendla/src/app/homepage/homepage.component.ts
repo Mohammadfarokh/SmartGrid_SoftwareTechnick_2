@@ -11,7 +11,7 @@ import { interval } from 'rxjs';
   styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
-  SmartMeter!:any[];
+  SmartMeter!:any[]| [];
   Batteries:any[]| undefined;
   Consumers:any[] | undefined;
   
@@ -21,12 +21,33 @@ export class HomepageComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-/*    this.ConsumptionProductionValue();*/
+/*    
     this.getAddedBatterys();
     this.getAddedSolarPanels();
     this.getAddedTurbines();
     this.getAddedConsumers();
     this.getSmartMeterInfos();
+    */
+    setInterval(() => {
+      this.getAddedSolarPanels();
+    }, 2000);
+
+     setInterval(() => {
+     this.getAddedTurbines();
+     }, 2500);
+
+    setInterval(() => {
+     this.getSmartMeterInfos();
+     }, 2000);
+
+    setInterval(() => {
+     this.getAddedConsumers();
+    }, 2500);  
+
+    setInterval(() => {
+     this.getAddedBatterys();
+    }, 2500);
+    
     
   }
   getSmartMeterInfos() {

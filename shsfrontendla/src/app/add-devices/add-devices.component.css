@@ -5,8 +5,9 @@
   .box {
     padding: 10px;
     margin: 10px;
-    border: 1px solid #ccc;
-    box-sizing: border-box; /* Add this line */
+    border: 1px solid #090909;
+    box-sizing: border-box; 
+    
   }
   
   .box label {
@@ -18,13 +19,14 @@
     width: 100%;
     padding: 5px;
     margin-bottom: 10px;
-    box-sizing: border-box; /* Add this line */
+    box-sizing: border-box; 
   }
   
   .box select {
     width: 100%;
+
     padding: 5px;
     margin-bottom: 10px;
-    box-sizing: border-box; /* Add this line */
+    box-sizing: border-box; 
   }
   
