@@ -81,15 +81,26 @@ updateSmartgridData(SmartgridData: any) {
 
 //Difference
 calculateAdjustedConsumed(): number {
+<<<<<<< HEAD
   if (this.batteries && this.batteries.length > 0) {
   const b1 = this.batteries[0]?.saveAmount ;
   const b2 = this.batteries[1]?.saveAmount ;
      
     return b1 + b2 ;
+=======
+  let erg=0;
+  if(this.batteries){
+  for(let i=0; i<this.batteries?.length ; i++){
+    erg+=this.batteries[i]?.saveAmount;
+  }
+  return erg;
+}else{
+    return erg ;
+  }
+}
 
-}
-return 0;
-}
+>>>>>>> b97331f9c8cdc04370207b9a760fdc4dd9b030fc
+
 
   // Solarpanell
   getAllSolarPanels() {
