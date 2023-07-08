@@ -84,7 +84,7 @@ calculateAdjustedConsumed(): number {
   if (this.batteries && this.batteries.length > 0) {
   const b1 = this.batteries[0]?.saveAmount ;
   const b2 = this.batteries[1]?.saveAmount ;
- 
+     
     return b1 + b2 ;
 
 }
