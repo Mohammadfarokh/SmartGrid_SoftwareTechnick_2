@@ -63,7 +63,7 @@ public class HomeBattary {
 	}
 	
 	public boolean checkNeededElectricity() {
-		return this.maxCapacity > this.realtimeCapacity;
+		return realtimeCapacity<maxCapacity;
 	}
 
 	public long getId() {
