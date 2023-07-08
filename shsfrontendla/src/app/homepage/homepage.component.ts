@@ -21,38 +21,39 @@ export class HomepageComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-/*    
-    this.getAddedBatterys();
-    this.getAddedSolarPanels();
-    this.getAddedTurbines();
-    this.getAddedConsumers();
-    this.getSmartMeterInfos();
-    */
+   
+  
+    
+    
+    
     setInterval(() => {
       this.getAddedSolarPanels();
     }, 2000);
 
      setInterval(() => {
      this.getAddedTurbines();
+     }, 2000);
+     setInterval(() => {
+      this.getAddedConsumers();
+     }, 2500);  
+ 
+     setInterval(() => {
+      this.getAddedBatterys();
      }, 2500);
-
     setInterval(() => {
      this.getSmartMeterInfos();
      }, 2000);
-
     setInterval(() => {
-     this.getAddedConsumers();
-    }, 2500);  
-
-    setInterval(() => {
-     this.getAddedBatterys();
-    }, 2500);
-    
+      this.check();
+     }, 2500);
+     
+     
     
   }
   getSmartMeterInfos() {
-    this.http.get<any[]>('http://localhost:9595/api/v1/smart-meter/smart-meter-show').subscribe({
+    this.http.get<any[]>('http://localhost:9595/api/v1/smart-home/smart-meter-show').subscribe({
       next: (response: any[]) => {
+
         this.SmartMeter = response;
       },
       error: (error: any) => {
@@ -69,6 +70,7 @@ updateSmartMeterData(SmartMeterData: any) {
     this.http.get<any[]>('http://localhost:9595/api/v1/home-battary/home-battary-show').subscribe({
       next: (response: any[]) => {
         this.Batteries = response;
+        console.log("IAM HERE BATTERY");
       },
       error: (error: any) => {
         console.log('Error fetching Batterys:', error);
@@ -163,6 +165,13 @@ updateSmartMeterData(SmartMeterData: any) {
           console.error('Error updating solarpanel:', error);
         }
       });
+  }
+  
+  check()
+  {
+    if(this.SmartMeter[0]?.electricityConsumedWithoutTariff>this.SmartMeter[0]?.electricityProduced){
+      alert("Strom wird von SGS gefördert");
+    }
   }
 
 }

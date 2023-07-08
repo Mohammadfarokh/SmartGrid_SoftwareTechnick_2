@@ -2,15 +2,13 @@
     <h1>SmartMeter</h1>
     <div class="box">
       
-      <h3>consumptionWithTariff: {{ SmartMeter[0]?.consumedEnergyWithTariff }}</h3>
+      <h3>consumption: {{ SmartMeter[0]?.electricityConsumedWithoutTariff }}</h3>
     </div>
 
     <div class="box">
-      <h3>production: {{SmartMeter[0]?.producedEnergy}}</h3>
+      <h3>production: {{SmartMeter[0]?.electricityProduced}}</h3>
     </div>
-    <div class="box">
-      <h3>consumptionWithoutTariff: {{SmartMeter[0]?.consumedEnergyWithoutTariff}}</h3>
-    </div>
+    
 
   </div>
   <div class="table-container">
@@ -19,13 +17,14 @@
       <thead>
         <tr>
           <th>name</th>
+          <th>maxcapacity</th>
           <th>capacity</th>
-          
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let battery of Batteries">
           <td>{{ battery.name }}</td>
+          <td>{{ battery.maxCapacity }}</td>
           <td>{{ battery.realtimeCapacity }}</td>
         </tr>
       </tbody>
@@ -79,7 +78,6 @@
           <tr>
             <th>Name</th>
             <th>Max-Output</th>
-            <th>wind_speed</th>
             <th>produce</th>
             
           </tr>
@@ -88,7 +86,6 @@
           <tr *ngFor="let Turbine of Turbines">
             <td>{{ Turbine.name }}</td>
             <td>{{ Turbine.maxOutput }}</td>
-            <td>{{ Turbine.wind_speed }}</td>
             <td>{{ Turbine.totalProduce }}</td>
         </tr>
         </tbody>
