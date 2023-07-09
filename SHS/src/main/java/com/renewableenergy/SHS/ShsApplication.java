@@ -2,6 +2,7 @@ package com.renewableenergy.SHS;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,13 +11,17 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import com.renewableenergy.SHS.MQTT.MqttSubscriberImpl;
 import com.renewableenergy.SHS.entity.SmartHome;
 import com.renewableenergy.SHS.entity.SmartMeter;
 import com.renewableenergy.SHS.service.SmartHomeService;
 import com.renewableenergy.SHS.service.SmartMeterService;
 
+
 @SpringBootApplication
 public class ShsApplication {
+	@Autowired
+	static MqttSubscriberImpl subscriber;
 	public static SmartMeter sm;
 	public static SmartHome sh;
 //	public static double producedEnergy;
@@ -35,6 +40,10 @@ public class ShsApplication {
 		SmartMeterService sms = context.getBean(SmartMeterService.class);
 		sm = new SmartMeter("SmartMeter");
 		sms.addSmartMeterObjekt(sm);
+		 subscriber = new MqttSubscriberImpl();
+	        while(true) {
+					subscriber.subscribeMessage("weather");
+	        }
 //		System.out.println(producedEnergy);
 //		System.out.println(consumedEnergyWithTariff);
 //		System.out.println(consumedEnergyWithoutTariff);
