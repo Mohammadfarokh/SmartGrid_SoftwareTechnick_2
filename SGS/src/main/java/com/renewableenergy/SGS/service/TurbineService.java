@@ -1,8 +1,10 @@
-package com.renewableenergy.SGS;
+package com.renewableenergy.SGS.service;
 
 import java.util.*;
 import java.util.Optional.*;
 import  com.renewableenergy.SGS.exception.*;
+import com.renewableenergy.SGS.repository.TurbineRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

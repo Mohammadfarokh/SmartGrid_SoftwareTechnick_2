@@ -1,10 +1,8 @@
-package com.renewableenergy.SGS;
+package com.renewableenergy.SGS.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-
 import com.renewableenergy.SGS.entity.Battary;
-import com.renewableenergy.SGS.entity.Solarpanel;
+
 
 public interface BattaryRepository extends JpaRepository<Battary,Long> {
 	

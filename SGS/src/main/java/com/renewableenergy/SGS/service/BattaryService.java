@@ -1,4 +1,4 @@
-package com.renewableenergy.SGS;
+package com.renewableenergy.SGS.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SGS.entity.Battary;
 import com.renewableenergy.SGS.entity.Solarpanel;
+import com.renewableenergy.SGS.repository.BattaryRepository;
 
 import jakarta.transaction.Transactional;
 

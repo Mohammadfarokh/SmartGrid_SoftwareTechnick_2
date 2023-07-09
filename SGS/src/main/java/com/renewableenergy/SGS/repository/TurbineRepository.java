@@ -1,4 +1,4 @@
-package com.renewableenergy.SGS;
+package com.renewableenergy.SGS.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

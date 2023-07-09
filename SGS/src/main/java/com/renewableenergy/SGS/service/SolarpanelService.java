@@ -1,4 +1,4 @@
-package com.renewableenergy.SGS;
+package com.renewableenergy.SGS.service;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.renewableenergy.SGS.entity.Solarpanel;
 import com.renewableenergy.SGS.entity.Turbine;
+import com.renewableenergy.SGS.repository.SolarpanelRepository;
 
 import jakarta.transaction.Transactional;
 
