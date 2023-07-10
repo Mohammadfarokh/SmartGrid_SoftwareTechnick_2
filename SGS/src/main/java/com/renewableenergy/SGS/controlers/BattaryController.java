@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.renewableenergy.SGS.BattaryService;
+
 import com.renewableenergy.SGS.SgsApplication;
 import com.renewableenergy.SGS.entity.Battary;
+import com.renewableenergy.SGS.service.BattaryService;
 
 @RestController
 @RequestMapping("/battery")

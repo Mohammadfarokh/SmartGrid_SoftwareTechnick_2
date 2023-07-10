@@ -1,7 +1,10 @@
-package com.renewableenergy.SGS;
+package com.renewableenergy.SGS.controlers;
 
+import com.renewableenergy.SGS.SgsApplication;
 import com.renewableenergy.SGS.API.WeatherAPIExample;
 import com.renewableenergy.SGS.entity.*;
+import com.renewableenergy.SGS.service.TurbineService;
+
 import java.util.List;
 import java.util.Random;
 
