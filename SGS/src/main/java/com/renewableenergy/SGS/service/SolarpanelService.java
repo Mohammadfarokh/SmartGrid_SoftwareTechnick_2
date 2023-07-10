@@ -18,6 +18,7 @@ public class SolarpanelService {
 
 	@Autowired
 	private final SolarpanelRepository solarpanelRepository;
+	
 	SolarpanelService(SolarpanelRepository solarpanelRepository) {
 		this.solarpanelRepository = solarpanelRepository;
 	}

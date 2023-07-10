@@ -48,7 +48,8 @@ public class HomeBattaryController {
 		@GetMapping(value = "/home-battary-show")
 		@CrossOrigin("*") 
 		public List<HomeBattary> getHomeBattary(){
-			LinkedList<HomeBattary> hblist = new LinkedList<HomeBattary>();
+			List<HomeBattary> hblist = new LinkedList<HomeBattary>();
+			hblist=hb.getBattary();
 			for( HomeBattary battary : hblist) {
 				if(battary.checkNeededElectricity()/* && ShsApplication.producedEnergy > 5*/) {
 					battary.charging();
