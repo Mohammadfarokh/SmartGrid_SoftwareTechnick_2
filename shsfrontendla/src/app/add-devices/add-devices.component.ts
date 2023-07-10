@@ -46,7 +46,7 @@ export class AddDevicesComponent implements OnInit {
      
     };
     
-    this.http.post('http://localhost:9595/api/v1/energy-consumer/standart-consumer-add', stansardconsumerData).subscribe({
+    this.http.post('http://localhost:8080/api/v1/energy-consumer/standart-consumer-add', stansardconsumerData).subscribe({
       next: (response) => {
         form1.reset();
         alert('Successfully added:');
@@ -64,7 +64,7 @@ export class AddDevicesComponent implements OnInit {
       consumedElectrecity: form4.value.consumedElectrecity,
       type:form4.value.type,
     };
-    this.http.post('http://localhost:9595/api/v1/energy-consumer/variabel-consumer-add', variableconsumerData).subscribe({
+    this.http.post('http://localhost:8080/api/v1/energy-consumer/variabel-consumer-add', variableconsumerData).subscribe({
       next: (response) => {
         form4.reset();
         alert('Successfully added:');
@@ -81,7 +81,7 @@ export class AddDevicesComponent implements OnInit {
       name: form2.value.name,
       maxCapacity: form2.value.maxCapacity,
     };
-    this.http.post('http://localhost:9595/api/v1/home-battary/home-battary-add', Batterydata).subscribe({
+    this.http.post('http://localhost:8080/api/v1/home-battary/home-battary-add', Batterydata).subscribe({
       next: (response) => {
         form2.reset();
         alert('Successfully added:');
@@ -108,7 +108,7 @@ export class AddDevicesComponent implements OnInit {
 
     // Add Turbine
     if(form3.value.type == "turbine"){
-    this.http.post('http://localhost:9595/api/v1/energy-producer/turbine-add', turbineData).subscribe({
+    this.http.post('http://localhost:8080/api/v1/energy-producer/turbine-add', turbineData).subscribe({
       next: (response) => {
         form3.reset();
         alert('Successfully added:');
@@ -123,7 +123,7 @@ export class AddDevicesComponent implements OnInit {
 
     // Add solarPanel
     else if(form3.value.type == "solarpanel"){
-      this.http.post('http://localhost:9595/api/v1/energy-producer/solar-panel-add', solarpanelData).subscribe({
+      this.http.post('http://localhost:8080/api/v1/energy-producer/solar-panel-add', solarpanelData).subscribe({
         next: (response) => {
           form3.reset();
           alert('Successfully added:');

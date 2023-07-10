@@ -51,7 +51,7 @@ export class HomepageComponent implements OnInit {
     
   }
   getSmartMeterInfos() {
-    this.http.get<any[]>('http://localhost:9595/api/v1/smart-home/smart-meter-show').subscribe({
+    this.http.get<any[]>('http://localhost:8080/api/v1/smart-home/smart-meter-show').subscribe({
       next: (response: any[]) => {
 
         this.SmartMeter = response;
@@ -63,11 +63,11 @@ export class HomepageComponent implements OnInit {
   }
   // updateSmartgrid URL soll noch hinzugefügt werden
 updateSmartMeterData(SmartMeterData: any) {
-  this.http.put<any>('http://localhost:9595/', SmartMeterData)
+  this.http.put<any>('http://localhost:8080/', SmartMeterData)
     .subscribe();
 }
   getAddedBatterys() {
-    this.http.get<any[]>('http://localhost:9595/api/v1/home-battary/home-battary-show').subscribe({
+    this.http.get<any[]>('http://localhost:8080/api/v1/home-battary/home-battary-show').subscribe({
       next: (response: any[]) => {
         this.Batteries = response;
         console.log("IAM HERE BATTERY");
@@ -80,7 +80,7 @@ updateSmartMeterData(SmartMeterData: any) {
   //URL SOLL NOCH BEARBEITET WERDEN --------------------------------------------------------------------------
   updateBattery(battery: any) {
     battery.status = !battery.status;
-    this.http.put<any>('http://localhost:9595/api/v1/home-battary-update', battery)
+    this.http.put<any>('http://localhost:8080/api/v1/home-battary-update', battery)
       .subscribe({
         next: response => {
           console.log('Solarpanel updated successfully:', response);
@@ -92,7 +92,7 @@ updateSmartMeterData(SmartMeterData: any) {
   }
   getAddedConsumers() {
     this.http
-      .get<any[]>('http://localhost:9595/api/v1/energy-consumer/consumer-show')
+      .get<any[]>('http://localhost:8080/api/v1/energy-consumer/consumer-show')
       .subscribe({
         next: respons => {
           console.log("IAM HEREEEEstandardconsumer");
@@ -106,7 +106,7 @@ updateSmartMeterData(SmartMeterData: any) {
   //URL SOLL NOCH Consumer WERDEN--------------------------------------------
   updateConsumers(Consumer: any) {
     Consumer.status = !Consumer.status;
-    this.http.put<any>('http://localhost:9595/api/v1/standart-consumer-update', Consumer)
+    this.http.put<any>('http://localhost:8080/api/v1/standart-consumer-update', Consumer)
       .subscribe({
         next:   response => {
           console.log('Solarpanel updated successfully:', response);
@@ -118,7 +118,7 @@ updateSmartMeterData(SmartMeterData: any) {
   }
  
   getAddedSolarPanels() {
-    this.http.get<any[]>('http://localhost:9595/api/v1/energy-producer/solar-panel-show').subscribe({
+    this.http.get<any[]>('http://localhost:8080/api/v1/energy-producer/solar-panel-show').subscribe({
       next: response=> {
         console.log("IAM HEREEEE");
        
@@ -132,7 +132,7 @@ updateSmartMeterData(SmartMeterData: any) {
 //URL SOLL NOCH SolarPanel WERDEN--------------------------------------------
   updateSolarpanel(solarpanel: any) {
     solarpanel.status = !solarpanel.status;
-    this.http.put<any>('http://localhost:9595/api/v1/solar-panel-update', solarpanel)
+    this.http.put<any>('http://localhost:8080/api/v1/solar-panel-update', solarpanel)
       .subscribe({
         next:   response => {
           console.log('Solarpanel updated successfully:', response);
@@ -143,7 +143,7 @@ updateSmartMeterData(SmartMeterData: any) {
   });
   }
   getAddedTurbines() {
-    this.http.get<any[]>('http://localhost:9595/api/v1/energy-producer/turbine-show').subscribe({
+    this.http.get<any[]>('http://localhost:8080/api/v1/energy-producer/turbine-show').subscribe({
       next: response => {
         console.log("IAM HEREEEETURBINE");
         this.Turbines = response;
@@ -156,7 +156,7 @@ updateSmartMeterData(SmartMeterData: any) {
   //URL SOLL NOCH BEARBEITET WERDEN --------------------------------------------------------------------------
   updateTurbine(turbine: any) {
     turbine.status = !turbine.status;
-    this.http.put<any>('http://localhost:9595/api/v1/turbine-update', turbine)
+    this.http.put<any>('http://localhost:8080/api/v1/turbine-update', turbine)
       .subscribe({
         next: response => {
           console.log('Solarpanel updated successfully:', response);
