@@ -26,6 +26,8 @@ public class MqttSubscriberImpl extends MqttConfig implements MqttCallback {
     private MemoryPersistence persistence = null;
 
     private static final Logger logger = LoggerFactory.getLogger(MqttSubscriberImpl.class);
+    
+    public static WeatherData weatherdata;
 
     public MqttSubscriberImpl() {
         logger.info("Initializing Connection");
@@ -85,11 +87,13 @@ public class MqttSubscriberImpl extends MqttConfig implements MqttCallback {
                 + new String(mqttMessage.getPayload()));
         System.out.println("***********************************************************************");
         Gson gson = new Gson();
-        WeatherData weatherdata;
+       
         String s = new String(mqttMessage.getPayload(), StandardCharsets.UTF_8);
         //System.out.println(s);
        weatherdata = gson.fromJson(s,WeatherData.class);
        System.out.println(weatherdata.toString());
+       System.out.println(weatherdata.getSunRiseConv());
+       System.out.println(weatherdata.getSunSetConv());
        //give the new Values to the services from SolarPanel usw.
     }
     @Override

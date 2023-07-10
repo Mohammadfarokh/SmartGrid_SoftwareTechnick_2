@@ -9,8 +9,8 @@ import WeatherPortal.WeatherPortal.service.WeatherService;
 
 public class Scheduler {
 	 Timer timer;
-	 int delay = 5000 * 60;   // delay for 5 sec.
-	 int period = 5000 * 60; 
+	 int delay = 5000;   // delay for 5 sec.
+	 int period = 5000 * 100; 
 	 WeatherService service = new WeatherService();
 
 	    public Scheduler() {

@@ -21,7 +21,7 @@ public class HomeTurbine {
 	}
 	//@SuppressWarnings("deprecation")
 	public void addHomeTurbine(String name) {
-		EnergyProducerinHome v1 = new EnergyProducerinHome(name, 0 );
+		EnergyProducerinHome v1 = new EnergyProducerinHome(name, 0.0 );
 		//v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
 	}

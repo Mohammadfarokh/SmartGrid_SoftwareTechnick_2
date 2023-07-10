@@ -24,7 +24,7 @@ public class HomeSolarPanel{
 	//@SuppressWarnings("deprecation")
 	public void addHomeSolarPanel(String name) {
 		//
-		EnergyProducerinHome v1 = new EnergyProducerinHome(name, null, null);
+		EnergyProducerinHome v1 = new EnergyProducerinHome(name);
 		//v1.setSmarthome(shr.getById(id_smartHome));
 		this.epihr.save(v1);
 	}

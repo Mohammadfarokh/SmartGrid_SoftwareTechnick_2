@@ -5,6 +5,8 @@ import java.util.Random;
 //import java.util.Set;
 
 import com.renewableenergy.SHS.ShsApplication;
+import com.renewableenergy.SHS.MQTT.MqttSubscriberImpl;
+import com.renewableenergy.SHS.Models.WeatherData;
 import com.renewableenergy.SHS.entity.SmartHome;
 
 import jakarta.persistence.Entity;
@@ -38,21 +40,22 @@ public class EnergyProducerinHome {
 	private LocalDateTime sunrise;
 	private LocalDateTime sunset;
 	private double wind_speed;
+	private double cloud_pct;
 	private String type;
 //	@ManyToOne
 //	SmartHome smarthome;
 	public EnergyProducerinHome() {
 	}
-	public EnergyProducerinHome(String name, LocalDateTime sunrise, LocalDateTime sunset) {
+	public EnergyProducerinHome(String name) {
 		this.name = name;
 		this.status = true;
 		this.consumedElectrecity = 0;
 		this.producedElectrecity = 0;
 		this.realtimeCapacity = 0;
 		this.maxOutput = 100;
-		calculateSunrise();
-		calculateSunset();
-		this.sunset = sunset;
+		this.sunrise = MqttSubscriberImpl.weatherdata.getSunRiseConv();
+		this.sunset = MqttSubscriberImpl.weatherdata.getSunSetConv();
+		this.cloud_pct = MqttSubscriberImpl.weatherdata.getCloud_pct();
 		this.wind_speed = 0;
 		this.consume = 10;
 		this.efficiency = 0;
@@ -69,7 +72,8 @@ public class EnergyProducerinHome {
 		this.maxOutput = 500;
 		this.sunrise = null;
 		this.sunset = null;
-		calculateWindspeed();
+		this.cloud_pct = 0;
+		this.wind_speed = MqttSubscriberImpl.weatherdata.getWind_speed();
 		this.consume = 50;
 		this.efficiency = 0;
 		this.type = "turbine";
@@ -78,8 +82,8 @@ public class EnergyProducerinHome {
 	}
 	
 	public double calculateProducSolarPanel() {
-		this.totalProduce += maxOutput;
-		return this.maxOutput;
+		this.totalProduce += ((maxOutput * cloud_pct) / 100);
+		return ((maxOutput * cloud_pct) / 100);
 //		if (ShsApplication.producedEnergy == 0) {
 //			ShsApplication.producedEnergy = maxOutput;
 //		}else {
@@ -88,13 +92,13 @@ public class EnergyProducerinHome {
 	}
 	
 	public double calculateProducTurbine() {
-		this.totalProduce += maxOutput * 2;
+		this.totalProduce += ((maxOutput * wind_speed) /100);
 //		if (ShsApplication.producedEnergy == 0) {
 //			ShsApplication.producedEnergy = maxOutput * 2;
 //		}else {
 //			ShsApplication.producedEnergy += maxOutput * 2;
 //		}
-		return this.maxOutput * 2;
+		return ((maxOutput * wind_speed) /100);
 	}
 	
 	public void calculateSunrise() {
@@ -138,6 +142,13 @@ public class EnergyProducerinHome {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public double getCloud_pct() {
+		return cloud_pct;
+	}
+	public void setCloud_pct(double cloud_pct) {
+		this.cloud_pct = cloud_pct;
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
