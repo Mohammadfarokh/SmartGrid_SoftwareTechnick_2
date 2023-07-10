@@ -43,6 +43,7 @@ public class ShsApplication {
 		 subscriber = new MqttSubscriberImpl();
 	        while(true) {
 					subscriber.subscribeMessage("weather");
+					subscriber.subscribeMessage("Tarif");
 	        }
 //		System.out.println(producedEnergy);
 //		System.out.println(consumedEnergyWithTariff);

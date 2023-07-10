@@ -81,6 +81,9 @@ public class MqttSubscriberImpl extends MqttConfig implements MqttCallback {
     // Handle message arrival form MQTT side, not from cosumer side.
     @Override
     public void messageArrived(String mqttTopic, MqttMessage mqttMessage) throws Exception {
+    	if(mqttTopic.equals("weather")) {
+    		
+    	
         String time = new Timestamp(System.currentTimeMillis()).toString();
         System.out.println("***********************************************************************");
         System.out.println("Message Arrived at Time: " + time + "  Topic: " + mqttTopic + "  Message: "
@@ -95,6 +98,14 @@ public class MqttSubscriberImpl extends MqttConfig implements MqttCallback {
        System.out.println(weatherdata.getSunRiseConv());
        System.out.println(weatherdata.getSunSetConv());
        //give the new Values to the services from SolarPanel usw.
+    	}else {
+    		 //Tarif message
+            String time = new Timestamp(System.currentTimeMillis()).toString();
+                 System.out.println("***********************************************************************");
+                 System.out.println("Message Arrived at Time: " + time + "  Topic: " + mqttTopic + "  Message: "
+                         + new String(mqttMessage.getPayload()));
+                 System.out.println("***********************************************************************");
+    	}
     }
     @Override
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
