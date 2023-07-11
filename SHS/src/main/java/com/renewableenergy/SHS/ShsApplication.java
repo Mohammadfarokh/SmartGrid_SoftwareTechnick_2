@@ -40,6 +40,7 @@ public class ShsApplication {
 		SmartMeterService sms = context.getBean(SmartMeterService.class);
 		sm = new SmartMeter("SmartMeter");
 		sms.addSmartMeterObjekt(sm);
+		sh.attach(sm);
 		 subscriber = new MqttSubscriberImpl();
 	        while(true) {
 					subscriber.subscribeMessage("weather");
@@ -49,7 +50,7 @@ public class ShsApplication {
 //		System.out.println(consumedEnergyWithTariff);
 //		System.out.println(consumedEnergyWithoutTariff);
 //		sh.druckObserver();
-//		sh.attach(sm);
+
 //		while(true) {
 //			sh.notifyObserver();
 //		}
