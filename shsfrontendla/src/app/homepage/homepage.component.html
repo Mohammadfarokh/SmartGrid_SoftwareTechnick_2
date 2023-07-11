@@ -38,8 +38,8 @@
             <th>id</th>
             <th>Name</th>
             <th>consumedElectrecity</th>
-            
             <th>type</th>
+            <th>tariff</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +48,7 @@
             <td>{{ Consumer.name }}</td>
             <td>{{ Consumer.totalConsume }}</td>
             <td>{{ Consumer.type }}</td>
+            <td>{{ Consumer.tariff }}</td>
         </tr>
         </tbody>
       </table>
@@ -61,7 +62,9 @@
             <th>Name</th>
             <th>MaxOutput</th>
             <th>produce</th>
-            
+            <th>sunrise</th>
+            <th>sunset</th>
+            <th>cloud_pct</th>
           </tr>
         </thead>
         <tbody>
@@ -69,7 +72,12 @@
             <td>{{ SolarPanel.name }}</td>
             <td>{{ SolarPanel.maxOutput }}</td>
             <td>{{ SolarPanel.totalProduce }}</td>
-        </tr>
+            <td>{{ SolarPanel.sunrise }}</td>
+            <td>{{ SolarPanel.sunset }}</td>
+            <td>{{ SolarPanel.cloud_pct }}</td>
+
+
+          </tr>
         </tbody>
       </table>
       <table class="table">
@@ -79,13 +87,15 @@
             <th>Name</th>
             <th>Max-Output</th>
             <th>produce</th>
-            
+            <th>wind_speed</th>
+
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let Turbine of Turbines">
             <td>{{ Turbine.name }}</td>
             <td>{{ Turbine.maxOutput }}</td>
+            <td>{{ Turbine.wind_speed }}</td>
             <td>{{ Turbine.totalProduce }}</td>
         </tr>
         </tbody>

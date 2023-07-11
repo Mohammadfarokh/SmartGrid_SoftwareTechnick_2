@@ -43,9 +43,9 @@ export class HomepageComponent implements OnInit {
     setInterval(() => {
      this.getSmartMeterInfos();
      }, 2000);
-    setInterval(() => {
+   
       this.check();
-     }, 2500);
+    
      
      
     
