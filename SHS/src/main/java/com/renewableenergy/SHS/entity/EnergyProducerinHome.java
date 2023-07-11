@@ -52,7 +52,7 @@ public class EnergyProducerinHome {
 		this.consumedElectrecity = 0;
 		this.producedElectrecity = 0;
 		this.realtimeCapacity = 0;
-		this.maxOutput = 100;
+		this.maxOutput = 500;
 		this.sunrise = MqttSubscriberImpl.weatherdata.getSunRiseConv();
 		this.sunset = MqttSubscriberImpl.weatherdata.getSunSetConv();
 		this.cloud_pct = MqttSubscriberImpl.weatherdata.getCloud_pct();
@@ -69,7 +69,7 @@ public class EnergyProducerinHome {
 		this.consumedElectrecity = 0;
 		this.producedElectrecity = 0;
 		this.realtimeCapacity = 0;
-		this.maxOutput = 500;
+		this.maxOutput =1000;
 		this.sunrise = null;
 		this.sunset = null;
 		this.cloud_pct = 0;
