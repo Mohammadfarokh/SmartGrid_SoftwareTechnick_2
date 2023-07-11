@@ -5,6 +5,7 @@ import java.util.Random;
 //import java.util.Set;
 
 import com.renewableenergy.SHS.ShsApplication;
+import com.renewableenergy.SHS.MQTT.MqttSubscriberImpl;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class EnergyConsumer {
 	private String name;
 	private double consumedElectrecity;
 	private double totalConsume;
+	private String tariff;
 //	public enum Status{
 //		ON,
 //		OFF,
@@ -43,6 +45,7 @@ public class EnergyConsumer {
 			this.name = name;
 			this.consumedElectrecity = consumedElectrecity;
 			this.totalConsume = 0;
+			this.tariff = MqttSubscriberImpl.tariff != null ? MqttSubscriberImpl.tariff : "not defined";
 	}
 	public double calculateConsumeStandart() {
 		this.totalConsume += consumedElectrecity;
@@ -103,7 +106,14 @@ public class EnergyConsumer {
 	public void setMystatus(String mystatus) {
 		this.mystatus = mystatus;
 	}
-//	public SmartHome getSmarthome() {
+	
+    public String getTariff() {
+		return tariff;
+	}
+	public void setTariff(String tariff) {
+		this.tariff = tariff;
+	}
+	//	public SmartHome getSmarthome() {
 //		return smarthome;
 //	}
 //	public void setSmarthome(SmartHome smarthome) {

@@ -28,6 +28,7 @@ public class MqttSubscriberImpl extends MqttConfig implements MqttCallback {
     private static final Logger logger = LoggerFactory.getLogger(MqttSubscriberImpl.class);
     
     public static WeatherData weatherdata;
+    public static String tariff; 
 
     public MqttSubscriberImpl() {
         logger.info("Initializing Connection");
@@ -105,6 +106,8 @@ public class MqttSubscriberImpl extends MqttConfig implements MqttCallback {
                  System.out.println("Message Arrived at Time: " + time + "  Topic: " + mqttTopic + "  Message: "
                          + new String(mqttMessage.getPayload()));
                  System.out.println("***********************************************************************");
+                 tariff= new String(mqttMessage.getPayload(), StandardCharsets.UTF_8);
+                 System.out.println(tariff);
     	}
     }
     @Override
