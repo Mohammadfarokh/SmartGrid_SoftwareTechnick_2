@@ -12,15 +12,16 @@ import org.springframework.web.filter.*;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.renewableenergy.SGS.service.*;
-import com.renewableenergy.SGS.Mqtt.MqttSubscriberImpl;
-import com.renewableenergy.SGS.Mqtt.schedualtask;
+
+import congif.Scheduler;
+
 
 
 
 @SpringBootApplication
 public class SgsApplication {
 	@Autowired
-    MqttSubscriberImpl subscriber;
+    
 	public static double electrecity_incoming = 0 ;
 	
 	public static double electricity_producedv ;
@@ -29,17 +30,18 @@ public class SgsApplication {
 	
 	public static void main(String[] args) {
 
-        SpringApplication.run(SgsApplication.class, args).getBean(SmartGridService.class);
+        //SpringApplication.run(SgsApplication.class, args).getBean(SmartGridService.class);
 
 		
     	ConfigurableApplicationContext context = SpringApplication.run(SgsApplication.class, args) ;
-    	 new schedualtask(5);
-	        System.out.format("Task scheduled.%n");
+    	 //new schedualtask(5);
+	       // System.out.format("Task scheduled.%n");
 
         SmartGridService smartGridDao = context.getBean(SmartGridService.class);
         
 
         System.out.println("**** Running ****");
+      Scheduler s=new Scheduler();
 	} 
     @Bean
 	public CorsFilter corsFilter() {
@@ -56,20 +58,6 @@ public class SgsApplication {
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
-    @Bean
-    public CommandLineRunner schedulingRunner(TaskExecutor taskExecutor) {
-
-
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... args) throws Exception {
-                while (true) {
-                    
-					subscriber.subscribeMessage("weather-data-test");
-                }
-                // taskExecutor.execute(MessageListener);
-            }
-        };
-    }
+   
 
 }
