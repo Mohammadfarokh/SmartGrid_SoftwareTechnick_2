@@ -35,6 +35,7 @@ public class ShsApplication {
 //		consumedEnergyWithoutTariff = 10;
 		SmartHomeService shs = context.getBean(SmartHomeService.class);
 		sh = new SmartHome("smartHome", "Dortmund");
+		System.out.println("new smart home");
 		//add construktor for smarthome
 		shs.addSmartHomeObjekt(sh);
 		SmartMeterService sms = context.getBean(SmartMeterService.class);
